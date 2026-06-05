@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Taylor Parker Resume - Timeless</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: #d8d8d8;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #202233;
+        }
+
+        .resume {
+            width: 850px;
+            height: 1130px;
+            margin: 22px auto;
+            background: #fff;
+            padding: 36px 36px 34px;
+            overflow: hidden;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 39px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -.4px;
+            color: #202233;
+            margin-bottom: 10px;
+        }
+
+        .role {
+            font-size: 18px;
+            line-height: 1.1;
+            color: #202233;
+            margin-bottom: 23px;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 12.3px;
+            color: #555968;
+            white-space: nowrap;
+        }
+
+        section {
+            margin-bottom: 31px;
+        }
+
+        h2 {
+            font-size: 21px;
+            line-height: 1;
+            font-weight: 700;
+            color: #202233;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 17px;
+        }
+
+        h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #d8d8d8;
+            transform: translateY(2px);
+        }
+
+        p {
+            font-size: 12.4px;
+            line-height: 1.45;
+            color: #454955;
+        }
+
+        .job {
+            margin-bottom: 24px;
+        }
+
+        .job-head {
+            display: grid;
+            grid-template-columns:1fr 150px;
+            gap: 20px;
+            margin-bottom: 9px;
+        }
+
+        h3 {
+            font-size: 15px;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #202233;
+            margin-bottom: 4px;
+        }
+
+        .company, .school {
+            font-size: 14px;
+            line-height: 1.15;
+            color: #202233;
+            margin-bottom: 4px;
+        }
+
+        .place, .date {
+            color: #4f5360;
+            font-size: 12.2px;
+        }
+
+        .date {
+            text-align: right;
+            line-height: 1.45;
+        }
+
+        ul {
+            padding-left: 17px;
+        }
+
+        li {
+            font-size: 12.05px;
+            line-height: 1.4;
+            color: #454955;
+            margin-bottom: 4px;
+        }
+
+        .edu-item {
+            margin-bottom: 21px;
+        }
+
+        .edu-meta {
+            display: flex;
+            gap: 31px;
+            color: #4f5360;
+            font-size: 12.2px;
+            margin-top: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 18px 34px;
+            margin-top: 2px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.2px;
+            color: #4f5360;
+            margin-bottom: 8px;
+        }
+
+        .segments {
+            display: grid;
+            grid-template-columns:repeat(5, 1fr);
+            gap: 5px;
+        }
+
+        .seg {
+            height: 4px;
+            border-radius: 20px;
+            background: #e0e0e0;
+        }
+
+        .seg.on {
+            background: #17142f;
+        }
+
+        @media print {
+            body {
+                background: white
+            }
+
+            .resume {
+                margin: 0;
+                width: 100%;
+                height: 100vh
+            }
+
+            @page {
+                size: A4;
+                margin: 0
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="resume">
+    <header>
+        <h1>Taylor Parker</h1>
+        <div class="role">Senior Software Engineer | Product Team Lead</div>
+        <div class="contact">
+            <span>📞 321-554-8877</span>
+            <span>✉ t.parker@gmail.com</span>
+            <span>📍 Mountain View, CA</span>
+            <span>in https://linkedin.com/in/tparker</span>
+        </div>
+    </header>
+
+    <section>
+        <h2>Summary</h2>
+        <p>
+            Passionate Software Engineer with 10+ years of experience in developing web applications and backend
+            systems.
+            Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working
+            with both
+            small and large teams across multiple projects and companies. Able to work independently of remote locations
+            or
+            in office environments as needed by the company.
+        </p>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+
+        <div class="job">
+            <div class="job-head">
+                <div>
+                    <h3>Senior Software Engineer</h3>
+                    <div class="company">Google</div>
+                    <div class="place">Mountain View, CA</div>
+                </div>
+                <div class="date">Jan 2020 - Present</div>
+            </div>
+            <ul>
+                <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                    on-strategy.
+                </li>
+                <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                    constraints.
+                </li>
+                <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                    stakeholders.
+                </li>
+                <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <div>
+                    <h3>Product Team Lead</h3>
+                    <div class="company">Dropbox</div>
+                    <div class="place">Mountain View, CA</div>
+                </div>
+                <div class="date">Nov 2018 - Dec 2019</div>
+            </div>
+            <ul>
+                <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                    on-strategy.
+                </li>
+                <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                    constraints.
+                </li>
+                <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                    stakeholders.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+
+        <div class="edu-item">
+            <h3>Master of Science in Computer Science</h3>
+            <div class="school">Stanford University</div>
+            <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+        </div>
+
+        <div class="edu-item">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <div class="school">Carnegie Mellon University</div>
+            <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+
+        <div class="skills-grid">
+            <div class="skill">
+                <div class="skill-top"><span>Back-end</span><span>Expert</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-top"><span>Front-end</span><span>Advanced</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-top"><span>Data Bases</span><span>Advanced</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-top"><span>AI</span><span>Proficient</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-top"><span>Networks</span><span>Proficient</span></div>
+                <div class="segments"><span class="seg on"></span><span class="seg on"></span><span
+                        class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

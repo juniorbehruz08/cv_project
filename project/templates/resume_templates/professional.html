@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Taylor Parker Resume - Professional</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#d8d8d8;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#20243a;
+  }
+  .resume{
+    width:850px;
+    height:1130px;
+    margin:22px auto;
+    background:#f8fbfb;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .resume::before{
+    content:"";
+    position:absolute;
+    width:560px;
+    height:560px;
+    border-radius:50%;
+    background:#eef6f8;
+    left:286px;
+    top:235px;
+    opacity:.92;
+  }
+  .resume::after{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background:#eef6f8;
+    left:-180px;
+    bottom:-410px;
+    opacity:.9;
+    box-shadow:455px -105px 0 -180px #eef6f8;
+  }
+
+  .header{
+    height:181px;
+    background:#298b96;
+    color:#fff;
+    padding:38px 36px 0;
+    position:relative;
+    z-index:2;
+  }
+  h1{
+    font-size:38px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.5px;
+    margin-bottom:9px;
+  }
+  .headline{
+    font-size:15.5px;
+    color:#e8f4f5;
+    margin-bottom:23px;
+  }
+  .contact{
+    display:flex;
+    gap:24px;
+    align-items:center;
+    color:#d9eef1;
+    font-size:11.5px;
+    white-space:nowrap;
+  }
+
+  .main{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:45px;
+    padding:29px 36px 34px;
+  }
+
+  section{margin-bottom:31px}
+  h2{
+    font-size:19px;
+    line-height:1;
+    font-weight:800;
+    color:#20243a;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+  }
+  h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#d7dcde;
+    transform:translateY(2px);
+  }
+
+  p{
+    font-size:12px;
+    line-height:1.48;
+    color:#555d68;
+  }
+
+  .skill{
+    margin-bottom:21px;
+  }
+  .skill-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:start;
+    gap:10px;
+    font-size:12px;
+    color:#555d68;
+  }
+  .dots{
+    display:flex;
+    gap:5px;
+  }
+  .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#dbe4e8;
+  }
+  .dot.on{background:#298b96}
+  .level{
+    text-align:right;
+    font-size:11px;
+    color:#555d68;
+    margin-top:2px;
+  }
+
+  ul{padding-left:17px}
+  li{
+    font-size:11.7px;
+    line-height:1.43;
+    color:#555d68;
+    margin-bottom:4px;
+  }
+
+  .job{margin-bottom:24px}
+  .job-head{
+    display:grid;
+    grid-template-columns:1fr 148px;
+    gap:16px;
+    margin-bottom:8px;
+  }
+  h3{
+    font-size:14.5px;
+    line-height:1.18;
+    font-weight:800;
+    color:#20243a;
+    margin-bottom:4px;
+  }
+  .company,.school{
+    color:#298b96;
+    font-size:13.2px;
+    line-height:1.15;
+    margin-bottom:4px;
+  }
+  .place,.date{
+    color:#59616b;
+    font-size:11.6px;
+  }
+  .date{
+    text-align:right;
+    line-height:1.45;
+  }
+  .edu-item{margin-bottom:20px}
+  .edu-meta{
+    display:flex;
+    gap:30px;
+    font-size:11.6px;
+    color:#59616b;
+    margin-top:8px;
+  }
+
+  @media print{
+    body{background:#fff}
+    .resume{margin:0;width:100%;height:100vh}
+    @page{size:A4;margin:0}
+  }
+</style>
+</head>
+<body>
+<div class="resume">
+  <header class="header">
+    <h1>Taylor Parker</h1>
+    <div class="headline">Freelance Conversion Focused Copywriter</div>
+    <div class="contact">
+      <span>📞 321-554-8877</span>
+      <span>✉ 321-554-8877</span>
+      <span>📍 Philadelphia, Pennsylvania</span>
+      <span>in https://linkedin.com/in/taylorparker</span>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="left">
+      <section>
+        <h2>Summary</h2>
+        <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies.</p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+
+        <div class="skill">
+          <div class="skill-row"><span>Back-end development</span><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div></div>
+          <div class="level">Expert</div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>Front-end development</span><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div></div>
+          <div class="level">Advanced</div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>Data Bases</span><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div></div>
+          <div class="level">Advanced</div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>Machine Learning</span><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div></div>
+          <div class="level">Proficient</div>
+        </div>
+        <div class="skill">
+          <div class="skill-row"><span>UX Design</span><div class="dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+          <div class="level">Beginner</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Achievements</h2>
+        <ul>
+          <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-people team</li>
+          <li>Coordinated a year-long release of a six-part platform project</li>
+        </ul>
+      </section>
+    </aside>
+
+    <section class="right">
+      <section>
+        <h2>Experience</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Senior Software Engineer</h3>
+              <div class="company">Google</div>
+              <div class="place">London, United Kingdom</div>
+            </div>
+            <div class="date">Jan 2020 - Present</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+            <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Product Team Lead</h3>
+              <div class="company">Dropbox</div>
+              <div class="place">Mountain View, CA</div>
+            </div>
+            <div class="date">Nov 2018 - Dec 2019</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="edu-item">
+          <h3>Master of Science in Computer Science</h3>
+          <div class="school">Stanford University</div>
+          <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+        </div>
+        <div class="edu-item">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <div class="school">Carnegie Mellon University</div>
+          <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul>
+          <li>Certified Scrum Master by Atlassian<br>Issued Jun 2017</li>
+          <li>Certified React Native Developer<br>Issued May 2019</li>
+          <li>Certified Apple Developer<br>Issued Apr 2021</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+</div>
+</body>
+</html>

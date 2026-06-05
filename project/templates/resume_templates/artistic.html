@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Template</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ddd;
+      color: #2f3140;
+    }
+
+    .resume {
+      width: 850px;
+      min-height: 1100px;
+      margin: 30px auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .header {
+      background: #f2c866;
+      padding: 38px 36px 28px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #242633;
+    }
+
+    .header p {
+      font-size: 15px;
+      margin-bottom: 18px;
+      color: #4b4b4b;
+    }
+
+    .contact {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      color: #555;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 58% 42%;
+      padding: 30px 36px;
+      gap: 42px;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-bottom: 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #cfcfcf;
+      color: #303242;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .item {
+      margin-bottom: 20px;
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .item h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .company {
+      color: #d4b24f;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .date-location {
+      text-align: right;
+      font-size: 11px;
+      color: #777;
+      line-height: 1.4;
+      min-width: 135px;
+    }
+
+    ul {
+      padding-left: 17px;
+      margin-top: 8px;
+    }
+
+    li {
+      font-size: 12px;
+      line-height: 1.45;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .summary p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #666;
+    }
+
+    .skills ul,
+    .achievements ul,
+    .certifications ul {
+      list-style-type: disc;
+      padding-left: 16px;
+    }
+
+    .skills li {
+      margin-bottom: 24px;
+    }
+
+    .education .degree {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .education .school {
+      color: #d4b24f;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .education .edu-meta {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .certifications li {
+      list-style-position: outside;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .resume {
+        width: 100%;
+        margin: 0;
+      }
+
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .top-line {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .date-location {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="resume">
+    <header class="header">
+      <h1>Taylor Parker</h1>
+      <p>Freelance Conversion Focused Copywriter</p>
+
+      <div class="contact">
+        <span>📞 321-554-8877</span>
+        <span>✉️ 321-554-8877</span>
+        <span>📍 Philadelphia, Pennsylvania</span>
+        <span>🔗 https://linkedin.com/in/taylorparker</span>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="left">
+        <section class="section">
+          <h2>Experience</h2>
+
+          <div class="item">
+            <div class="top-line">
+              <div>
+                <h3>Senior Software Engineer</h3>
+                <div class="company">Google</div>
+              </div>
+              <div class="date-location">
+                Jan 2020 - Present<br />
+                London, United Kingdom
+              </div>
+            </div>
+
+            <ul>
+              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+              <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="top-line">
+              <div>
+                <h3>Product Team Lead</h3>
+                <div class="company">Dropbox</div>
+              </div>
+              <div class="date-location">
+                Nov 2018 - Dec 2019<br />
+                Mountain View, CA
+              </div>
+            </div>
+
+            <ul>
+              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section education">
+          <h2>Education</h2>
+
+          <div class="item">
+            <div class="degree">Master of Science in Computer Science</div>
+            <div class="school">Stanford University</div>
+            <div class="edu-meta">2016 - 2018 &nbsp;&nbsp; Stanford, CA</div>
+          </div>
+
+          <div class="item">
+            <div class="degree">Bachelor of Science in Computer Science</div>
+            <div class="school">Carnegie Mellon University</div>
+            <div class="edu-meta">2013 - 2016 &nbsp;&nbsp; Pittsburgh, PA</div>
+          </div>
+        </section>
+
+        <section class="section certifications">
+          <h2>Certifications</h2>
+
+          <ul>
+            <li>Certified Scrum Master by Atlassian<br />Issued Jun 2017</li>
+            <li>Certified React Native Developer<br />Issued May 2019</li>
+            <li>Certified Apple Developer<br />Issued Apr 2021</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="right">
+        <section class="section summary">
+          <h2>Summary</h2>
+          <p>
+            Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems.
+            Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with
+            both small and large teams across multiple projects and companies.
+          </p>
+        </section>
+
+        <section class="section skills">
+          <h2>Skills</h2>
+
+          <ul>
+            <li>Back-end development</li>
+            <li>Front-end development</li>
+            <li>Data Bases</li>
+            <li>Machine Learning</li>
+            <li>UX Design</li>
+          </ul>
+        </section>
+
+        <section class="section achievements">
+          <h2>Achievements</h2>
+
+          <ul>
+            <li>Spearheaded a $12M software project, from design to distribution, as a senior software engineer in a 12-person team</li>
+            <li>Coordinated a year-long release of a six-part platform project</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

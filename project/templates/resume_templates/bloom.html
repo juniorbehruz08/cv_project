@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olivia Parker Resume</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e9e4e7;
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+      color: #22223a;
+    }
+
+    .resume {
+      width: 850px;
+      min-height: 1130px;
+      margin: 30px auto;
+      background: #f5eff3;
+      padding: 44px 46px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      margin-bottom: 60px;
+    }
+
+    .profile-img {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #c8c8c8;
+      display: block;
+    }
+
+    .header-info h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: #252542;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .header-info .title {
+      font-size: 16px;
+      color: #aa4f97;
+      margin-bottom: 26px;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 11px;
+      color: #777285;
+    }
+
+    .contact span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      gap: 68px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #24233e;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    h2::after {
+      content: "";
+      height: 1px;
+      background: #d8d1d6;
+      flex: 1;
+    }
+
+    .section {
+      margin-bottom: 38px;
+    }
+
+    .summary p {
+      font-size: 12px;
+      line-height: 1.65;
+      color: #6b6674;
+    }
+
+    .skill {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      margin-bottom: 24px;
+      column-gap: 16px;
+    }
+
+    .skill-name {
+      font-size: 12px;
+      color: #6b6674;
+    }
+
+    .dots {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+
+    .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #d9d4d8;
+    }
+
+    .dot.filled {
+      background: #bc45a9;
+    }
+
+    .level {
+      font-size: 11px;
+      color: #6b6674;
+      text-align: right;
+    }
+
+    ul {
+      padding-left: 16px;
+    }
+
+    li {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #6b6674;
+      margin-bottom: 6px;
+    }
+
+    .job,
+    .edu-item {
+      margin-bottom: 33px;
+    }
+
+    .job-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #252542;
+      margin-bottom: 5px;
+    }
+
+    .company,
+    .school {
+      font-size: 13px;
+      color: #aa4f97;
+    }
+
+    .date-location {
+      font-size: 11px;
+      color: #6b6674;
+      line-height: 1.5;
+      text-align: right;
+      min-width: 160px;
+    }
+
+    .edu-meta {
+      display: flex;
+      gap: 34px;
+      font-size: 12px;
+      color: #6b6674;
+      margin-top: 10px;
+    }
+
+    .certifications li {
+      margin-bottom: 4px;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .resume {
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .resume {
+        width: 100%;
+        margin: 0;
+        padding: 32px 24px;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .job-head {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .date-location {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="resume">
+
+    <header class="header">
+      <img src="" alt="Profile photo" class="profile-img">
+
+      <div class="header-info">
+        <h1>Olivia Parker</h1>
+        <p class="title">Senior Graphic Designer</p>
+
+        <div class="contact">
+          <span>📞 321-554-8877</span>
+          <span>✉️ hi@oparker.design</span>
+          <span>📍 London, United Kingdom</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <aside class="left">
+        <section class="section summary">
+          <h2>Summary</h2>
+          <p>
+            Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems.
+            Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with
+            both small and large teams across multiple projects and companies.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>Skills</h2>
+
+          <div class="skill">
+            <div class="skill-name">Photoshop</div>
+            <div>
+              <div class="dots">
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+              </div>
+              <div class="level">Expert</div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Illustrator</div>
+            <div>
+              <div class="dots">
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot"></span>
+              </div>
+              <div class="level">Advanced</div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">In Design</div>
+            <div>
+              <div class="dots">
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot"></span>
+              </div>
+              <div class="level">Advanced</div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Figma</div>
+            <div>
+              <div class="dots">
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot filled"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <div class="level">Proficient</div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">After Effects</div>
+            <div>
+              <div class="dots">
+                <span class="dot filled"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <div class="level">Beginner</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Achievements</h2>
+          <ul>
+            <li>Spearheaded a $12M software project, from design to distribution, as a senior software engineer in a 12-people team</li>
+            <li>Coordinated a year-long release of a six-part platform project</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="right">
+
+        <section class="section">
+          <h2>Experience</h2>
+
+          <div class="job">
+            <div class="job-head">
+              <div>
+                <h3>Senior Graphic Designer</h3>
+                <div class="company">Amazon</div>
+              </div>
+              <div class="date-location">
+                Jan 2020 - Present<br>
+                London, United Kingdom
+              </div>
+            </div>
+
+            <ul>
+              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-head">
+              <div>
+                <h3>Design Team Lead</h3>
+                <div class="company">Adobe</div>
+              </div>
+              <div class="date-location">
+                Nov 2018 - Dec 2019<br>
+                London, United Kingdom
+              </div>
+            </div>
+
+            <ul>
+              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Education</h2>
+
+          <div class="edu-item">
+            <h3>Master of Design in Computer Science</h3>
+            <div class="school">Stanford University</div>
+            <div class="edu-meta">
+              <span>2016 - 2018</span>
+              <span>Stanford, CA</span>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <h3>Bachelor of Art in Computer Science</h3>
+            <div class="school">Carnegie Mellon University</div>
+            <div class="edu-meta">
+              <span>2013 - 2016</span>
+              <span>Pittsburgh, PA</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section certifications">
+          <h2>Certifications</h2>
+          <ul>
+            <li>Certified Graphic Designer by Adobe<br>Issued September 2021</li>
+            <li>Certified Graphic Designer by Figma<br>Issued September 2021</li>
+          </ul>
+        </section>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

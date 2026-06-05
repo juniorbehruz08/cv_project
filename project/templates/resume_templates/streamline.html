@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ethan Johnson Resume - Streamline</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#d8d8d8;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#202337;
+  }
+  .resume{
+    width:850px;
+    height:1130px;
+    margin:22px auto;
+    background:#fff;
+    display:grid;
+    grid-template-columns:313px 1fr;
+    overflow:hidden;
+  }
+
+  /* LEFT SIDEBAR */
+  .sidebar{
+    background:#b5003d;
+    color:#fff;
+    padding:47px 26px 32px 36px;
+  }
+  .side-section{
+    margin-bottom:29px;
+  }
+  .side-title{
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .side-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(255,255,255,.17);
+    transform:translateY(2px);
+  }
+  .sidebar p{
+    font-size:12px;
+    line-height:1.5;
+    color:#ffe8f0;
+  }
+  .contact-item{
+    font-size:12.2px;
+    color:#fff1f6;
+    line-height:1.1;
+    margin-bottom:14px;
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+  }
+  .icon{
+    width:13px;
+    flex:0 0 13px;
+    opacity:.85;
+  }
+
+  .skill{
+    margin-bottom:17px;
+  }
+  .skill-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+    color:#fff1f6;
+    margin-bottom:8px;
+  }
+  .bar{
+    height:5px;
+    background:rgba(255,255,255,.28);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .fill{
+    height:100%;
+    background:#fff;
+    border-radius:10px;
+    display:block;
+  }
+
+  .language{
+    margin-bottom:18px;
+  }
+
+  ul{padding-left:17px}
+  .sidebar li{
+    font-size:11.8px;
+    line-height:1.43;
+    color:#fff1f6;
+    margin-bottom:4px;
+  }
+
+  /* RIGHT MAIN */
+  .main{
+    position:relative;
+    padding:43px 36px 36px 27px;
+    overflow:hidden;
+  }
+  .main::before{
+    content:"";
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    top:-255px;
+    right:-165px;
+    background:
+      repeating-radial-gradient(circle at center,
+        rgba(155,90,112,.14) 0 1px,
+        transparent 1px 12px);
+    pointer-events:none;
+  }
+  .content{position:relative;z-index:2}
+  h1{
+    font-size:30px;
+    line-height:1;
+    font-weight:800;
+    color:#202337;
+    letter-spacing:-.25px;
+    margin-bottom:9px;
+  }
+  .role{
+    color:#b5003d;
+    font-size:14.8px;
+    margin-bottom:35px;
+  }
+
+  section{
+    margin-bottom:30px;
+  }
+  h2{
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:17px;
+    color:#202337;
+  }
+  h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#dedede;
+    transform:translateY(2px);
+  }
+
+  .job{
+    margin-bottom:23px;
+  }
+  .job-head{
+    display:grid;
+    grid-template-columns:1fr 145px;
+    gap:16px;
+    margin-bottom:8px;
+  }
+  h3{
+    font-size:14.7px;
+    line-height:1.18;
+    font-weight:800;
+    color:#202337;
+    margin-bottom:4px;
+  }
+  .company,.school{
+    color:#b5003d;
+    font-size:13.5px;
+    line-height:1.15;
+    margin-bottom:4px;
+  }
+  .place,.date{
+    color:#555c66;
+    font-size:11.8px;
+  }
+  .date{
+    text-align:right;
+    line-height:1.45;
+  }
+
+  .main ul{padding-left:17px}
+  .main li{
+    font-size:11.75px;
+    line-height:1.42;
+    color:#4d535f;
+    margin-bottom:4px;
+  }
+
+  .edu-item{
+    margin-bottom:20px;
+  }
+  .edu-meta{
+    display:flex;
+    gap:31px;
+    color:#555c66;
+    font-size:11.8px;
+    margin-top:8px;
+  }
+
+  @media print{
+    body{background:white}
+    .resume{margin:0;width:100%;height:100vh}
+    @page{size:A4;margin:0}
+  }
+</style>
+</head>
+<body>
+<div class="resume">
+  <aside class="sidebar">
+    <section class="side-section">
+      <div class="side-title">Summary</div>
+      <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies.</p>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Contact Info</div>
+      <div class="contact-item"><span class="icon">📞</span><span>321-554-8877</span></div>
+      <div class="contact-item"><span class="icon">✉</span><span>ethanjohnson@gmail.com</span></div>
+      <div class="contact-item"><span class="icon">📍</span><span>Cork, Ireland</span></div>
+      <div class="contact-item"><span class="icon">⌁</span><span>https://x.com/ethanjohnson</span></div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Skills</div>
+
+      <div class="skill">
+        <div class="skill-top"><span>Art Direction</span><span>Expert</span></div>
+        <div class="bar"><span class="fill" style="width:100%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-top"><span>Creative Direction</span><span>Advanced</span></div>
+        <div class="bar"><span class="fill" style="width:82%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-top"><span>Branding</span><span>Advanced</span></div>
+        <div class="bar"><span class="fill" style="width:82%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-top"><span>Copywriting</span><span>Proficient</span></div>
+        <div class="bar"><span class="fill" style="width:60%"></span></div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-top"><span>Motion Design</span><span>Beginner</span></div>
+        <div class="bar"><span class="fill" style="width:20%"></span></div>
+      </div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Languages</div>
+
+      <div class="skill language">
+        <div class="skill-top"><span>English</span><span>Native</span></div>
+        <div class="bar"><span class="fill" style="width:100%"></span></div>
+      </div>
+
+      <div class="skill language">
+        <div class="skill-top"><span>Spanish</span><span>Fluent</span></div>
+        <div class="bar"><span class="fill" style="width:82%"></span></div>
+      </div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Interests</div>
+      <ul>
+        <li>Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team</li>
+        <li>Coordinated a year-long release of a six-part platform project</li>
+      </ul>
+    </section>
+  </aside>
+
+  <main class="main">
+    <div class="content">
+      <header>
+        <h1>Ethan Johnson</h1>
+        <div class="role">Creative Art Director</div>
+      </header>
+
+      <section>
+        <h2>Experience</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Creative Director</h3>
+              <div class="company">Apple</div>
+              <div class="place">Cork, Ireland</div>
+            </div>
+            <div class="date">Jan 2020 - Present</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+            <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Design Team Lead</h3>
+              <div class="company">Zendesk</div>
+              <div class="place">Dublin, Ireland</div>
+            </div>
+            <div class="date">Nov 2018 - Dec 2019</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="edu-item">
+          <h3>Master of Science in Computer Science</h3>
+          <div class="school">Stanford University</div>
+          <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+        </div>
+        <div class="edu-item">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <div class="school">Carnegie Mellon University</div>
+          <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul>
+          <li>Certified Scrum Master by Atlassian<br>Issued Jun 2017</li>
+          <li>Certified React Native Developer<br>Issued May 2019</li>
+          <li>Certified Apple Developer<br>Issued Apr 2021</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Achievements</h2>
+        <ul>
+          <li>Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team</li>
+          <li>Coordinated a year-long release of a six-part platform project</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

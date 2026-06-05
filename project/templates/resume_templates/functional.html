@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nathan Thompson Resume - Functional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: #d9d9d9;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #23243a;
+        }
+
+        .resume {
+            width: 850px;
+            height: 1130px;
+            margin: 22px auto;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 36px 38px;
+        }
+
+        .resume:before {
+            content: "";
+            position: absolute;
+            inset: -80px -60px -80px -60px;
+            background: repeating-radial-gradient(ellipse at 78% 8%, rgba(160, 56, 105, .13) 0 1px, transparent 1px 11px),
+            linear-gradient(115deg, transparent 0 24%, rgba(160, 56, 105, .035) 24% 39%, transparent 39% 100%);
+            opacity: .75;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2
+        }
+
+        .header {
+            position: relative;
+            min-height: 135px;
+            padding-right: 165px;
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: 36px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -.4px;
+            color: #26243c;
+            margin-bottom: 9px;
+        }
+
+        .role {
+            color: #a11452;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns:145px 195px 1fr;
+            gap: 8px 14px;
+            color: #696b76;
+            font-size: 12px;
+        }
+
+        .contact span {
+            white-space: nowrap
+        }
+
+        .photo {
+            position: absolute;
+            right: 0;
+            top: -5px;
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #cfcfcf;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+        }
+
+        .section {
+            margin-bottom: 34px
+        }
+
+        .bar-title {
+            background: rgba(250, 231, 240, .82);
+            color: #a11452;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 11px 13px;
+            margin-bottom: 16px;
+            box-shadow: 7px 9px 18px rgba(160, 56, 105, .06);
+        }
+
+        p {
+            font-size: 12.35px;
+            line-height: 1.48;
+            color: #4f535f;
+        }
+
+        .job {
+            margin-bottom: 22px
+        }
+
+        .job-head {
+            display: grid;
+            grid-template-columns:1fr 160px;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #22233a;
+            margin-bottom: 4px;
+        }
+
+        .company, .school {
+            color: #a11452;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .place, .date {
+            color: #626670;
+            font-size: 12px;
+        }
+
+        .date {
+            text-align: right;
+            line-height: 1.4
+        }
+
+        ul {
+            padding-left: 17px
+        }
+
+        li {
+            font-size: 12.1px;
+            line-height: 1.42;
+            color: #4f535f;
+            margin-bottom: 4px;
+        }
+
+        .education {
+            display: grid;
+            grid-template-columns:1fr;
+            gap: 20px;
+        }
+
+        .edu-meta {
+            display: flex;
+            gap: 33px;
+            font-size: 12px;
+            color: #626670;
+            margin-top: 8px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap: 18px 34px;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            color: #4f535f;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .bars {
+            display: flex;
+            gap: 5px;
+        }
+
+        .seg {
+            height: 5px;
+            flex: 1;
+            min-width: 36px;
+            background: #dedee0;
+            border-radius: 10px;
+        }
+
+        .seg.on {
+            background: #a11452
+        }
+
+        @media print {
+            body {
+                background: white
+            }
+
+            .resume {
+                margin: 0;
+                width: 100%;
+                height: 100vh
+            }
+
+            @page {
+                size: A4;
+                margin: 0
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="resume">
+    <div class="content">
+        <header class="header">
+            <h1>Nathan Thompson</h1>
+            <div class="role">Senior Product Manager</div>
+            <div class="contact">
+                <span>📞 321-554-8877</span>
+                <span>✉ nathanthomson@yahoo.com</span>
+                <span>📍 London, United Kingdom</span>
+                <span>in https://linkedin.com/in/taylorparker</span>
+                <span>↗ https://github.com/tlrpkr_hack</span>
+            </div>
+            <img src="" alt="Profile photo" class="photo">
+        </header>
+
+        <section class="section">
+            <div class="bar-title">Summary</div>
+            <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend
+                systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced
+                in working with both small and large teams across multiple projects and companies. Able to work
+                independently of remote locations or in office environments as needed by the company.</p>
+        </section>
+
+        <section class="section">
+            <div class="bar-title">Experience</div>
+            <div class="job">
+                <div class="job-head">
+                    <div><h3>Senior Software Engineer</h3>
+                        <div class="company">Google</div>
+                    </div>
+                    <div class="date">Jan 2020 - Present<br>London, United Kingdom</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                        on-strategy.
+                    </li>
+                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                        constraints.
+                    </li>
+                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                        stakeholders.
+                    </li>
+                    <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <div class="job-head">
+                    <div><h3>Product Team Lead</h3>
+                        <div class="company">Dropbox</div>
+                    </div>
+                    <div class="date">Nov 2018 - Dec 2019<br>Mountain View, CA</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                        on-strategy.
+                    </li>
+                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                        constraints.
+                    </li>
+                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                        stakeholders.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="bar-title">Education</div>
+            <div class="education">
+                <div><h3>Master of Science in Computer Science</h3>
+                    <div class="school">Stanford University</div>
+                    <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+                </div>
+                <div><h3>Bachelor of Science in Computer Science</h3>
+                    <div class="school">Carnegie Mellon University</div>
+                    <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="bar-title">Skills</div>
+            <div class="skills-grid">
+                <div class="skill">
+                    <div class="skill-top"><span>Back-end</span><span>Expert</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-top"><span>Front-end</span><span>Advanced</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-top"><span>Data Bases</span><span>Advanced</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
+                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
+                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

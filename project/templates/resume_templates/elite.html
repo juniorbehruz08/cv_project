@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Madison Bennett Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: #d9d9d9;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #202936
+        }
+
+        .resume {
+            width: 850px;
+            min-height: 1100px;
+            margin: 30px auto;
+            background: #fff;
+            overflow: hidden
+        }
+
+        .hero {
+            height: 242px;
+            padding: 46px 46px 30px;
+            color: #fff;
+            background: linear-gradient(rgba(15, 18, 28, .78), rgba(15, 18, 28, .78)), url('');
+            background-size: cover;
+            background-position: center;
+            position: relative
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(16, 18, 29, .9), rgba(16, 18, 29, .55));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            line-height: 1;
+            font-weight: 700;
+            margin-bottom: 13px
+        }
+
+        .hero .role {
+            font-size: 18px;
+            margin-bottom: 28px
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            font-size: 13px;
+            color: #e5e5e8
+        }
+
+        .contact span {
+            white-space: nowrap
+        }
+
+        .content {
+            padding: 34px 36px 42px
+        }
+
+        .section {
+            margin-bottom: 33px
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #cfd4d8
+        }
+
+        .summary p {
+            font-size: 14px;
+            line-height: 1.45;
+            color: #38424c
+        }
+
+        .job, .edu-item {
+            margin-bottom: 30px
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px
+        }
+
+        .date {
+            font-size: 13px;
+            color: #3e4650;
+            white-space: nowrap;
+            text-align: right
+        }
+
+        .job h3, .edu-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px
+        }
+
+        .company, .school {
+            font-size: 15px;
+            color: #008078;
+            margin-bottom: 5px
+        }
+
+        .location, .meta {
+            font-size: 13px;
+            color: #3e4650
+        }
+
+        .job ul, .achievements ul {
+            margin-top: 12px;
+            padding-left: 22px
+        }
+
+        .job li, .achievements li {
+            font-size: 13px;
+            line-height: 1.38;
+            color: #38424c
+        }
+
+        .edu-item .meta {
+            margin-top: 12px;
+            display: flex;
+            gap: 30px
+        }
+
+        .achievements {
+            margin-top: 42px
+        }
+
+        @media print {
+            body {
+                background: #fff
+            }
+
+            .resume {
+                margin: 0;
+                width: 100%;
+                min-height: 100vh
+            }
+
+            @page {
+                size: A4;
+                margin: 0
+            }
+        }
+
+        @media (max-width: 900px) {
+            .resume {
+                width: 100%;
+                margin: 0
+            }
+
+            .hero {
+                height: auto
+            }
+
+            .content {
+                padding: 28px 24px
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 6px
+            }
+
+            .date {
+                text-align: left
+            }
+
+            .contact {
+                gap: 12px
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="resume">
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Madison Bennett</h1>
+            <div class="role">Chief Marketing Officer</div>
+            <div class="contact">
+                <span>📞 321-554-8877</span><span>✉️ 321-554-8877</span><span>📍 Stanford, CA</span><span>in&nbsp; https://linkedin.com/in/taylorparker</span><span>🔗 https://madisonbennett.me</span>
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <section class="section summary"><h2>Summary</h2>
+            <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend
+                systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced
+                in working with both small and large teams across multiple projects and companies. Able to work
+                independently of remote locations or in office environments as needed by the company.</p></section>
+        <section class="section"><h2>Experience</h2>
+            <div class="job">
+                <div class="row">
+                    <div><h3>Senior Software Engineer</h3>
+                        <div class="company">Google</div>
+                        <div class="location">Stanford, CA</div>
+                    </div>
+                    <div class="date">Jan 2020 - Present</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                        on-strategy.
+                    </li>
+                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                        constraints.
+                    </li>
+                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                        stakeholders.
+                    </li>
+                    <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <div class="row">
+                    <div><h3>Product Team Lead</h3>
+                        <div class="company">Dropbox</div>
+                        <div class="location">Mountain View, CA</div>
+                    </div>
+                    <div class="date">Nov 2018 - Dec 2019</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
+                        on-strategy.
+                    </li>
+                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
+                        constraints.
+                    </li>
+                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
+                        stakeholders.
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="section"><h2>Education</h2>
+            <div class="edu-item"><h3>Master of Science in Computer Science</h3>
+                <div class="school">Stanford University</div>
+                <div class="meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+            </div>
+        </section>
+        <section class="section achievements"><h2>Achievements</h2>
+            <ul>
+                <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a
+                    12-people team
+                </li>
+                <li>Coordinated a year-long release of a six-part platform project</li>
+            </ul>
+        </section>
+    </main>
+</div>
+</body>
+</html>

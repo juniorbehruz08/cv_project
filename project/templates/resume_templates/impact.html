@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Taylor Parker Resume - Impact</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#d7d7d7;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#202233;
+  }
+  .resume{
+    width:850px;
+    height:1130px;
+    margin:22px auto;
+    background:#fff;
+    display:grid;
+    grid-template-columns:313px 1fr;
+    overflow:hidden;
+  }
+
+  /* LEFT DARK COLUMN */
+  .sidebar{
+    background:#11121b;
+    color:#fff;
+    padding:49px 24px 30px 36px;
+  }
+  .side-section{
+    margin-bottom:31px;
+  }
+  .side-title{
+    font-size:20px;
+    font-weight:800;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .side-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(255,255,255,.18);
+    transform:translateY(2px);
+  }
+  .contact-item{
+    font-size:12px;
+    line-height:1;
+    color:#d7d9df;
+    margin-bottom:14px;
+    white-space:nowrap;
+  }
+  .contact-item span{
+    opacity:.95;
+  }
+
+  .skill-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    padding-top:2px;
+  }
+  .pill{
+    width:max-content;
+    min-width:151px;
+    height:28px;
+    border-radius:16px;
+    background:rgba(154,58,67,.42);
+    color:#ff777a;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    padding:0 14px;
+    font-size:12px;
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset;
+  }
+
+  .language-row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:start;
+    margin-bottom:21px;
+    color:#dedfe5;
+    font-size:12px;
+  }
+  .dots{
+    display:flex;
+    gap:5px;
+  }
+  .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:rgba(255,255,255,.16);
+  }
+  .dot.on{background:#ff7375}
+  .level{
+    text-align:right;
+    color:#d7d9df;
+    font-size:11px;
+    margin-top:3px;
+  }
+
+  ul{
+    padding-left:17px;
+  }
+  li{
+    font-size:12px;
+    line-height:1.45;
+    margin-bottom:5px;
+  }
+  .sidebar li{
+    color:#e6e7ec;
+  }
+
+  /* RIGHT CONTENT */
+  .main{
+    position:relative;
+    padding:43px 36px 40px 28px;
+    overflow:hidden;
+  }
+  .main::before{
+    content:"";
+    position:absolute;
+    inset:-90px -140px -90px -100px;
+    background:
+      repeating-radial-gradient(ellipse at 25% 8%, rgba(143,95,110,.12) 0 1px, transparent 1px 11px),
+      linear-gradient(120deg, transparent 0 43%, rgba(143,95,110,.035) 43% 60%, transparent 60% 100%);
+    opacity:.72;
+    pointer-events:none;
+  }
+  .content{position:relative;z-index:2}
+  h1{
+    font-size:30px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-.3px;
+    color:#22233a;
+    margin-bottom:8px;
+  }
+  .role{
+    color:#a0194f;
+    font-size:14px;
+    margin-bottom:30px;
+  }
+
+  .section{
+    margin-bottom:31px;
+  }
+  .title{
+    color:#22233a;
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#d9d9d9;
+    transform:translateY(2px);
+  }
+  p{
+    font-size:12px;
+    line-height:1.48;
+    color:#4d535f;
+  }
+
+  .job{
+    margin-bottom:22px;
+  }
+  .job-head{
+    display:grid;
+    grid-template-columns:1fr 145px;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  h3{
+    font-size:14.5px;
+    line-height:1.2;
+    font-weight:800;
+    color:#202233;
+    margin-bottom:4px;
+  }
+  .company,.school{
+    color:#a0194f;
+    font-size:13px;
+    line-height:1.2;
+    margin-bottom:4px;
+  }
+  .place,.date{
+    color:#565c66;
+    font-size:11.5px;
+  }
+  .date{
+    text-align:right;
+    line-height:1.45;
+  }
+  .main li{
+    color:#4d535f;
+    font-size:11.7px;
+    line-height:1.42;
+    margin-bottom:4px;
+  }
+  .edu-item{
+    margin-bottom:20px;
+  }
+  .edu-meta{
+    display:flex;
+    gap:29px;
+    color:#565c66;
+    font-size:11.5px;
+    margin-top:8px;
+  }
+
+  @media print{
+    body{background:#fff}
+    .resume{margin:0;width:100%;height:100vh}
+    @page{size:A4;margin:0}
+  }
+</style>
+</head>
+<body>
+<div class="resume">
+  <aside class="sidebar">
+    <section class="side-section">
+      <div class="side-title">Contact Info</div>
+      <div class="contact-item">📞 <span>321-554-8877</span></div>
+      <div class="contact-item">✉ <span>321-554-8877</span></div>
+      <div class="contact-item">📍 <span>Philadelphia, Pennsylvania</span></div>
+      <div class="contact-item">in <span>https://linkedin.com/in/taylorparker</span></div>
+      <div class="contact-item">◔ <span>https://github.com/tlrpkr_hack</span></div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Skills</div>
+      <div class="skill-list">
+        <div class="pill">Back-end development</div>
+        <div class="pill">Front-end development</div>
+        <div class="pill">Data Bases</div>
+        <div class="pill">Machine Learning</div>
+        <div class="pill">UX Design</div>
+      </div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Languages</div>
+      <div class="language-row">
+        <span>English</span>
+        <div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+          <div class="level">Native</div>
+        </div>
+      </div>
+      <div class="language-row">
+        <span>Spanish</span>
+        <div>
+          <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+          <div class="level">Fluent</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Achievements</div>
+      <ul>
+        <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-people team</li>
+        <li>Coordinated a year-long release of a six-part platform project</li>
+      </ul>
+    </section>
+
+    <section class="side-section">
+      <div class="side-title">Certifications</div>
+      <ul>
+        <li>Certified Scrum Master by Atlassian<br>Issued Jun 2017</li>
+        <li>Certified React Native Developer<br>Issued May 2019</li>
+        <li>Certified Apple Developer<br>Issued Apr 2021</li>
+      </ul>
+    </section>
+  </aside>
+
+  <main class="main">
+    <div class="content">
+      <header>
+        <h1>Taylor Parker</h1>
+        <div class="role">Senior Software Engineer | Product Team Lead</div>
+      </header>
+
+      <section class="section">
+        <div class="title">Summary</div>
+        <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies. Able to work independently of remote locations or in office environments as needed by the company.</p>
+      </section>
+
+      <section class="section">
+        <div class="title">Experience</div>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Senior Software Engineer</h3>
+              <div class="company">Google</div>
+              <div class="place">London, United Kingdom</div>
+            </div>
+            <div class="date">Jan 2020 - Present</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+            <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div>
+              <h3>Product Team Lead</h3>
+              <div class="company">Dropbox</div>
+              <div class="place">Mountain View, CA</div>
+            </div>
+            <div class="date">Nov 2018 - Dec 2019</div>
+          </div>
+          <ul>
+            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
+            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
+            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="title">Education</div>
+        <div class="edu-item">
+          <h3>Master of Science in Computer Science</h3>
+          <div class="school">Stanford University</div>
+          <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
+        </div>
+        <div class="edu-item">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <div class="school">Carnegie Mellon University</div>
+          <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</body>
+</html>

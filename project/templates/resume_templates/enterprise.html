@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enterprise Resume</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: #ddd;
+            font-family: Segoe UI, Arial, sans-serif
+        }
+
+        .resume {
+            width: 850px;
+            height: 1100px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns:63% 37%;
+            background: #fff
+        }
+
+        .left {
+            background: #f7f7f7;
+            padding: 28px 26px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .left:after {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            left: -180px;
+            bottom: -180px;
+            background: rgba(220, 220, 220, .25)
+        }
+
+        .right {
+            background: #2f78c8;
+            color: #fff;
+            padding: 24px 20px
+        }
+
+        .name {
+            font-size: 30px;
+            font-weight: 800;
+            color: #20253a
+        }
+
+        .role {
+            font-size: 16px;
+            color: #6c7480;
+            margin-top: 6px;
+            margin-bottom: 26px
+        }
+
+        .section {
+            margin-top: 24px
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #20253a;
+            border-bottom: 1px solid #d8d8d8;
+            padding-bottom: 8px;
+            margin-bottom: 16px
+        }
+
+        .job {
+            margin-bottom: 28px
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .jobtitle {
+            font-weight: 700
+        }
+
+        .company {
+            color: #5f9ab5;
+            margin-top: 3px
+        }
+
+        .loc, .date {
+            font-size: 12px;
+            color: #777
+        }
+
+        ul {
+            padding-left: 18px;
+            margin-top: 10px
+        }
+
+        li {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 20px
+        }
+
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .25)
+        }
+
+        .rtitle {
+            font-size: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            padding-bottom: 8px;
+            margin: 22px 0 12px
+        }
+
+        .summary, .contact, .ach {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #eef
+        }
+
+        .skill {
+            margin-bottom: 16px
+        }
+
+        .dots {
+            display: flex;
+            gap: 4px;
+            justify-content: flex-end;
+            margin-top: 4px
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35)
+        }
+
+        .on {
+            background: #fff
+        }
+
+        .level {
+            text-align: right;
+            font-size: 11px
+        }
+    </style>
+</head>
+<body>
+<div class="resume">
+    <div class="left">
+        <div class="name">Tina Parker</div>
+        <div class="role">Financial Controller</div>
+
+        <div class="section">
+            <div class="title">Experience</div>
+            <div class="job">
+                <div class="row">
+                    <div>
+                        <div class="jobtitle">Senior Software Engineer</div>
+                        <div class="company">Google</div>
+                        <div class="loc">London, United Kingdom</div>
+                    </div>
+                    <div class="date">Jan 2020 - Present</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated and differentiated.</li>
+                    <li>Managed multiple projects simultaneously.</li>
+                    <li>Created compelling visual presentations.</li>
+                    <li>Maintained comprehensive design assets.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <div class="row">
+                    <div>
+                        <div class="jobtitle">Product Team Lead</div>
+                        <div class="company">Dropbox</div>
+                        <div class="loc">Mountain View, CA</div>
+                    </div>
+                    <div class="date">Nov 2018 - Dec 2019</div>
+                </div>
+                <ul>
+                    <li>Developed design deliverables that elevated and differentiated.</li>
+                    <li>Managed multiple projects simultaneously.</li>
+                    <li>Created compelling visual presentations.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="title">Education</div>
+            <p><b>Master of Science in Computer Science</b><br><span class="company">Stanford University</span><br><span
+                    class="loc">2016-2018 • Stanford, CA</span></p><br>
+            <p><b>Bachelor of Science in Computer Science</b><br><span class="company">Carnegie Mellon University</span><br><span
+                    class="loc">2013-2016 • Pittsburgh, PA</span></p>
+        </div>
+
+        <div class="section">
+            <div class="title">Certifications</div>
+            <ul>
+                <li>Certified Scrum Master by Atlassian</li>
+                <li>Certified React Native Developer</li>
+                <li>Certified Apple Developer</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="profile"><img src="enterprise.jpg"></div>
+        <div class="rtitle">Summary</div>
+        <div class="summary">Passionate Software Engineer with 10+ years of experience in developing web applications
+            and backend systems.
+        </div>
+
+        <div class="rtitle">Contact Info</div>
+        <div class="contact">☎ 321-554-8877<br>✉ 321-554-8877<br>📍 Philadelphia, Pennsylvania</div>
+
+        <div class="rtitle">Skills</div>
+        <div class="skill">Accounting
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span
+                    class="dot on"></span><span class="dot on"></span></div>
+            <div class="level">Expert</div>
+        </div>
+        <div class="skill">Audit
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span
+                    class="dot on"></span><span class="dot"></span></div>
+            <div class="level">Advanced</div>
+        </div>
+        <div class="skill">Investing
+            <div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span
+                    class="dot"></span><span class="dot"></span></div>
+            <div class="level">Advanced</div>
+        </div>
+
+        <div class="rtitle">Achievements</div>
+        <div class="ach">• Spearheaded a $12M software project.<br>• Coordinated a year-long release of a platform
+            project.
+        </div>
+    </div>
+</div>
+</body>
+</html>
