@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,6 +193,7 @@
             }
         }
     </style>
+  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 <body>
 <div class="resume">
@@ -269,5 +271,6 @@
         </section>
     </main>
 </div>
+  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
 </body>
 </html>

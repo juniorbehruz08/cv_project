@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -208,6 +209,7 @@
     @page{size:A4;margin:0}
   }
 </style>
+  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 <body>
 <div class="resume">
@@ -361,5 +363,6 @@
     </section>
   </aside>
 </div>
+  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +38,7 @@
     @media print{body{background:white}.resume{margin:0;width:100%;min-height:100vh}@page{size:A4;margin:0}}
     @media(max-width:900px){.resume{width:100%;margin:0;padding:28px 22px}.contact{flex-wrap:wrap}.skills-grid{grid-template-columns:1fr}.job-head{flex-direction:column;gap:2px}.date{text-align:left}}
   </style>
+  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 <body>
   <div class="resume">
@@ -122,5 +124,6 @@
       </section>
     </div>
   </div>
+  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,6 +163,7 @@
             font-size: 11px
         }
     </style>
+  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 <body>
 <div class="resume">
@@ -255,5 +257,6 @@
         </div>
     </div>
 </div>
+  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
 </body>
 </html>
