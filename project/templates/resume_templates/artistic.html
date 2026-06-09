@@ -716,7 +716,8 @@
     </main>
   </div>
 
-  <button class="download-pdf-btn" type="button" onclick="downloadPDF()">
+  <button class="download-pdf-btn{% if is_guest_demo %} guest-download-locked{% endif %}" type="button"
+          onclick="{% if can_download %}downloadPDF(){% else %}window.location.href='{% url 'resume:login' %}?next={{ request.path|urlencode }}'{% endif %}">
     Download PDF
   </button>
 <script>
@@ -1224,5 +1225,7 @@
     }
   })();
 </script>
+{% include 'resume_templates/_guest_demo_notice.html' %}
+{% include 'resume_templates/_snapshot_recorder.html' %}
 </body>
 </html>

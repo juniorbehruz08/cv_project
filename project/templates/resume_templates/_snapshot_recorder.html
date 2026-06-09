@@ -1,0 +1,118 @@
+{% if request.user.is_authenticated %}
+<script>
+  (function () {
+    const nativePrint = window.print.bind(window);
+    let savingSnapshot = false;
+
+    function getCookie(name) {
+      const cookie = document.cookie
+        .split(";")
+        .map((item) => item.trim())
+        .find((item) => item.startsWith(name + "="));
+      return cookie ? decodeURIComponent(cookie.split("=").slice(1).join("=")) : "";
+    }
+
+    function buildSnapshotHtml() {
+      const resume = document.querySelector(".resume");
+      if (!resume) {
+        return "";
+      }
+
+      const clone = resume.cloneNode(true);
+      const sourceImages = Array.from(resume.querySelectorAll("img"));
+      const clonedImages = Array.from(clone.querySelectorAll("img"));
+
+      clonedImages.forEach((image, index) => {
+        const source = sourceImages[index];
+        if (source) {
+          image.src = source.currentSrc || source.src;
+        }
+      });
+
+      const styles = Array.from(document.querySelectorAll("style"))
+        .map((style) => style.textContent)
+        .join("\n");
+
+      return `<!doctype html>
+<html lang="${document.documentElement.lang || "en"}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ template_name|escapejs }} CV</title>
+  <style>${styles}</style>
+  <style>
+    html, body { margin: 0 !important; min-height: 100%; }
+    body { display: block !important; padding: 0 !important; }
+    .resume { margin: 0 auto !important; }
+    .builder-panel, .builder-workspace, .builder-preview, .download-pdf-btn,
+    .guest-demo-notice { display: none !important; }
+    @media print {
+      body { background: #fff !important; }
+      .resume { margin: 0 !important; }
+    }
+  </style>
+</head>
+<body>${clone.outerHTML}</body>
+</html>`;
+    }
+
+    async function saveSnapshot() {
+      const snapshotHtml = buildSnapshotHtml();
+      if (!snapshotHtml) {
+        throw new Error("Resume preview not found.");
+      }
+
+      const name =
+        document.querySelector(".resume h1, .resume .name")?.textContent.trim() ||
+        "{{ template_name|escapejs }}";
+
+      const response = await fetch("{% url 'resume:record_download' %}", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+          title: `${name} - {{ template_name|escapejs }}`,
+          language: localStorage.getItem("cv-maker-language") || document.documentElement.lang || "en",
+          template_slug: "{{ template_slug|escapejs }}",
+          snapshot_html: snapshotHtml
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not save CV history.");
+      }
+    }
+
+    window.print = async function () {
+      if (savingSnapshot) {
+        return;
+      }
+
+      savingSnapshot = true;
+      const button = document.querySelector(".download-pdf-btn");
+      const originalText = button ? button.textContent : "";
+
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Saving...";
+      }
+
+      try {
+        await saveSnapshot();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+        savingSnapshot = false;
+        nativePrint();
+      }
+    };
+  })();
+</script>
+{% endif %}

@@ -1,0 +1,148 @@
+{% if is_guest_demo %}
+<style>
+  .guest-demo-notice {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 10000;
+    width: min(360px, calc(100% - 48px));
+    border: 1px solid rgba(125, 211, 252, .28);
+    border-radius: 16px;
+    background: rgba(8, 11, 20, .94);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, .34);
+    color: #f8fafc;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    padding: 18px;
+    backdrop-filter: blur(18px);
+  }
+
+  .guest-demo-notice strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  .guest-demo-notice p {
+    margin: 0 0 14px;
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .guest-demo-actions {
+    display: flex;
+    gap: 9px;
+  }
+
+  .guest-demo-actions a {
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 9px 14px;
+    text-decoration: none;
+  }
+
+  .guest-demo-actions a:first-child {
+    border-color: transparent;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  }
+
+  .download-pdf-btn.guest-download-locked {
+    opacity: .82;
+  }
+
+  @media (max-width: 700px) {
+    .guest-demo-notice {
+      left: 12px;
+      bottom: 12px;
+      width: calc(100% - 24px);
+    }
+  }
+
+  @media print {
+    body.guest-demo-page > *:not(.guest-demo-notice) {
+      display: none !important;
+    }
+
+    .guest-demo-notice {
+      display: block !important;
+      position: static;
+      width: auto;
+      border: 1px solid #111827;
+      box-shadow: none;
+      background: #fff;
+      color: #111827;
+    }
+
+    .guest-demo-notice p {
+      color: #374151;
+    }
+  }
+</style>
+
+<aside class="guest-demo-notice">
+  <strong data-guest-demo-title>Demo mode</strong>
+  <p data-guest-demo-text>You can try this template, but downloading is available only after login or registration.</p>
+  <div class="guest-demo-actions">
+    <a href="{% url 'resume:register' %}" data-guest-demo-register>Register</a>
+    <a href="{% url 'resume:login' %}?next={{ request.path|urlencode }}" data-guest-demo-login>Login</a>
+  </div>
+</aside>
+
+<script>
+  document.body.classList.add("guest-demo-page");
+
+  const guestDemoCopy = {
+    en: {
+      title: "Demo mode",
+      text: "You can try this template, but downloading is available only after login or registration.",
+      register: "Register",
+      login: "Login",
+      download: "Login to download"
+    },
+    uz: {
+      title: "Demo rejimi",
+      text: "Bu shablonni sinab ko'rishingiz mumkin, lekin yuklab olish uchun tizimga kirish yoki ro'yxatdan o'tish kerak.",
+      register: "Ro'yxatdan o'tish",
+      login: "Kirish",
+      download: "Yuklab olish uchun kiring"
+    },
+    ru: {
+      title: "Демо-режим",
+      text: "Вы можете попробовать этот шаблон, но скачивание доступно только после входа или регистрации.",
+      register: "Регистрация",
+      login: "Войти",
+      download: "Войдите для скачивания"
+    }
+  };
+
+  function updateGuestDemoCopy() {
+    const copy = guestDemoCopy[localStorage.getItem("cv-maker-language")] || guestDemoCopy.en;
+    document.querySelector("[data-guest-demo-title]").textContent = copy.title;
+    document.querySelector("[data-guest-demo-text]").textContent = copy.text;
+    document.querySelector("[data-guest-demo-register]").textContent = copy.register;
+    document.querySelector("[data-guest-demo-login]").textContent = copy.login;
+
+    const downloadButton = document.querySelector(".guest-download-locked");
+    if (downloadButton) {
+      downloadButton.textContent = copy.download;
+    }
+  }
+
+  updateGuestDemoCopy();
+  document.addEventListener("change", function (event) {
+    if (event.target.matches("[data-builder-language]")) {
+      window.setTimeout(updateGuestDemoCopy, 0);
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+      event.preventDefault();
+      window.location.href = "{% url 'resume:login' %}?next={{ request.path|urlencode }}";
+    }
+  });
+</script>
+{% endif %}

@@ -18,6 +18,8 @@ class CVDownload(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cv_downloads')
     title = models.CharField(max_length=160, default='Modern CV')
     language = models.CharField(max_length=20, default='en')
+    template_slug = models.CharField(max_length=80, blank=True)
+    snapshot_html = models.TextField(blank=True)
     downloaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

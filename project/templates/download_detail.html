@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ download.title }} - CV Maker</title>
+    <style>
+        * { box-sizing: border-box }
+        body { margin: 0; min-height: 100vh; background: #080b14; color: #f8fafc; font-family: Inter, "Segoe UI", Arial, sans-serif }
+        .snapshot-toolbar { position: sticky; top: 0; z-index: 10; min-height: 72px; padding: 12px 24px; border-bottom: 1px solid rgba(255,255,255,.1); background: rgba(8,11,20,.94); display: flex; align-items: center; justify-content: space-between; gap: 18px; backdrop-filter: blur(18px) }
+        .snapshot-toolbar div { min-width: 0 }
+        .snapshot-toolbar h1 { margin: 0 0 3px; overflow: hidden; color: #fff; font-size: 16px; text-overflow: ellipsis; white-space: nowrap }
+        .snapshot-toolbar p { margin: 0; color: #94a3b8; font-size: 12px }
+        .snapshot-actions { display: flex; gap: 10px }
+        .snapshot-actions a, .snapshot-actions button { min-height: 40px; border: 1px solid rgba(255,255,255,.15); border-radius: 999px; background: rgba(255,255,255,.07); color: #fff; cursor: pointer; font: inherit; font-size: 13px; font-weight: 800; padding: 0 16px; text-decoration: none }
+        .snapshot-actions button { border: 0; background: linear-gradient(135deg, #7c3aed, #06b6d4) }
+        .snapshot-frame { width: 100%; height: calc(100vh - 72px); border: 0; background: #dfe5ec }
+        @media (max-width: 680px) { .snapshot-toolbar { align-items: flex-start; flex-direction: column; padding: 14px } .snapshot-frame { height: calc(100vh - 126px) } }
+    </style>
+</head>
+<body>
+<header class="snapshot-toolbar">
+    <div>
+        <h1>{{ download.title }}</h1>
+        <p>{{ download.downloaded_at|date:"M d, Y H:i" }} · {{ download.language|upper }}</p>
+    </div>
+    <nav class="snapshot-actions">
+        <a href="{% url 'resume:profile' %}">Back to profile</a>
+        {% if download.snapshot_html %}
+            <button type="button" data-print-snapshot>Download PDF</button>
+        {% endif %}
+    </nav>
+</header>
+{% if download.snapshot_html %}
+    <iframe class="snapshot-frame" title="{{ download.title }}" src="{% url 'resume:download_snapshot' download.pk %}"></iframe>
+{% else %}
+    <p>This older history item does not contain a saved CV preview.</p>
+{% endif %}
+<script>
+    const frame = document.querySelector(".snapshot-frame");
+    const printButton = document.querySelector("[data-print-snapshot]");
+
+    function printSnapshot() {
+        frame?.contentWindow?.print();
+    }
+
+    printButton?.addEventListener("click", printSnapshot);
+
+    {% if print_on_load and download.snapshot_html %}
+    frame.addEventListener("load", printSnapshot, { once: true });
+    {% endif %}
+</script>
+</body>
+</html>

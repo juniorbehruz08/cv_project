@@ -11,6 +11,6 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(CVDownload)
 class CVDownloadAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'language', 'downloaded_at')
-    list_filter = ('language', 'downloaded_at')
-    search_fields = ('title', 'user__username', 'user__email')
+    list_display = ('title', 'template_slug', 'user', 'language', 'downloaded_at')
+    list_filter = ('template_slug', 'language', 'downloaded_at')
+    search_fields = ('title', 'template_slug', 'user__username', 'user__email')

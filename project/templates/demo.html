@@ -214,6 +214,51 @@
             border-radius: 999px
         }
 
+        .guest-access-panel {
+            grid-column: 1 / -1;
+            min-height: 260px;
+            border: 1px solid rgba(125, 211, 252, .22);
+            border-radius: 24px;
+            background: radial-gradient(circle at top right, rgba(6, 182, 212, .2), transparent 38%), rgba(255, 255, 255, .07);
+            padding: 34px;
+            display: grid;
+            grid-template-columns:1fr auto;
+            gap: 28px;
+            align-items: center
+        }
+
+        .guest-access-panel h3 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: clamp(1.8rem, 4vw, 3.4rem);
+            line-height: 1;
+            letter-spacing: -.045em
+        }
+
+        .guest-access-panel p {
+            max-width: 650px;
+            margin: 0;
+            color: #cbd5e1;
+            line-height: 1.7
+        }
+
+        .guest-access-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .guest-access-actions .primary-btn,
+        .guest-access-actions .ghost-btn {
+            border-radius: 999px
+        }
+
+        .guest-access-actions .ghost-btn {
+            border-color: rgba(255, 255, 255, .16);
+            background: rgba(255, 255, 255, .07);
+            color: #fff
+        }
+
         .flow-step {
             border: 1px solid rgba(255, 255, 255, .1);
             border-radius: 24px;
@@ -272,6 +317,10 @@
             }
 
             .template-grid {
+                grid-template-columns:1fr
+            }
+
+            .guest-access-panel {
                 grid-template-columns:1fr
             }
         }
@@ -377,6 +426,7 @@
                         data-i18n="create_short">Create</a></div>
                 <h3>Timeless</h3>
                 <p data-i18n="timeless_text">Traditional structure for formal applications.</p></article>
+            {% if request.user.is_authenticated %}
             <article class="template-card">
                 <div class="template-preview template-mock impact-preview"
                      style="--template-image:url('{% static 'images/templates/impact.jpg' %}');"><a
@@ -482,6 +532,21 @@
                         data-i18n="create_short">Create</a></div>
                 <h3>Prestige</h3>
                 <p data-i18n="prestige_text">High-end structure for senior profiles.</p></article>
+            {% else %}
+                <aside class="guest-access-panel">
+                    <div>
+                        <h3 data-i18n="unlock_templates_title">Unlock all templates</h3>
+                        <p data-i18n="unlock_templates_text">Create a free account to use the complete template library
+                            and download your finished CV as a PDF.</p>
+                    </div>
+                    <div class="guest-access-actions">
+                        <a class="primary-btn link-btn" href="{% url 'resume:register' %}"
+                           data-i18n="register">Register</a>
+                        <a class="ghost-btn link-btn" href="{% url 'resume:login' %}"
+                           data-i18n="login">Login</a>
+                    </div>
+                </aside>
+            {% endif %}
         </div>
     </section>
 
@@ -509,6 +574,6 @@
         {% endif %}
     </section>
 </main>
-<script src="{% static 'js/main.js' %}?v=20260608-redesign-fixed"></script>
+<script src="{% static 'js/main.js' %}?v=20260609-template-access"></script>
 </body>
 </html>

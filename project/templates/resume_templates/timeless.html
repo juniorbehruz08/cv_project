@@ -104,7 +104,8 @@ li{font-size:2.75mm!important;line-height:1.28!important}
 <section class="skills"><h2>Skills</h2><div class="skills-grid"></div></section>
 </div>
 
-<button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+<button class="download-pdf-btn{% if is_guest_demo %} guest-download-locked{% endif %}" type="button"
+        onclick="{% if can_download %}downloadPDF(){% else %}window.location.href='{% url 'resume:login' %}?next={{ request.path|urlencode }}'{% endif %}">Download PDF</button>
 
 <script>
 function downloadPDF(){window.print()}
@@ -287,5 +288,7 @@ function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").
 function attr(v){return esc(v).replace(/"/g,"&quot;")}
 })();
 </script>
+{% include 'resume_templates/_guest_demo_notice.html' %}
+{% include 'resume_templates/_snapshot_recorder.html' %}
 </body>
 </html>

@@ -154,12 +154,52 @@
         }
 
         .download-item {
+            display: grid;
+            grid-template-columns:126px minmax(0, 1fr);
+            gap: 16px;
+            align-items: start;
             border-color: rgba(255, 255, 255, .10);
             border-radius: 20px;
-            background: rgba(255, 255, 255, .07)
+            background: rgba(255, 255, 255, .07);
+            padding: 14px
+        }
+
+        .download-preview {
+            position: relative;
+            width: 126px;
+            height: 168px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 10px;
+            background: #e2e8f0
+        }
+
+        .download-preview iframe {
+            width: 850px;
+            height: 1130px;
+            border: 0;
+            pointer-events: none;
+            transform: scale(.148);
+            transform-origin: top left
+        }
+
+        .download-preview-empty {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            padding: 12px
+        }
+
+        .download-details {
+            min-width: 0
         }
 
         .download-item h3 {
+            margin: 0 0 6px;
             color: #fff
         }
 
@@ -167,9 +207,41 @@
             color: #cbd5e1
         }
 
-        .download-item span {
+        .download-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .download-meta span {
             background: rgba(125, 211, 252, .14);
             color: #7dd3fc
+        }
+
+        .download-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px
+        }
+
+        .download-actions a {
+            min-height: 34px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 0 12px;
+            text-decoration: none
+        }
+
+        .download-actions a:last-child {
+            border-color: transparent;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4)
         }
 
         .errorlist {
@@ -228,6 +300,19 @@
             .form-grid {
                 grid-template-columns:1fr
             }
+
+            .download-item {
+                grid-template-columns:100px minmax(0, 1fr)
+            }
+
+            .download-preview {
+                width: 100px;
+                height: 134px
+            }
+
+            .download-preview iframe {
+                transform: scale(.118)
+            }
         }
     </style>
 </head>
@@ -239,7 +324,7 @@
     </a>
     <div class="topbar-actions">
         <nav class="account-nav" aria-label="Account navigation">
-            <a href="{% url 'resume:demo' %}" data-i18n="demo">Demo</a>
+            <a href="{% url 'resume:demo' %}" data-i18n="home">Home</a>
             <a href="{% url 'resume:logout' %}" data-i18n="logout">Logout</a>
         </nav>
         <div class="language-switcher" aria-label="Language selector">
@@ -314,18 +399,39 @@
             <div class="download-list">
                 {% for download in downloads %}
                     <article class="download-item">
-                        <div><h3>{{ download.title }}</h3>
-                            <p>{{ download.downloaded_at|date:"M d, Y H:i" }}</p></div>
-                        <span>{{ download.language|upper }}</span>
+                        <div class="download-preview">
+                            {% if download.snapshot_html %}
+                                <iframe title="{{ download.title }} preview"
+                                        loading="lazy"
+                                        sandbox="allow-same-origin"
+                                        src="{% url 'resume:download_snapshot' download.pk %}"></iframe>
+                            {% else %}
+                                <div class="download-preview-empty" data-i18n="preview_unavailable">Preview unavailable</div>
+                            {% endif %}
+                        </div>
+                        <div class="download-details">
+                            <h3>{{ download.title }}</h3>
+                            <div class="download-meta">
+                                <p>{{ download.downloaded_at|date:"M d, Y H:i" }}</p>
+                                <span>{{ download.language|upper }}</span>
+                            </div>
+                            <div class="download-actions">
+                                <a href="{% url 'resume:download_detail' download.pk %}" data-i18n="view_saved_cv">View</a>
+                                {% if download.snapshot_html %}
+                                    <a href="{% url 'resume:download_detail' download.pk %}?print=1"
+                                       data-i18n="download_saved_cv">Download</a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </article>
                 {% endfor %}
             </div>
         {% else %}
-            <p class="empty-state" data-i18n="no_downloads">No CV downloads yet. When the real builder is ready,
-                downloads will appear here.</p>
+            <p class="empty-state" data-i18n="no_downloads">No saved CVs yet. Download a completed CV and it will
+                appear here with its preview.</p>
         {% endif %}
     </section>
 </main>
-<script src="{% static 'js/main.js' %}?v=20260608-dark-profile-fixed"></script>
+<script src="{% static 'js/main.js' %}?v=20260609-saved-cv-history"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@ const translations = {
         logout: "Logout",
         profile: "Profile",
         demo: "Demo",
+        home: "Home",
         demo_page_title: "CV Maker Demo",
         back: "Back",
         account: "Account",
@@ -46,7 +47,10 @@ const translations = {
         save_profile: "Save profile",
         history: "History",
         past_downloads: "Past CV downloads",
-        no_downloads: "No CV downloads yet. When the real builder is ready, downloads will appear here.",
+        no_downloads: "No saved CVs yet. Download a completed CV and it will appear here with its preview.",
+        view_saved_cv: "View",
+        download_saved_cv: "Download",
+        preview_unavailable: "Preview unavailable",
         view_profile: "View profile",
         open_profile: "Open profile",
 
@@ -66,6 +70,8 @@ const translations = {
 
         template_library: "Template Library",
         choose_style: "Choose your style",
+        unlock_templates_title: "Unlock all templates",
+        unlock_templates_text: "Create a free account to use the complete template library and download your finished CV as a PDF.",
 
         hero_label: "CV templates for real applications",
         hero_title: "Build a polished resume without fighting the layout.",
@@ -158,6 +164,7 @@ const translations = {
         logout: "Chiqish",
         profile: "Profil",
         demo: "Demo",
+        home: "Bosh sahifa",
         demo_page_title: "CV Tayyorlash Demo",
         back: "Orqaga",
         account: "Hisob",
@@ -180,7 +187,10 @@ const translations = {
         save_profile: "Profilni saqlash",
         history: "Tarix",
         past_downloads: "Oldingi CV yuklab olishlar",
-        no_downloads: "Hali CV yuklab olinmagan. Haqiqiy konstruktor tayyor bo'lganda, yuklab olishlar shu yerda ko'rinadi.",
+        no_downloads: "Hali saqlangan CV yo'q. Tayyor CV-ni yuklab oling va uning ko'rinishi shu yerda paydo bo'ladi.",
+        view_saved_cv: "Ko'rish",
+        download_saved_cv: "Yuklab olish",
+        preview_unavailable: "Ko'rinish mavjud emas",
         view_profile: "Profilni ko'rish",
         open_profile: "Profilni ochish",
 
@@ -200,6 +210,8 @@ const translations = {
 
         template_library: "Shablonlar kutubxonasi",
         choose_style: "Uslubingizni tanlang",
+        unlock_templates_title: "Barcha shablonlarni oching",
+        unlock_templates_text: "To'liq shablonlar kutubxonasidan foydalanish va tayyor CV-ni PDF shaklida yuklab olish uchun bepul hisob yarating.",
 
         hero_label: "Haqiqiy arizalar uchun CV shablonlari",
         hero_title: "Tartibli rezyumeni maket bilan qiynalmasdan yarating.",
@@ -292,6 +304,7 @@ const translations = {
         logout: "Выйти",
         profile: "Профиль",
         demo: "Демо",
+        home: "Главная",
         demo_page_title: "Демо CV Maker",
         back: "Назад",
         account: "Аккаунт",
@@ -314,7 +327,10 @@ const translations = {
         save_profile: "Сохранить профиль",
         history: "История",
         past_downloads: "Прошлые скачивания CV",
-        no_downloads: "Пока нет скачанных CV. Когда настоящий конструктор будет готов, скачивания появятся здесь.",
+        no_downloads: "Пока нет сохранённых CV. Скачайте готовое CV, и его предпросмотр появится здесь.",
+        view_saved_cv: "Открыть",
+        download_saved_cv: "Скачать",
+        preview_unavailable: "Предпросмотр недоступен",
         view_profile: "Открыть профиль",
         open_profile: "Открыть профиль",
 
@@ -334,6 +350,8 @@ const translations = {
 
         template_library: "Библиотека шаблонов",
         choose_style: "Выберите стиль",
+        unlock_templates_title: "Откройте все шаблоны",
+        unlock_templates_text: "Создайте бесплатный аккаунт, чтобы использовать всю библиотеку шаблонов и скачивать готовое CV в формате PDF.",
 
         hero_label: "Шаблоны CV для реальных заявок",
         hero_title: "Создайте аккуратное резюме без борьбы с макетом.",
