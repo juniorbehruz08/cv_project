@@ -2,341 +2,372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Nathan Thompson Resume - Functional</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nathan Thompson Resume Builder</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#d9d9d9;font-family:"Segoe UI",Arial,sans-serif;color:#23243a}
+.resume{width:850px;height:1130px;margin:22px auto;background:#fff;position:relative;overflow:hidden;padding:40px 36px 38px}
+.resume:before{content:"";position:absolute;inset:-80px -60px;background:repeating-radial-gradient(ellipse at 78% 8%,rgba(160,56,105,.13) 0 1px,transparent 1px 11px),linear-gradient(115deg,transparent 0 24%,rgba(160,56,105,.035) 24% 39%,transparent 39% 100%);opacity:.75;pointer-events:none}
+.content{position:relative;z-index:2}
+.header{position:relative;min-height:135px;padding-right:165px;margin-bottom:14px}
+h1{font-size:36px;line-height:1;font-weight:800;letter-spacing:-.4px;color:#26243c;margin-bottom:9px}
+.role{color:#a11452;font-size:17px;margin-bottom:25px}
 
-        body {
-            background: #d9d9d9;
-            font-family: "Segoe UI", Arial, sans-serif;
-            color: #23243a;
-        }
+.contact{
+  display:grid;
+  grid-template-columns:145px 205px 1fr;
+  gap:8px 14px;
+  color:#696b76;
+  font-size:12px;
+  max-width:610px;
+}
+.contact span{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.contact .link-left{grid-column:1 / span 2}
+.contact .link-right{grid-column:3 / span 1}
 
-        .resume {
-            width: 850px;
-            height: 1130px;
-            margin: 22px auto;
-            background: #fff;
-            position: relative;
-            overflow: hidden;
-            padding: 40px 36px 38px;
-        }
+.photo{position:absolute;right:0;top:-5px;width:132px;height:132px;border-radius:50%;object-fit:cover;background:#cfcfcf;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.section{margin-bottom:34px}
+.bar-title{background:rgba(250,231,240,.82);color:#a11452;font-size:20px;font-weight:800;padding:11px 13px;margin-bottom:16px;box-shadow:7px 9px 18px rgba(160,56,105,.06)}
+p{font-size:12.35px;line-height:1.48;color:#4f535f}
+.job{margin-bottom:22px}
+.job-head{display:grid;grid-template-columns:1fr 160px;gap:16px;margin-bottom:8px}
+h3{font-size:15px;font-weight:800;line-height:1.2;color:#22233a;margin-bottom:4px}
+.company,.school{color:#a11452;font-size:14px;margin-bottom:3px}
+.place,.date{color:#626670;font-size:12px}
+.date{text-align:right;line-height:1.4}
+ul{padding-left:17px}
+li{font-size:12.1px;line-height:1.42;color:#4f535f;margin-bottom:4px}
+.education{display:grid;grid-template-columns:1fr;gap:20px}
+.edu-meta{display:flex;gap:33px;font-size:12px;color:#626670;margin-top:8px}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px 34px}
+.skill-top{display:flex;justify-content:space-between;color:#4f535f;font-size:12px;margin-bottom:8px}
+.bars{display:flex;gap:5px}
+.seg{height:5px;flex:1;min-width:36px;background:#dedee0;border-radius:10px}
+.seg.on{background:#a11452}
 
-        .resume:before {
-            content: "";
-            position: absolute;
-            inset: -80px -60px -80px -60px;
-            background: repeating-radial-gradient(ellipse at 78% 8%, rgba(160, 56, 105, .13) 0 1px, transparent 1px 11px),
-            linear-gradient(115deg, transparent 0 24%, rgba(160, 56, 105, .035) 24% 39%, transparent 39% 100%);
-            opacity: .75;
-            pointer-events: none;
-        }
+.download-pdf-btn{position:fixed;right:24px;bottom:24px;z-index:9999;height:44px;border:0;border-radius:999px;background:#a11452;color:#fff;font:inherit;font-size:14px;font-weight:800;padding:0 18px;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.22)}
+body.template-builder-ready{min-width:0;overflow-x:auto}
+.builder-workspace{width:min(1340px,calc(100% - 32px));margin:22px auto;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}
+.builder-preview{min-width:0;overflow:auto;display:flex;justify-content:flex-start;align-items:flex-start;padding-bottom:24px}
+.builder-preview>.resume{flex:0 0 auto;margin:0!important}
+.builder-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;background:#fff;border:1px solid #d9e1ea;border-radius:8px;box-shadow:0 18px 45px rgba(15,23,42,.13);color:#172033;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.builder-panel *{box-sizing:border-box}
+.builder-panel-header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e4ebf2;padding:16px 18px}
+.builder-panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.builder-back{color:#a11452;font-size:13px;font-weight:700;text-decoration:none}
+.builder-lang{width:88px;height:34px;border:1px solid #cbd6e2;border-radius:6px;background:#f8fafc;color:#172033;font:inherit;font-size:13px;font-weight:700;padding:0 8px}
+.builder-panel h2{display:block;margin:0;padding:0;border:0;color:#172033;font-size:22px;font-weight:800;line-height:1.15}
+.builder-section{padding:18px;border-bottom:1px solid #edf1f5}
+.builder-section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.builder-section h3{margin:0;color:#172033;font-size:14px;font-weight:800}
+.builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.builder-field{display:grid;gap:6px}
+.builder-field.builder-wide{grid-column:1/-1}
+.builder-field span{color:#5b6778;font-size:12px;font-weight:700}
+.builder-field input,.builder-field textarea{width:100%;border:1px solid #cfd9e5;border-radius:6px;background:#fbfdff;color:#172033;font:inherit;font-size:14px;line-height:1.35;padding:10px 11px;outline:none}
+.builder-field textarea{min-height:86px;resize:vertical}
+.builder-entry{display:grid;gap:12px;padding:14px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;margin-bottom:12px}
+.builder-entry-actions{display:flex;justify-content:flex-end}
+.builder-button{height:34px;border:1px solid #a11452;border-radius:6px;background:#a11452;color:#fff;cursor:pointer;font:inherit;font-size:13px;font-weight:800;padding:0 13px}
+.builder-button.builder-secondary{border-color:#cbd6e2;background:#fff;color:#425069}
+.builder-button:disabled{cursor:not-allowed;opacity:.45}
 
-        .content {
-            position: relative;
-            z-index: 2
-        }
+@media(max-width:1240px){.builder-workspace{grid-template-columns:minmax(0,1fr)}.builder-panel{position:static;max-height:none;order:-1}}
+@media(max-width:900px){.resume{width:100%;height:auto;min-height:100vh;margin:0;padding:28px 22px}.header{padding-right:0}.photo{position:static;margin-top:18px}.contact{grid-template-columns:1fr}.contact .link-left,.contact .link-right{grid-column:auto}.job-head{grid-template-columns:1fr}.date{text-align:left}.skills-grid{grid-template-columns:1fr}.builder-grid{grid-template-columns:1fr}}
 
-        .header {
-            position: relative;
-            min-height: 135px;
-            padding-right: 165px;
-            margin-bottom: 14px;
-        }
-
-        h1 {
-            font-size: 36px;
-            line-height: 1;
-            font-weight: 800;
-            letter-spacing: -.4px;
-            color: #26243c;
-            margin-bottom: 9px;
-        }
-
-        .role {
-            color: #a11452;
-            font-size: 17px;
-            margin-bottom: 25px;
-        }
-
-        .contact {
-            display: grid;
-            grid-template-columns:145px 195px 1fr;
-            gap: 8px 14px;
-            color: #696b76;
-            font-size: 12px;
-        }
-
-        .contact span {
-            white-space: nowrap
-        }
-
-        .photo {
-            position: absolute;
-            right: 0;
-            top: -5px;
-            width: 132px;
-            height: 132px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #cfcfcf;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
-        }
-
-        .section {
-            margin-bottom: 34px
-        }
-
-        .bar-title {
-            background: rgba(250, 231, 240, .82);
-            color: #a11452;
-            font-size: 20px;
-            font-weight: 800;
-            padding: 11px 13px;
-            margin-bottom: 16px;
-            box-shadow: 7px 9px 18px rgba(160, 56, 105, .06);
-        }
-
-        p {
-            font-size: 12.35px;
-            line-height: 1.48;
-            color: #4f535f;
-        }
-
-        .job {
-            margin-bottom: 22px
-        }
-
-        .job-head {
-            display: grid;
-            grid-template-columns:1fr 160px;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-
-        h3 {
-            font-size: 15px;
-            font-weight: 800;
-            line-height: 1.2;
-            color: #22233a;
-            margin-bottom: 4px;
-        }
-
-        .company, .school {
-            color: #a11452;
-            font-size: 14px;
-            margin-bottom: 3px;
-        }
-
-        .place, .date {
-            color: #626670;
-            font-size: 12px;
-        }
-
-        .date {
-            text-align: right;
-            line-height: 1.4
-        }
-
-        ul {
-            padding-left: 17px
-        }
-
-        li {
-            font-size: 12.1px;
-            line-height: 1.42;
-            color: #4f535f;
-            margin-bottom: 4px;
-        }
-
-        .education {
-            display: grid;
-            grid-template-columns:1fr;
-            gap: 20px;
-        }
-
-        .edu-meta {
-            display: flex;
-            gap: 33px;
-            font-size: 12px;
-            color: #626670;
-            margin-top: 8px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns:1fr 1fr 1fr;
-            gap: 18px 34px;
-        }
-
-        .skill-top {
-            display: flex;
-            justify-content: space-between;
-            color: #4f535f;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .bars {
-            display: flex;
-            gap: 5px;
-        }
-
-        .seg {
-            height: 5px;
-            flex: 1;
-            min-width: 36px;
-            background: #dedee0;
-            border-radius: 10px;
-        }
-
-        .seg.on {
-            background: #a11452
-        }
-
-        @media print {
-            body {
-                background: white
-            }
-
-            .resume {
-                margin: 0;
-                width: 100%;
-                height: 100vh
-            }
-
-            @page {
-                size: A4;
-                margin: 0
-            }
-        }
-    </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
+@media print{
+@page{size:A4;margin:0}
+html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}
+.download-pdf-btn,.builder-panel{display:none!important}
+.builder-workspace,.builder-preview{display:block!important;width:210mm!important;height:297mm!important;margin:0!important;padding:0!important;overflow:hidden!important}
+.resume{width:210mm!important;height:297mm!important;margin:0!important;padding:8mm 9mm 7mm!important;overflow:hidden!important}
+.header{min-height:34mm!important;padding-right:38mm!important;margin-bottom:3mm!important}
+h1{font-size:9mm!important;margin-bottom:2mm!important}
+.role{font-size:4mm!important;margin-bottom:5mm!important}
+.contact{grid-template-columns:37mm 49mm 1fr!important;gap:1.8mm 3mm!important;font-size:2.75mm!important;max-width:155mm!important}
+.contact .link-left{grid-column:1 / span 2!important}
+.contact .link-right{grid-column:3 / span 1!important}
+.photo{right:0!important;top:-1mm!important;width:31mm!important;height:31mm!important}
+.section{margin-bottom:6.2mm!important}
+.bar-title{font-size:4.7mm!important;padding:2.5mm 3mm!important;margin-bottom:3.3mm!important}
+p{font-size:2.8mm!important;line-height:1.32!important}
+.job{margin-bottom:4.8mm!important}
+.job-head{grid-template-columns:1fr 38mm!important;gap:4mm!important;margin-bottom:1.6mm!important}
+h3{font-size:3.4mm!important}
+.company,.school{font-size:3.1mm!important}
+.place,.date{font-size:2.75mm!important}
+li{font-size:2.65mm!important;line-height:1.25!important;margin-bottom:.55mm!important}
+.education{gap:4mm!important}
+.edu-meta{font-size:2.7mm!important;margin-top:1.5mm!important}
+.skills-grid{grid-template-columns:repeat(3,1fr)!important;gap:4mm 7mm!important}
+.skill-top{font-size:2.7mm!important;margin-bottom:1.6mm!important}
+.seg{height:1.2mm!important;min-width:8mm!important}
+}
+</style>
 </head>
+
 <body>
 <div class="resume">
-    <div class="content">
-        <header class="header">
-            <h1>Nathan Thompson</h1>
-            <div class="role">Senior Product Manager</div>
-            <div class="contact">
-                <span>📞 321-554-8877</span>
-                <span>✉ nathanthomson@yahoo.com</span>
-                <span>📍 London, United Kingdom</span>
-                <span>in https://linkedin.com/in/taylorparker</span>
-                <span>↗ https://github.com/tlrpkr_hack</span>
-            </div>
-            <img src="" alt="Profile photo" class="photo">
-        </header>
+  <div class="content">
+    <header class="header">
+      <h1>Nathan Thompson</h1>
+      <div class="role">Senior Product Manager</div>
+      <div class="contact"></div>
+      <img src="{% static 'images/default-profile.png' %}" alt="Profile photo" class="photo">
+    </header>
 
-        <section class="section">
-            <div class="bar-title">Summary</div>
-            <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend
-                systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced
-                in working with both small and large teams across multiple projects and companies. Able to work
-                independently of remote locations or in office environments as needed by the company.</p>
-        </section>
+    <section class="section summary">
+      <div class="bar-title">Summary</div>
+      <p></p>
+    </section>
 
-        <section class="section">
-            <div class="bar-title">Experience</div>
-            <div class="job">
-                <div class="job-head">
-                    <div><h3>Senior Software Engineer</h3>
-                        <div class="company">Google</div>
-                    </div>
-                    <div class="date">Jan 2020 - Present<br>London, United Kingdom</div>
-                </div>
-                <ul>
-                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
-                        on-strategy.
-                    </li>
-                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
-                        constraints.
-                    </li>
-                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
-                        stakeholders.
-                    </li>
-                    <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
-                </ul>
-            </div>
-            <div class="job">
-                <div class="job-head">
-                    <div><h3>Product Team Lead</h3>
-                        <div class="company">Dropbox</div>
-                    </div>
-                    <div class="date">Nov 2018 - Dec 2019<br>Mountain View, CA</div>
-                </div>
-                <ul>
-                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
-                        on-strategy.
-                    </li>
-                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
-                        constraints.
-                    </li>
-                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
-                        stakeholders.
-                    </li>
-                </ul>
-            </div>
-        </section>
+    <section class="section experience">
+      <div class="bar-title">Experience</div>
+    </section>
 
-        <section class="section">
-            <div class="bar-title">Education</div>
-            <div class="education">
-                <div><h3>Master of Science in Computer Science</h3>
-                    <div class="school">Stanford University</div>
-                    <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
-                </div>
-                <div><h3>Bachelor of Science in Computer Science</h3>
-                    <div class="school">Carnegie Mellon University</div>
-                    <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
-                </div>
-            </div>
-        </section>
+    <section class="section education-section">
+      <div class="bar-title">Education</div>
+      <div class="education"></div>
+    </section>
 
-        <section>
-            <div class="bar-title">Skills</div>
-            <div class="skills-grid">
-                <div class="skill">
-                    <div class="skill-top"><span>Back-end</span><span>Expert</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Front-end</span><span>Advanced</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Data Bases</span><span>Advanced</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Machine Learning</span><span>Proficient</span></div>
-                    <div class="bars"><span class="seg on"></span><span class="seg on"></span><span
-                            class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <section class="section skills">
+      <div class="bar-title">Skills</div>
+      <div class="skills-grid"></div>
+    </section>
+  </div>
 </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+
+<button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+
+<script>
+function downloadPDF(){window.print()}
+
+(function(){
+const TEXT={
+en:{back:"Back",builder:"CV Builder",personal:"Personal",fullName:"Full name",jobTitle:"Job title",phone:"Phone",email:"Email",location:"Location",linkedin:"LinkedIn",github:"GitHub",photoUpload:"Upload photo",summary:"Summary",experience:"Experience",role:"Role",company:"Company",date:"Date",place:"Place",details:"Details",education:"Education",degree:"Degree",school:"School",skills:"Skills",skill:"Skill",level:"Level",bars:"Bars",add:"Add",remove:"Remove",downloadPDF:"Download PDF"},
+uz:{back:"Orqaga",builder:"CV yaratish",personal:"Shaxsiy",fullName:"To'liq ism",jobTitle:"Kasb",phone:"Telefon",email:"Email",location:"Manzil",linkedin:"LinkedIn",github:"GitHub",photoUpload:"Rasm yuklash",summary:"Xulosa",experience:"Tajriba",role:"Lavozim",company:"Kompaniya",date:"Sana",place:"Joy",details:"Tafsilotlar",education:"Ta'lim",degree:"Daraja",school:"O'quv joyi",skills:"Ko'nikmalar",skill:"Ko'nikma",level:"Daraja",bars:"Barlar",add:"Qo'shish",remove:"O'chirish",downloadPDF:"PDF yuklab olish"},
+ru:{back:"Назад",builder:"Конструктор CV",personal:"Личные данные",fullName:"ФИО",jobTitle:"Должность",phone:"Телефон",email:"Email",location:"Город",linkedin:"LinkedIn",github:"GitHub",photoUpload:"Загрузить фото",summary:"О себе",experience:"Опыт",role:"Роль",company:"Компания",date:"Дата",place:"Место",details:"Детали",education:"Образование",degree:"Степень",school:"Учебное место",skills:"Навыки",skill:"Навык",level:"Уровень",bars:"Полосы",add:"Добавить",remove:"Удалить",downloadPDF:"Скачать PDF"}
+};
+
+const DEFAULTS={
+en:{
+fields:{fullName:"Nathan Thompson",jobTitle:"Senior Product Manager",phone:"321-554-8877",email:"nathanthomson@yahoo.com",location:"London, United Kingdom",linkedin:"https://linkedin.com/in/taylorparker",github:"https://github.com/tlrpkr_hack",photoData:"",summary:"Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies. Able to work independently of remote locations or in office environments as needed by the company."},
+collections:{
+experience:[
+{role:"Senior Software Engineer",company:"Google",date:"Jan 2020 - Present",place:"London, United Kingdom",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.\nDeveloped and maintained comprehensive library of design assets for easy access and reuse."},
+{role:"Product Team Lead",company:"Dropbox",date:"Nov 2018 - Dec 2019",place:"Mountain View, CA",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."}
+],
+education:[
+{degree:"Master of Science in Computer Science",school:"Stanford University",date:"2016 - 2018",place:"Stanford, CA"},
+{degree:"Bachelor of Science in Computer Science",school:"Carnegie Mellon University",date:"2013 - 2016",place:"Pittsburgh, PA"}
+],
+skills:[
+{name:"Back-end",level:"Expert",bars:5},
+{name:"Front-end",level:"Advanced",bars:4},
+{name:"Data Bases",level:"Advanced",bars:4},
+{name:"Machine Learning",level:"Proficient",bars:3},
+{name:"Machine Learning",level:"Proficient",bars:3},
+{name:"Machine Learning",level:"Proficient",bars:3}
+]
+}},
+uz:{
+fields:{fullName:"Nathan Thompson",jobTitle:"Katta mahsulot menejeri",phone:"321-554-8877",email:"nathanthomson@yahoo.com",location:"London, Birlashgan Qirollik",linkedin:"https://linkedin.com/in/taylorparker",github:"https://github.com/tlrpkr_hack",photoData:"",summary:"10+ yillik tajribaga ega mutaxassis. Veb ilovalar va backend tizimlarini ishlab chiqishda tajribaga ega. Toza va tushunarli yechimlar yaratadi."},
+collections:{
+experience:[{role:"Katta dasturiy ta'minot muhandisi",company:"Google",date:"Yan 2020 - Hozir",place:"London, Birlashgan Qirollik",details:"Brend va strategiyaga mos dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddatlarga rioya qildi."}],
+education:[{degree:"Kompyuter fanlari magistri",school:"Stanford Universiteti",date:"2016 - 2018",place:"Stanford, CA"}],
+skills:[{name:"Backend",level:"Ekspert",bars:5},{name:"Frontend",level:"Yuqori",bars:4},{name:"Ma'lumotlar bazalari",level:"Yuqori",bars:4}]
+}},
+ru:{
+fields:{fullName:"Nathan Thompson",jobTitle:"Старший менеджер продукта",phone:"321-554-8877",email:"nathanthomson@yahoo.com",location:"Лондон, Великобритания",linkedin:"https://linkedin.com/in/taylorparker",github:"https://github.com/tlrpkr_hack",photoData:"",summary:"Специалист с опытом более 10 лет в разработке веб-приложений и backend-систем. Создает понятные и поддерживаемые решения."},
+collections:{
+experience:[{role:"Старший инженер ПО",company:"Google",date:"Янв 2020 - Настоящее время",place:"Лондон, Великобритания",details:"Разрабатывал материалы, соответствующие бренду и стратегии.\nУправлял несколькими проектами одновременно."}],
+education:[{degree:"Магистр компьютерных наук",school:"Стэнфордский университет",date:"2016 - 2018",place:"Stanford, CA"}],
+skills:[{name:"Backend",level:"Эксперт",bars:5},{name:"Frontend",level:"Продвинутый",bars:4},{name:"Базы данных",level:"Продвинутый",bars:4}]
+}}
+};
+
+let language=localStorage.getItem("cv-maker-language")||"en";
+if(!DEFAULTS[language])language="en";
+let state=clone(DEFAULTS[language]),panel;
+document.addEventListener("DOMContentLoaded",init);
+
+function init(){
+const resume=document.querySelector(".resume"),workspace=document.createElement("main"),preview=document.createElement("div");
+workspace.className="builder-workspace";preview.className="builder-preview";panel=document.createElement("aside");panel.className="builder-panel";
+resume.parentNode.insertBefore(workspace,resume);preview.appendChild(resume);workspace.appendChild(preview);workspace.appendChild(panel);
+document.body.classList.add("template-builder-ready");
+renderPanel();renderResume();bindEvents();
+}
+
+function t(k){return TEXT[language]?.[k]||TEXT.en[k]||k}
+
+function bindEvents(){
+panel.addEventListener("input",e=>{
+const input=e.target;
+if(input.matches("[data-field]")){state.fields[input.dataset.field]=input.value;renderResume()}
+if(input.matches("[data-collection]")){
+const item=state.collections[input.dataset.collection][Number(input.dataset.index)];
+if(item){item[input.dataset.key]=input.value;renderResume()}
+}
+});
+
+panel.addEventListener("change",e=>{
+const input=e.target;
+if(input.matches("[data-photo-upload]")){
+const file=input.files&&input.files[0];if(!file)return;
+const reader=new FileReader();
+reader.onload=()=>{state.fields.photoData=reader.result;renderResume()};
+reader.readAsDataURL(file);return;
+}
+if(input.matches("[data-builder-language]")){
+language=input.value;localStorage.setItem("cv-maker-language",language);
+state=clone(DEFAULTS[language]);renderPanel();renderResume();
+}
+});
+
+panel.addEventListener("click",e=>{
+const add=e.target.closest("[data-add]"),remove=e.target.closest("[data-remove]"),back=e.target.closest("[data-builder-back]");
+if(back){e.preventDefault();if(window.history.length>1)window.history.back();return}
+if(add){state.collections[add.dataset.add].push(blank(add.dataset.add));renderPanel();renderResume()}
+if(remove){const arr=state.collections[remove.dataset.remove];if(arr.length>1){arr.splice(Number(remove.dataset.index),1);renderPanel();renderResume()}}
+});
+}
+
+function blank(type){
+if(type==="experience")return{role:"",company:"",date:"",place:"",details:""};
+if(type==="education")return{degree:"",school:"",date:"",place:""};
+if(type==="skills")return{name:"",level:"",bars:3};
+}
+
+function renderPanel(){
+panel.innerHTML=`
+<header class="builder-panel-header">
+<div class="builder-panel-top">
+<a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+<select class="builder-lang" data-builder-language>
+<option value="en"${language==="en"?" selected":""}>EN</option>
+<option value="uz"${language==="uz"?" selected":""}>UZ</option>
+<option value="ru"${language==="ru"?" selected":""}>RU</option>
+</select>
+</div>
+<h2>${t("builder")}</h2>
+</header>
+
+<section class="builder-section">
+<div class="builder-section-title"><h3>${t("personal")}</h3></div>
+<div class="builder-grid">
+${field(t("fullName"),"fullName",state.fields.fullName)}
+${field(t("jobTitle"),"jobTitle",state.fields.jobTitle)}
+${field(t("phone"),"phone",state.fields.phone)}
+${field(t("email"),"email",state.fields.email)}
+${field(t("location"),"location",state.fields.location,true)}
+${field(t("linkedin"),"linkedin",state.fields.linkedin,true)}
+${field(t("github"),"github",state.fields.github,true)}
+<label class="builder-field builder-wide"><span>${t("photoUpload")}</span><input type="file" accept="image/*" data-photo-upload></label>
+</div>
+</section>
+
+<section class="builder-section">
+<div class="builder-section-title"><h3>${t("summary")}</h3></div>
+${field(t("summary"),"summary",state.fields.summary,true,"textarea")}
+</section>
+
+${section("experience",t("experience"),expEntry)}
+${section("education",t("education"),eduEntry)}
+${section("skills",t("skills"),skillEntry)}
+`;
+}
+
+function field(label,key,value,wide,type){
+const c=type==="textarea"?`<textarea data-field="${key}">${esc(value)}</textarea>`:`<input data-field="${key}" value="${attr(value)}">`;
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${c}</label>`;
+}
+
+function section(type,title,renderer){
+return`<section class="builder-section"><div class="builder-section-title"><h3>${title}</h3><button class="builder-button" type="button" data-add="${type}">${t("add")}</button></div>${state.collections[type].map((e,i)=>renderer(type,e,i)).join("")}</section>`;
+}
+
+function expEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("role"),type,i,"role",e.role)}${cf(t("company"),type,i,"company",e.company)}${cf(t("date"),type,i,"date",e.date)}${cf(t("place"),type,i,"place",e.place)}${cf(t("details"),type,i,"details",e.details,true,"textarea")}</div>${removeBtn(type,i)}</div>`;
+}
+
+function eduEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("degree"),type,i,"degree",e.degree)}${cf(t("school"),type,i,"school",e.school)}${cf(t("date"),type,i,"date",e.date)}${cf(t("place"),type,i,"place",e.place)}</div>${removeBtn(type,i)}</div>`;
+}
+
+function skillEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("skill"),type,i,"name",e.name)}${cf(t("level"),type,i,"level",e.level)}${cf(t("bars"),type,i,"bars",e.bars,true)}</div>${removeBtn(type,i)}</div>`;
+}
+
+function cf(label,type,i,key,value,wide,kind){
+const attrs=`data-collection="${type}" data-index="${i}" data-key="${key}"`;
+const c=kind==="textarea"?`<textarea ${attrs}>${esc(value)}</textarea>`:`<input ${attrs} value="${attr(value)}">`;
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${c}</label>`;
+}
+
+function removeBtn(type,i){
+return`<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${state.collections[type].length<=1?" disabled":""}>${t("remove")}</button></div>`;
+}
+
+function renderResume(){
+document.querySelector(".download-pdf-btn").textContent=t("downloadPDF");
+document.querySelector("h1").textContent=state.fields.fullName;
+document.querySelector(".role").textContent=state.fields.jobTitle;
+document.querySelector(".photo").src=state.fields.photoData||"{% static 'images/default-profile.png' %}";
+document.querySelector(".contact").innerHTML=`
+<span>📞 ${esc(state.fields.phone)}</span>
+<span>✉ ${esc(state.fields.email)}</span>
+<span>📍 ${esc(state.fields.location)}</span>
+<span class="link-left">in ${esc(state.fields.linkedin)}</span>
+<span class="link-right">↗ ${esc(state.fields.github)}</span>
+`;
+document.querySelector(".summary .bar-title").textContent=t("summary");
+document.querySelector(".summary p").textContent=state.fields.summary;
+renderExperience();renderEducation();renderSkills();
+}
+
+function renderExperience(){
+const box=document.querySelector(".experience");box.innerHTML=`<div class="bar-title">${t("experience")}</div>`;
+state.collections.experience.filter(hasValue).forEach(e=>{
+const div=document.createElement("div");div.className="job";
+div.innerHTML=`<div class="job-head"><div><h3>${esc(e.role)}</h3><div class="company">${esc(e.company)}</div></div><div class="date">${esc(e.date)}<br>${esc(e.place)}</div></div><ul>${lines(e.details).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+box.appendChild(div);
+});
+}
+
+function renderEducation(){
+document.querySelector(".education-section .bar-title").textContent=t("education");
+const box=document.querySelector(".education");box.innerHTML="";
+state.collections.education.filter(hasValue).forEach(e=>{
+const div=document.createElement("div");
+div.innerHTML=`<h3>${esc(e.degree)}</h3><div class="school">${esc(e.school)}</div><div class="edu-meta"><span>${esc(e.date)}</span><span>${esc(e.place)}</span></div>`;
+box.appendChild(div);
+});
+}
+
+function renderSkills(){
+document.querySelector(".skills .bar-title").textContent=t("skills");
+const box=document.querySelector(".skills-grid");box.innerHTML="";
+state.collections.skills.filter(hasValue).forEach(s=>{
+const bars=Math.max(0,Math.min(5,Number(s.bars)||0));
+const div=document.createElement("div");div.className="skill";
+div.innerHTML=`<div class="skill-top"><span>${esc(s.name)}</span><span>${esc(s.level)}</span></div><div class="bars">${[1,2,3,4,5].map(n=>`<span class="seg${n<=bars?" on":""}"></span>`).join("")}</div>`;
+box.appendChild(div);
+});
+}
+
+function hasValue(o){return Object.values(o).some(v=>String(v||"").trim())}
+function lines(v){return String(v||"").split("\n").map(x=>x.trim()).filter(Boolean)}
+function clone(v){return JSON.parse(JSON.stringify(v))}
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function attr(v){return esc(v).replace(/"/g,"&quot;")}
+})();
+</script>
 </body>
 </html>

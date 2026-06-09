@@ -4,284 +4,130 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ethan Johnson Resume - Streamline</title>
+<title>Ethan Johnson Resume - Streamline Builder</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    background:#d8d8d8;
-    font-family:"Segoe UI",Arial,sans-serif;
-    color:#202337;
-  }
-  .resume{
-    width:850px;
-    height:1130px;
-    margin:22px auto;
-    background:#fff;
-    display:grid;
-    grid-template-columns:313px 1fr;
-    overflow:hidden;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#d8d8d8;font-family:"Segoe UI",Arial,sans-serif;color:#202337}
+.resume{width:850px;height:1130px;margin:22px auto;background:#fff;display:grid;grid-template-columns:313px 1fr;overflow:hidden}
+.sidebar{background:#b5003d;color:#fff;padding:47px 26px 32px 36px}
+.side-section{margin-bottom:29px}
+.side-title{font-size:20px;line-height:1;font-weight:800;display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.side-title:after{content:"";flex:1;height:1px;background:rgba(255,255,255,.17);transform:translateY(2px)}
+.sidebar p{font-size:12px;line-height:1.5;color:#ffe8f0}
+.contact-item{font-size:12.2px;color:#fff1f6;line-height:1.1;margin-bottom:14px;display:flex;align-items:flex-start;gap:8px}
+.icon{width:13px;flex:0 0 13px;opacity:.85}
+.skill{margin-bottom:17px}
+.skill-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#fff1f6;margin-bottom:8px}
+.bar{height:5px;background:rgba(255,255,255,.28);border-radius:10px;overflow:hidden}
+.fill{height:100%;background:#fff;border-radius:10px;display:block}
+.language{margin-bottom:18px}
+ul{padding-left:17px}
+.sidebar li{font-size:11.8px;line-height:1.43;color:#fff1f6;margin-bottom:4px}
+.main{position:relative;padding:43px 36px 36px 27px;overflow:hidden}
+.main:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;top:-255px;right:-165px;background:repeating-radial-gradient(circle at center,rgba(155,90,112,.14) 0 1px,transparent 1px 12px);pointer-events:none}
+.content{position:relative;z-index:2}
+h1{font-size:30px;line-height:1;font-weight:800;color:#202337;letter-spacing:-.25px;margin-bottom:9px}
+.role{color:#b5003d;font-size:14.8px;margin-bottom:35px}
+section{margin-bottom:30px}
+h2{font-size:20px;line-height:1;font-weight:800;display:flex;align-items:center;gap:12px;margin-bottom:17px;color:#202337}
+h2:after{content:"";flex:1;height:1px;background:#dedede;transform:translateY(2px)}
+.job{margin-bottom:23px}
+.job-head{display:grid;grid-template-columns:1fr 145px;gap:16px;margin-bottom:8px}
+h3{font-size:14.7px;line-height:1.18;font-weight:800;color:#202337;margin-bottom:4px}
+.company,.school{color:#b5003d;font-size:13.5px;line-height:1.15;margin-bottom:4px}
+.place,.date{color:#555c66;font-size:11.8px}
+.date{text-align:right;line-height:1.45}
+.main ul{padding-left:17px}
+.main li{font-size:11.75px;line-height:1.42;color:#4d535f;margin-bottom:4px}
+.edu-item{margin-bottom:20px}
+.edu-meta{display:flex;gap:31px;color:#555c66;font-size:11.8px;margin-top:8px}
 
-  /* LEFT SIDEBAR */
-  .sidebar{
-    background:#b5003d;
-    color:#fff;
-    padding:47px 26px 32px 36px;
-  }
-  .side-section{
-    margin-bottom:29px;
-  }
-  .side-title{
-    font-size:20px;
-    line-height:1;
-    font-weight:800;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:18px;
-  }
-  .side-title::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:rgba(255,255,255,.17);
-    transform:translateY(2px);
-  }
-  .sidebar p{
-    font-size:12px;
-    line-height:1.5;
-    color:#ffe8f0;
-  }
-  .contact-item{
-    font-size:12.2px;
-    color:#fff1f6;
-    line-height:1.1;
-    margin-bottom:14px;
-    display:flex;
-    align-items:flex-start;
-    gap:8px;
-  }
-  .icon{
-    width:13px;
-    flex:0 0 13px;
-    opacity:.85;
-  }
+.download-pdf-btn{position:fixed;right:24px;bottom:24px;z-index:9999;height:44px;border:0;border-radius:999px;background:#b5003d;color:#fff;font:inherit;font-size:14px;font-weight:800;padding:0 18px;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.22)}
+body.template-builder-ready{min-width:0;overflow-x:auto}
+.builder-workspace{width:min(1340px,calc(100% - 32px));margin:22px auto;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}
+.builder-preview{min-width:0;overflow:auto;display:flex;justify-content:flex-start;align-items:flex-start;padding-bottom:24px}
+.builder-preview>.resume{flex:0 0 auto;margin:0!important}
+.builder-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;background:#fff;border:1px solid #d9e1ea;border-radius:8px;box-shadow:0 18px 45px rgba(15,23,42,.13);color:#172033;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.builder-panel *{box-sizing:border-box}
+.builder-panel-header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e4ebf2;padding:16px 18px}
+.builder-panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.builder-back{color:#b5003d;font-size:13px;font-weight:700;text-decoration:none}
+.builder-lang{width:88px;height:34px;border:1px solid #cbd6e2;border-radius:6px;background:#f8fafc;color:#172033;font:inherit;font-size:13px;font-weight:700;padding:0 8px}
+.builder-panel h2{display:block;margin:0;padding:0;border:0;color:#172033;font-size:22px;font-weight:800}
+.builder-panel h2:after,.builder-panel h3:after{content:none!important}
+.builder-section{padding:18px;border-bottom:1px solid #edf1f5}
+.builder-section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.builder-section h3{margin:0;color:#172033;font-size:14px;font-weight:800}
+.builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.builder-field{display:grid;gap:6px}
+.builder-field.builder-wide{grid-column:1/-1}
+.builder-field span{color:#5b6778;font-size:12px;font-weight:700}
+.builder-field input,.builder-field textarea{width:100%;border:1px solid #cfd9e5;border-radius:6px;background:#fbfdff;color:#172033;font:inherit;font-size:14px;line-height:1.35;padding:10px 11px;outline:none}
+.builder-field textarea{min-height:86px;resize:vertical}
+.builder-entry{display:grid;gap:12px;padding:14px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;margin-bottom:12px}
+.builder-entry-actions{display:flex;justify-content:flex-end}
+.builder-button{height:34px;border:1px solid #b5003d;border-radius:6px;background:#b5003d;color:#fff;cursor:pointer;font:inherit;font-size:13px;font-weight:800;padding:0 13px}
+.builder-button.builder-secondary{border-color:#cbd6e2;background:#fff;color:#425069}
+.builder-button:disabled{cursor:not-allowed;opacity:.45}
 
-  .skill{
-    margin-bottom:17px;
-  }
-  .skill-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:12px;
-    color:#fff1f6;
-    margin-bottom:8px;
-  }
-  .bar{
-    height:5px;
-    background:rgba(255,255,255,.28);
-    border-radius:10px;
-    overflow:hidden;
-  }
-  .fill{
-    height:100%;
-    background:#fff;
-    border-radius:10px;
-    display:block;
-  }
+@media(max-width:1240px){.builder-workspace{grid-template-columns:minmax(0,1fr)}.builder-panel{position:static;max-height:none;order:-1}}
+@media(max-width:900px){.resume{width:100%;height:auto;min-height:100vh;margin:0;grid-template-columns:1fr}.builder-grid{grid-template-columns:1fr}.job-head{grid-template-columns:1fr}.date{text-align:left}}
 
-  .language{
-    margin-bottom:18px;
-  }
-
-  ul{padding-left:17px}
-  .sidebar li{
-    font-size:11.8px;
-    line-height:1.43;
-    color:#fff1f6;
-    margin-bottom:4px;
-  }
-
-  /* RIGHT MAIN */
-  .main{
-    position:relative;
-    padding:43px 36px 36px 27px;
-    overflow:hidden;
-  }
-  .main::before{
-    content:"";
-    position:absolute;
-    width:520px;
-    height:520px;
-    border-radius:50%;
-    top:-255px;
-    right:-165px;
-    background:
-      repeating-radial-gradient(circle at center,
-        rgba(155,90,112,.14) 0 1px,
-        transparent 1px 12px);
-    pointer-events:none;
-  }
-  .content{position:relative;z-index:2}
-  h1{
-    font-size:30px;
-    line-height:1;
-    font-weight:800;
-    color:#202337;
-    letter-spacing:-.25px;
-    margin-bottom:9px;
-  }
-  .role{
-    color:#b5003d;
-    font-size:14.8px;
-    margin-bottom:35px;
-  }
-
-  section{
-    margin-bottom:30px;
-  }
-  h2{
-    font-size:20px;
-    line-height:1;
-    font-weight:800;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:17px;
-    color:#202337;
-  }
-  h2::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:#dedede;
-    transform:translateY(2px);
-  }
-
-  .job{
-    margin-bottom:23px;
-  }
-  .job-head{
-    display:grid;
-    grid-template-columns:1fr 145px;
-    gap:16px;
-    margin-bottom:8px;
-  }
-  h3{
-    font-size:14.7px;
-    line-height:1.18;
-    font-weight:800;
-    color:#202337;
-    margin-bottom:4px;
-  }
-  .company,.school{
-    color:#b5003d;
-    font-size:13.5px;
-    line-height:1.15;
-    margin-bottom:4px;
-  }
-  .place,.date{
-    color:#555c66;
-    font-size:11.8px;
-  }
-  .date{
-    text-align:right;
-    line-height:1.45;
-  }
-
-  .main ul{padding-left:17px}
-  .main li{
-    font-size:11.75px;
-    line-height:1.42;
-    color:#4d535f;
-    margin-bottom:4px;
-  }
-
-  .edu-item{
-    margin-bottom:20px;
-  }
-  .edu-meta{
-    display:flex;
-    gap:31px;
-    color:#555c66;
-    font-size:11.8px;
-    margin-top:8px;
-  }
-
-  @media print{
-    body{background:white}
-    .resume{margin:0;width:100%;height:100vh}
-    @page{size:A4;margin:0}
-  }
+@media print{
+@page{size:A4;margin:0}
+html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:white!important;overflow:hidden!important}
+.download-pdf-btn,.builder-panel{display:none!important}
+.builder-workspace,.builder-preview{display:block!important;width:210mm!important;height:297mm!important;margin:0!important;padding:0!important;overflow:hidden!important}
+.resume{width:210mm!important;height:297mm!important;margin:0!important;display:grid!important;grid-template-columns:76mm 134mm!important;overflow:hidden!important}
+.sidebar{padding:11mm 6mm 7mm 8.5mm!important}
+.main{padding:10mm 9mm 7mm 7mm!important}
+.side-section{margin-bottom:6.7mm!important}
+.side-title,h2{font-size:4.6mm!important;margin-bottom:3.6mm!important}
+.sidebar p{font-size:2.7mm!important;line-height:1.35!important}
+.contact-item{font-size:2.7mm!important;margin-bottom:3mm!important}
+.skill{margin-bottom:3.8mm!important}
+.skill-top{font-size:2.7mm!important;margin-bottom:1.5mm!important}
+.bar{height:1.1mm!important}
+.sidebar li,.main li{font-size:2.58mm!important;line-height:1.27!important}
+h1{font-size:7.5mm!important}
+.role{font-size:3.5mm!important;margin-bottom:7mm!important}
+section{margin-bottom:6.4mm!important}
+.job{margin-bottom:4.8mm!important}
+.job-head{grid-template-columns:1fr 34mm!important;gap:4mm!important}
+h3{font-size:3.35mm!important}
+.company,.school{font-size:3mm!important}
+.place,.date,.edu-meta{font-size:2.65mm!important}
+.edu-item{margin-bottom:4.4mm!important}
+}
 </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
+
 <body>
 <div class="resume">
   <aside class="sidebar">
-    <section class="side-section">
+    <section class="side-section summary-section">
       <div class="side-title">Summary</div>
-      <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies.</p>
+      <p></p>
     </section>
 
-    <section class="side-section">
+    <section class="side-section contact-section">
       <div class="side-title">Contact Info</div>
-      <div class="contact-item"><span class="icon">📞</span><span>321-554-8877</span></div>
-      <div class="contact-item"><span class="icon">✉</span><span>ethanjohnson@gmail.com</span></div>
-      <div class="contact-item"><span class="icon">📍</span><span>Cork, Ireland</span></div>
-      <div class="contact-item"><span class="icon">⌁</span><span>https://x.com/ethanjohnson</span></div>
+      <div class="contact-list"></div>
     </section>
 
-    <section class="side-section">
+    <section class="side-section skills-section">
       <div class="side-title">Skills</div>
-
-      <div class="skill">
-        <div class="skill-top"><span>Art Direction</span><span>Expert</span></div>
-        <div class="bar"><span class="fill" style="width:100%"></span></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-top"><span>Creative Direction</span><span>Advanced</span></div>
-        <div class="bar"><span class="fill" style="width:82%"></span></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-top"><span>Branding</span><span>Advanced</span></div>
-        <div class="bar"><span class="fill" style="width:82%"></span></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-top"><span>Copywriting</span><span>Proficient</span></div>
-        <div class="bar"><span class="fill" style="width:60%"></span></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-top"><span>Motion Design</span><span>Beginner</span></div>
-        <div class="bar"><span class="fill" style="width:20%"></span></div>
-      </div>
+      <div class="skills-list"></div>
     </section>
 
-    <section class="side-section">
+    <section class="side-section languages-section">
       <div class="side-title">Languages</div>
-
-      <div class="skill language">
-        <div class="skill-top"><span>English</span><span>Native</span></div>
-        <div class="bar"><span class="fill" style="width:100%"></span></div>
-      </div>
-
-      <div class="skill language">
-        <div class="skill-top"><span>Spanish</span><span>Fluent</span></div>
-        <div class="bar"><span class="fill" style="width:82%"></span></div>
-      </div>
+      <div class="languages-list"></div>
     </section>
 
-    <section class="side-section">
+    <section class="side-section interests-section">
       <div class="side-title">Interests</div>
-      <ul>
-        <li>Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team</li>
-        <li>Coordinated a year-long release of a six-part platform project</li>
-      </ul>
+      <ul></ul>
     </section>
   </aside>
 
@@ -292,76 +138,241 @@
         <div class="role">Creative Art Director</div>
       </header>
 
-      <section>
-        <h2>Experience</h2>
-
-        <div class="job">
-          <div class="job-head">
-            <div>
-              <h3>Creative Director</h3>
-              <div class="company">Apple</div>
-              <div class="place">Cork, Ireland</div>
-            </div>
-            <div class="date">Jan 2020 - Present</div>
-          </div>
-          <ul>
-            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-            <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
-          </ul>
-        </div>
-
-        <div class="job">
-          <div class="job-head">
-            <div>
-              <h3>Design Team Lead</h3>
-              <div class="company">Zendesk</div>
-              <div class="place">Dublin, Ireland</div>
-            </div>
-            <div class="date">Nov 2018 - Dec 2019</div>
-          </div>
-          <ul>
-            <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-            <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-            <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <h2>Education</h2>
-        <div class="edu-item">
-          <h3>Master of Science in Computer Science</h3>
-          <div class="school">Stanford University</div>
-          <div class="edu-meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
-        </div>
-        <div class="edu-item">
-          <h3>Bachelor of Science in Computer Science</h3>
-          <div class="school">Carnegie Mellon University</div>
-          <div class="edu-meta"><span>2013 - 2016</span><span>Pittsburgh, PA</span></div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Certifications</h2>
-        <ul>
-          <li>Certified Scrum Master by Atlassian<br>Issued Jun 2017</li>
-          <li>Certified React Native Developer<br>Issued May 2019</li>
-          <li>Certified Apple Developer<br>Issued Apr 2021</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Achievements</h2>
-        <ul>
-          <li>Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team</li>
-          <li>Coordinated a year-long release of a six-part platform project</li>
-        </ul>
-      </section>
+      <section class="experience"><h2>Experience</h2></section>
+      <section class="education"><h2>Education</h2></section>
+      <section class="certifications"><h2>Certifications</h2><ul></ul></section>
+      <section class="achievements"><h2>Achievements</h2><ul></ul></section>
     </div>
   </main>
 </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+
+<button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+
+<script>
+function downloadPDF(){window.print()}
+
+(function(){
+const TEXT={
+en:{back:"Back",builder:"CV Builder",personal:"Personal",fullName:"Full name",jobTitle:"Job title",phone:"Phone",email:"Email",location:"Location",website:"Website",summary:"Summary",contactInfo:"Contact Info",experience:"Experience",role:"Role",company:"Company",date:"Date",place:"Place",details:"Details",education:"Education",degree:"Degree",school:"School",certifications:"Certifications",certification:"Certification",skills:"Skills",skill:"Skill",level:"Level",percent:"Bar %",languages:"Languages",language:"Language",interests:"Interests",interest:"Interest",achievements:"Achievements",achievement:"Achievement",add:"Add",remove:"Remove",downloadPDF:"Download PDF"},
+uz:{back:"Orqaga",builder:"CV yaratish",personal:"Shaxsiy",fullName:"To'liq ism",jobTitle:"Kasb",phone:"Telefon",email:"Email",location:"Manzil",website:"Website",summary:"Xulosa",contactInfo:"Aloqa ma'lumotlari",experience:"Tajriba",role:"Lavozim",company:"Kompaniya",date:"Sana",place:"Joy",details:"Tafsilotlar",education:"Ta'lim",degree:"Daraja",school:"O'quv joyi",certifications:"Sertifikatlar",certification:"Sertifikat",skills:"Ko'nikmalar",skill:"Ko'nikma",level:"Daraja",percent:"Bar %",languages:"Tillar",language:"Til",interests:"Qiziqishlar",interest:"Qiziqish",achievements:"Yutuqlar",achievement:"Yutuq",add:"Qo'shish",remove:"O'chirish",downloadPDF:"PDF yuklab olish"},
+ru:{back:"Назад",builder:"Конструктор CV",personal:"Личные данные",fullName:"ФИО",jobTitle:"Должность",phone:"Телефон",email:"Email",location:"Город",website:"Website",summary:"О себе",contactInfo:"Контакты",experience:"Опыт",role:"Роль",company:"Компания",date:"Дата",place:"Место",details:"Детали",education:"Образование",degree:"Степень",school:"Учебное место",certifications:"Сертификаты",certification:"Сертификат",skills:"Навыки",skill:"Навык",level:"Уровень",percent:"Bar %",languages:"Языки",language:"Язык",interests:"Интересы",interest:"Интерес",achievements:"Достижения",achievement:"Достижение",add:"Добавить",remove:"Удалить",downloadPDF:"Скачать PDF"}
+};
+
+const DEFAULTS={
+en:{
+fields:{fullName:"Ethan Johnson",jobTitle:"Creative Art Director",phone:"321-554-8877",email:"ethanjohnson@gmail.com",location:"Cork, Ireland",website:"https://x.com/ethanjohnson",summary:"Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies."},
+collections:{
+skills:[{name:"Art Direction",level:"Expert",percent:100},{name:"Creative Direction",level:"Advanced",percent:82},{name:"Branding",level:"Advanced",percent:82},{name:"Copywriting",level:"Proficient",percent:60},{name:"Motion Design",level:"Beginner",percent:20}],
+languages:[{name:"English",level:"Native",percent:100},{name:"Spanish",level:"Fluent",percent:82}],
+interests:[{value:"Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team"},{value:"Coordinated a year-long release of a six-part platform project"}],
+experience:[{role:"Creative Director",company:"Apple",date:"Jan 2020 - Present",place:"Cork, Ireland",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.\nDeveloped and maintained comprehensive library of design assets for easy access and reuse."},{role:"Design Team Lead",company:"Zendesk",date:"Nov 2018 - Dec 2019",place:"Dublin, Ireland",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."}],
+education:[{degree:"Master of Science in Computer Science",school:"Stanford University",date:"2016 - 2018",place:"Stanford, CA"},{degree:"Bachelor of Science in Computer Science",school:"Carnegie Mellon University",date:"2013 - 2016",place:"Pittsburgh, PA"}],
+certifications:[{value:"Certified Scrum Master by Atlassian\nIssued Jun 2017"},{value:"Certified React Native Developer\nIssued May 2019"},{value:"Certified Apple Developer\nIssued Apr 2021"}],
+achievements:[{value:"Spearheaded a $12M software project from design to distribution as a senior software engineer in a 12-people team"},{value:"Coordinated a year-long release of a six-part platform project"}]
+}},
+uz:{
+fields:{fullName:"Ethan Johnson",jobTitle:"Creative Art Director",phone:"321-554-8877",email:"ethanjohnson@gmail.com",location:"Cork, Ireland",website:"https://x.com/ethanjohnson",summary:"10+ yillik tajribaga ega mutaxassis. Veb ilovalar va backend tizimlarini ishlab chiqishda tajribaga ega. Toza va tushunarli yechimlar yaratadi."},
+collections:{
+skills:[{name:"Art Direction",level:"Ekspert",percent:100},{name:"Creative Direction",level:"Yuqori",percent:82}],
+languages:[{name:"Ingliz tili",level:"Native",percent:100}],
+interests:[{value:"12 million dollarlik loyiha jarayonini boshqargan"}],
+experience:[{role:"Creative Director",company:"Apple",date:"Yan 2020 - Hozir",place:"Cork, Ireland",details:"Brend va strategiyaga mos dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddatlarga rioya qildi."}],
+education:[{degree:"Kompyuter fanlari magistri",school:"Stanford Universiteti",date:"2016 - 2018",place:"Stanford, CA"}],
+certifications:[{value:"Atlassian tomonidan Certified Scrum Master\nBerilgan: Iyun 2017"}],
+achievements:[{value:"12 million dollarlik loyiha jarayonini boshqargan"}]
+}},
+ru:{
+fields:{fullName:"Ethan Johnson",jobTitle:"Креативный арт-директор",phone:"321-554-8877",email:"ethanjohnson@gmail.com",location:"Cork, Ireland",website:"https://x.com/ethanjohnson",summary:"Специалист с опытом более 10 лет в разработке веб-приложений и backend-систем. Создает понятные и поддерживаемые решения."},
+collections:{
+skills:[{name:"Art Direction",level:"Эксперт",percent:100},{name:"Creative Direction",level:"Продвинутый",percent:82}],
+languages:[{name:"Английский",level:"Носитель",percent:100}],
+interests:[{value:"Руководил проектом стоимостью $12M от дизайна до запуска"}],
+experience:[{role:"Creative Director",company:"Apple",date:"Янв 2020 - Настоящее время",place:"Cork, Ireland",details:"Разрабатывал материалы, соответствующие бренду и стратегии.\nУправлял несколькими проектами одновременно."}],
+education:[{degree:"Магистр компьютерных наук",school:"Стэнфордский университет",date:"2016 - 2018",place:"Stanford, CA"}],
+certifications:[{value:"Certified Scrum Master от Atlassian\nВыдано: июнь 2017"}],
+achievements:[{value:"Руководил проектом стоимостью $12M от дизайна до запуска"}]
+}}
+};
+
+let language=localStorage.getItem("cv-maker-language")||"en";
+if(!DEFAULTS[language])language="en";
+let state=clone(DEFAULTS[language]),panel;
+document.addEventListener("DOMContentLoaded",init);
+
+function init(){
+const resume=document.querySelector(".resume"),workspace=document.createElement("main"),preview=document.createElement("div");
+workspace.className="builder-workspace";preview.className="builder-preview";panel=document.createElement("aside");panel.className="builder-panel";
+resume.parentNode.insertBefore(workspace,resume);preview.appendChild(resume);workspace.appendChild(preview);workspace.appendChild(panel);
+document.body.classList.add("template-builder-ready");
+renderPanel();renderResume();bindEvents();
+}
+
+function t(k){return TEXT[language]?.[k]||TEXT.en[k]||k}
+
+function bindEvents(){
+panel.addEventListener("input",e=>{
+const input=e.target;
+if(input.matches("[data-field]")){state.fields[input.dataset.field]=input.value;renderResume()}
+if(input.matches("[data-collection]")){
+const item=state.collections[input.dataset.collection][Number(input.dataset.index)];
+if(item){item[input.dataset.key]=input.value;renderResume()}
+}
+});
+panel.addEventListener("change",e=>{
+const input=e.target;
+if(input.matches("[data-builder-language]")){
+language=input.value;localStorage.setItem("cv-maker-language",language);
+state=clone(DEFAULTS[language]);renderPanel();renderResume();
+}
+});
+panel.addEventListener("click",e=>{
+const add=e.target.closest("[data-add]"),remove=e.target.closest("[data-remove]"),back=e.target.closest("[data-builder-back]");
+if(back){e.preventDefault();if(window.history.length>1)window.history.back();return}
+if(add){state.collections[add.dataset.add].push(blank(add.dataset.add));renderPanel();renderResume()}
+if(remove){const arr=state.collections[remove.dataset.remove];if(arr.length>1){arr.splice(Number(remove.dataset.index),1);renderPanel();renderResume()}}
+});
+}
+
+function blank(type){
+if(type==="skills"||type==="languages")return{name:"",level:"",percent:60};
+if(type==="experience")return{role:"",company:"",date:"",place:"",details:""};
+if(type==="education")return{degree:"",school:"",date:"",place:""};
+return{value:""};
+}
+
+function renderPanel(){
+panel.innerHTML=`
+<header class="builder-panel-header">
+<div class="builder-panel-top">
+<a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+<select class="builder-lang" data-builder-language>
+<option value="en"${language==="en"?" selected":""}>EN</option>
+<option value="uz"${language==="uz"?" selected":""}>UZ</option>
+<option value="ru"${language==="ru"?" selected":""}>RU</option>
+</select>
+</div>
+<h2>${t("builder")}</h2>
+</header>
+
+<section class="builder-section">
+<div class="builder-section-title"><h3>${t("personal")}</h3></div>
+<div class="builder-grid">
+${field(t("fullName"),"fullName",state.fields.fullName)}
+${field(t("jobTitle"),"jobTitle",state.fields.jobTitle)}
+${field(t("phone"),"phone",state.fields.phone)}
+${field(t("email"),"email",state.fields.email)}
+${field(t("location"),"location",state.fields.location,true)}
+${field(t("website"),"website",state.fields.website,true)}
+</div>
+</section>
+
+<section class="builder-section"><div class="builder-section-title"><h3>${t("summary")}</h3></div>${field(t("summary"),"summary",state.fields.summary,true,"textarea")}</section>
+${section("skills",t("skills"),barEntry)}
+${section("languages",t("languages"),barEntry)}
+${section("interests",t("interests"),simpleEntry,t("interest"))}
+${section("experience",t("experience"),expEntry)}
+${section("education",t("education"),eduEntry)}
+${section("certifications",t("certifications"),simpleEntry,t("certification"))}
+${section("achievements",t("achievements"),simpleEntry,t("achievement"))}
+`;
+}
+
+function field(label,key,value,wide,type){
+const c=type==="textarea"?`<textarea data-field="${key}">${esc(value)}</textarea>`:`<input data-field="${key}" value="${attr(value)}">`;
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${c}</label>`;
+}
+
+function section(type,title,renderer,label){
+return`<section class="builder-section"><div class="builder-section-title"><h3>${title}</h3><button class="builder-button" type="button" data-add="${type}">${t("add")}</button></div>${state.collections[type].map((e,i)=>renderer(type,e,i,label)).join("")}</section>`;
+}
+
+function barEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(type==="languages"?t("language"):t("skill"),type,i,"name",e.name)}${cf(t("level"),type,i,"level",e.level)}${cf(t("percent"),type,i,"percent",e.percent,true)}</div>${removeBtn(type,i)}</div>`;
+}
+
+function expEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("role"),type,i,"role",e.role)}${cf(t("company"),type,i,"company",e.company)}${cf(t("date"),type,i,"date",e.date)}${cf(t("place"),type,i,"place",e.place)}${cf(t("details"),type,i,"details",e.details,true,"textarea")}</div>${removeBtn(type,i)}</div>`;
+}
+
+function eduEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("degree"),type,i,"degree",e.degree)}${cf(t("school"),type,i,"school",e.school)}${cf(t("date"),type,i,"date",e.date)}${cf(t("place"),type,i,"place",e.place)}</div>${removeBtn(type,i)}</div>`;
+}
+
+function simpleEntry(type,e,i,label){
+return`<div class="builder-entry">${cf(label,type,i,"value",e.value,true,"textarea")}${removeBtn(type,i)}</div>`;
+}
+
+function cf(label,type,i,key,value,wide,kind){
+const attrs=`data-collection="${type}" data-index="${i}" data-key="${key}"`;
+const c=kind==="textarea"?`<textarea ${attrs}>${esc(value)}</textarea>`:`<input ${attrs} value="${attr(value)}">`;
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${c}</label>`;
+}
+
+function removeBtn(type,i){
+return`<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${state.collections[type].length<=1?" disabled":""}>${t("remove")}</button></div>`;
+}
+
+function renderResume(){
+document.querySelector(".download-pdf-btn").textContent=t("downloadPDF");
+document.querySelector("h1").textContent=state.fields.fullName;
+document.querySelector(".role").textContent=state.fields.jobTitle;
+document.querySelector(".summary-section .side-title").textContent=t("summary");
+document.querySelector(".summary-section p").textContent=state.fields.summary;
+renderContact();renderBars(".skills-list",state.collections.skills);document.querySelector(".skills-section .side-title").textContent=t("skills");
+renderBars(".languages-list",state.collections.languages,true);document.querySelector(".languages-section .side-title").textContent=t("languages");
+renderList(".interests-section ul",state.collections.interests,false);document.querySelector(".interests-section .side-title").textContent=t("interests");
+renderExperience();renderEducation();renderList(".certifications ul",state.collections.certifications,true);document.querySelector(".certifications h2").textContent=t("certifications");
+renderList(".achievements ul",state.collections.achievements,false);document.querySelector(".achievements h2").textContent=t("achievements");
+}
+
+function renderContact(){
+document.querySelector(".contact-section .side-title").textContent=t("contactInfo");
+document.querySelector(".contact-list").innerHTML=`<div class="contact-item"><span class="icon">📞</span><span>${esc(state.fields.phone)}</span></div><div class="contact-item"><span class="icon">✉</span><span>${esc(state.fields.email)}</span></div><div class="contact-item"><span class="icon">📍</span><span>${esc(state.fields.location)}</span></div><div class="contact-item"><span class="icon">⌁</span><span>${esc(state.fields.website)}</span></div>`;
+}
+
+function renderBars(selector,arr,isLang){
+const box=document.querySelector(selector);box.innerHTML="";
+arr.filter(hasValue).forEach(s=>{
+const percent=Math.max(0,Math.min(100,Number(s.percent)||0));
+const div=document.createElement("div");div.className=isLang?"skill language":"skill";
+div.innerHTML=`<div class="skill-top"><span>${esc(s.name)}</span><span>${esc(s.level)}</span></div><div class="bar"><span class="fill" style="width:${percent}%"></span></div>`;
+box.appendChild(div);
+});
+}
+
+function renderExperience(){
+const box=document.querySelector(".experience");box.innerHTML=`<h2>${t("experience")}</h2>`;
+state.collections.experience.filter(hasValue).forEach(e=>{
+const div=document.createElement("div");div.className="job";
+div.innerHTML=`<div class="job-head"><div><h3>${esc(e.role)}</h3><div class="company">${esc(e.company)}</div><div class="place">${esc(e.place)}</div></div><div class="date">${esc(e.date)}</div></div><ul>${lines(e.details).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+box.appendChild(div);
+});
+}
+
+function renderEducation(){
+const box=document.querySelector(".education");box.innerHTML=`<h2>${t("education")}</h2>`;
+state.collections.education.filter(hasValue).forEach(e=>{
+const div=document.createElement("div");div.className="edu-item";
+div.innerHTML=`<h3>${esc(e.degree)}</h3><div class="school">${esc(e.school)}</div><div class="edu-meta"><span>${esc(e.date)}</span><span>${esc(e.place)}</span></div>`;
+box.appendChild(div);
+});
+}
+
+function renderList(selector,arr,multi){
+const ul=document.querySelector(selector);ul.innerHTML="";
+arr.filter(hasValue).forEach(e=>{
+const li=document.createElement("li");
+li.innerHTML=multi?esc(e.value).replace(/\n/g,"<br>"):esc(e.value);
+ul.appendChild(li);
+});
+}
+
+function hasValue(o){return Object.values(o).some(v=>String(v||"").trim())}
+function lines(v){return String(v||"").split("\n").map(x=>x.trim()).filter(Boolean)}
+function clone(v){return JSON.parse(JSON.stringify(v))}
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function attr(v){return esc(v).replace(/"/g,"&quot;")}
+})();
+</script>
 </body>
 </html>

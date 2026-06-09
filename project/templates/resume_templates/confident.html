@@ -7,283 +7,128 @@
   <title>Taylor Parker Resume</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#d7d7d7;font-family:"Segoe UI",Arial,sans-serif;color:#eee}
+    .resume{width:850px;height:1130px;margin:30px auto;padding:40px 34px 42px;background:#111119;position:relative;overflow:hidden}
+    .resume::before,.resume::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;pointer-events:none;opacity:.25;background:repeating-radial-gradient(circle,transparent 0,transparent 13px,rgba(207,150,58,.22) 14px,transparent 15px)}
+    .resume::before{top:-210px;right:-120px}
+    .resume::after{bottom:-210px;left:-170px}
+    .content{position:relative;z-index:2}
+    .header{margin-bottom:50px}
+    .header h1{font-size:36px;line-height:1;color:#fff;font-weight:800;margin-bottom:13px;letter-spacing:-.5px}
+    .header .subtitle{font-size:15px;color:#d69a45;margin-bottom:24px;font-weight:400}
+    .contact-row{display:flex;align-items:center;gap:20px;font-size:11px;color:#b6b2bc;flex-wrap:wrap}
+    .contact-row span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+    .main{display:grid;grid-template-columns:58% 32%;gap:62px}
+    section{margin-bottom:33px}
+    h2{font-size:19px;color:#fff;font-weight:700;margin-bottom:18px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.16)}
+    .item{margin-bottom:26px}
+    .item-head{display:flex;justify-content:space-between;gap:20px;margin-bottom:7px}
+    h3{font-size:14px;color:#fff;font-weight:700;margin-bottom:4px}
+    .company,.school{font-size:13px;color:#d69a45;margin-bottom:2px}
+    .place-small{font-size:11px;color:#c4c0cb}
+    .date{min-width:125px;text-align:right;font-size:11px;color:#c4c0cb;line-height:1.5}
+    ul{padding-left:15px;margin-top:10px}
+    li{color:#c7c3ce;font-size:11.4px;line-height:1.48;margin-bottom:5px}
+    .summary p{font-size:12px;color:#c7c3ce;line-height:1.55}
+    .edu-item{margin-bottom:22px}
+    .edu-meta{display:flex;gap:30px;font-size:11.5px;color:#c4c0cb;margin-top:8px}
+    .certifications li{margin-bottom:4px}
+    .skill,.language{margin-bottom:22px}
+    .skill-top,.language-top{display:grid;grid-template-columns:1fr auto;align-items:start;gap:14px;margin-bottom:5px}
+    .skill-name,.language-name{color:#c7c3ce;font-size:12px}
+    .rating-box{min-width:88px;text-align:right}
+    .dots{display:flex;justify-content:flex-end;gap:5px;margin-bottom:4px}
+    .dot{width:12px;height:12px;border-radius:50%;display:inline-block;background:#32313b}
+    .dot.filled{background:#f0a13a}
+    .level{font-size:11px;color:#c4c0cb;text-align:right}
+    .achievements ul{margin-top:0}
+
+    .download-pdf-btn{position:fixed;right:24px;bottom:24px;z-index:9999;height:44px;border:0;border-radius:999px;background:#d69a45;color:#111119;font:inherit;font-size:14px;font-weight:800;padding:0 18px;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.22)}
+    .download-pdf-btn:hover{background:#f0a13a}
+
+    body.template-builder-ready{min-width:0;overflow-x:auto}
+    .builder-workspace{width:min(1340px,calc(100% - 32px));margin:22px auto;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}
+    .builder-preview{min-width:0;overflow:auto;display:flex;justify-content:flex-start;align-items:flex-start;padding-bottom:24px}
+    .builder-preview>.resume{flex:0 0 auto;margin:0!important}
+    .builder-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;background:#fff;border:1px solid #d9e1ea;border-radius:8px;box-shadow:0 18px 45px rgba(15,23,42,.13);color:#172033;font-family:Inter,"Segoe UI",Arial,sans-serif}
+    .builder-panel *{box-sizing:border-box}
+    .builder-panel-header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e4ebf2;padding:16px 18px}
+    .builder-panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .builder-back{color:#d69a45;font-size:13px;font-weight:700;text-decoration:none}
+    .builder-lang{width:88px;height:34px;border:1px solid #cbd6e2;border-radius:6px;background:#f8fafc;color:#172033;font:inherit;font-size:13px;font-weight:700;padding:0 8px}
+    .builder-panel h2{display:block;margin:0;padding:0;border:0;color:#172033;font-size:22px;font-weight:800;line-height:1.15}
+    .builder-panel h2::after,.builder-panel h3::after{content:none!important}
+    .builder-section{padding:18px;border-bottom:1px solid #edf1f5}
+    .builder-section:last-child{border-bottom:0}
+    .builder-section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+    .builder-section h3{display:block;margin:0;color:#172033;font-size:14px;font-weight:800;line-height:1.2}
+    .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .builder-field{display:grid;gap:6px}
+    .builder-field.builder-wide{grid-column:1/-1}
+    .builder-field span{color:#5b6778;font-size:12px;font-weight:700}
+    .builder-field input,.builder-field textarea,.builder-field select{width:100%;border:1px solid #cfd9e5;border-radius:6px;background:#fbfdff;color:#172033;font:inherit;font-size:14px;line-height:1.35;padding:10px 11px;outline:none;transition:border-color .16s ease,box-shadow .16s ease}
+    .builder-field textarea{min-height:86px;resize:vertical}
+    .builder-field input:focus,.builder-field textarea:focus,.builder-field select:focus{border-color:#d69a45;box-shadow:0 0 0 3px rgba(214,154,69,.18)}
+    .builder-entry{display:grid;gap:12px;padding:14px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;margin-bottom:12px}
+    .builder-entry:last-child{margin-bottom:0}
+    .builder-entry-actions{display:flex;justify-content:flex-end}
+    .builder-button{height:34px;border:1px solid #d69a45;border-radius:6px;background:#d69a45;color:#111119;cursor:pointer;font:inherit;font-size:13px;font-weight:800;padding:0 13px}
+    .builder-button:hover{background:#f0a13a}
+    .builder-button.builder-secondary{border-color:#cbd6e2;background:#fff;color:#425069}
+    .builder-button.builder-secondary:hover{background:#f1f5f9}
+    .builder-button:disabled{cursor:not-allowed;opacity:.45}
+
+    @media(max-width:1240px){
+      .builder-workspace{grid-template-columns:minmax(0,1fr)}
+      .builder-panel{position:static;max-height:none;order:-1}
     }
 
-    body {
-      background: #d7d7d7;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: #eeeeee;
+    @media(max-width:900px){
+      .resume{width:100%;height:auto;min-height:100vh;margin:0;padding:34px 24px}
+      .main{grid-template-columns:1fr;gap:20px}
+      .item-head{flex-direction:column;gap:4px}
+      .date{text-align:left}
     }
 
-    .resume {
-      width: 850px;
-      min-height: 1130px;
-      margin: 30px auto;
-      padding: 40px 34px 42px;
-      background: #111119;
-      position: relative;
-      overflow: hidden;
+    @media(max-width:700px){
+      .builder-workspace{width:min(100% - 20px,100%);margin:10px auto;gap:14px}
+      .builder-grid{grid-template-columns:1fr}
+      .builder-panel-header,.builder-section{padding:14px}
     }
 
-    .resume::before,
-    .resume::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.25;
-      background:
-        repeating-radial-gradient(
-          circle,
-          transparent 0,
-          transparent 13px,
-          rgba(207, 150, 58, 0.22) 14px,
-          transparent 15px
-        );
-    }
-
-    .resume::before {
-      top: -210px;
-      right: -120px;
-    }
-
-    .resume::after {
-      bottom: -210px;
-      left: -170px;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .header {
-      margin-bottom: 50px;
-    }
-
-    .header h1 {
-      font-size: 36px;
-      line-height: 1;
-      color: #ffffff;
-      font-weight: 800;
-      margin-bottom: 13px;
-      letter-spacing: -0.5px;
-    }
-
-    .header .subtitle {
-      font-size: 15px;
-      color: #d69a45;
-      margin-bottom: 24px;
-      font-weight: 400;
-    }
-
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 11px;
-      color: #b6b2bc;
-      flex-wrap: wrap;
-    }
-
-    .contact-row span {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      white-space: nowrap;
-    }
-
-    .main {
-      display: grid;
-      grid-template-columns: 58% 32%;
-      gap: 62px;
-    }
-
-    section {
-      margin-bottom: 33px;
-    }
-
-    h2 {
-      font-size: 19px;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 18px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .item {
-      margin-bottom: 26px;
-    }
-
-    .item-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 7px;
-    }
-
-    h3 {
-      font-size: 14px;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .company,
-    .school {
-      font-size: 13px;
-      color: #d69a45;
-      margin-bottom: 2px;
-    }
-
-    .place-small {
-      font-size: 11px;
-      color: #c4c0cb;
-    }
-
-    .date {
-      min-width: 125px;
-      text-align: right;
-      font-size: 11px;
-      color: #c4c0cb;
-      line-height: 1.5;
-    }
-
-    ul {
-      padding-left: 15px;
-      margin-top: 10px;
-    }
-
-    li {
-      color: #c7c3ce;
-      font-size: 11.4px;
-      line-height: 1.48;
-      margin-bottom: 5px;
-    }
-
-    .summary p {
-      font-size: 12px;
-      color: #c7c3ce;
-      line-height: 1.55;
-    }
-
-    .edu-item {
-      margin-bottom: 22px;
-    }
-
-    .edu-meta {
-      display: flex;
-      gap: 30px;
-      font-size: 11.5px;
-      color: #c4c0cb;
-      margin-top: 8px;
-    }
-
-    .certifications li {
-      margin-bottom: 4px;
-    }
-
-    .skill,
-    .language {
-      margin-bottom: 22px;
-    }
-
-    .skill-top,
-    .language-top {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: start;
-      gap: 14px;
-      margin-bottom: 5px;
-    }
-
-    .skill-name,
-    .language-name {
-      color: #c7c3ce;
-      font-size: 12px;
-    }
-
-    .rating-box {
-      min-width: 88px;
-      text-align: right;
-    }
-
-    .dots {
-      display: flex;
-      justify-content: flex-end;
-      gap: 5px;
-      margin-bottom: 4px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-      background: #32313b;
-    }
-
-    .dot.filled {
-      background: #f0a13a;
-    }
-
-    .level {
-      font-size: 11px;
-      color: #c4c0cb;
-      text-align: right;
-    }
-
-    .achievements ul {
-      margin-top: 0;
-    }
-
-    @media print {
-      body {
-        background: white;
-      }
-
-      .resume {
-        margin: 0;
-        width: 100%;
-        min-height: 100vh;
-      }
-
-      @page {
-        size: A4;
-        margin: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .resume {
-        width: 100%;
-        margin: 0;
-        padding: 34px 24px;
-      }
-
-      .main {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .item-head {
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .date {
-        text-align: left;
-      }
+    @media print{
+      @page{size:A4;margin:0}
+      html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}
+      .download-pdf-btn,.builder-panel{display:none!important}
+      .builder-workspace,.builder-preview{display:block!important;width:210mm!important;height:297mm!important;margin:0!important;padding:0!important;overflow:hidden!important}
+      .resume{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;padding:10mm 8.5mm!important;box-shadow:none!important;overflow:hidden!important}
+      .content{width:100%!important;height:100%!important}
+      .header{margin-bottom:12mm!important}
+      .header h1{font-size:9.5mm!important;margin-bottom:3mm!important}
+      .header .subtitle{font-size:3.9mm!important;margin-bottom:5.5mm!important}
+      .contact-row{gap:5.5mm!important;font-size:2.8mm!important;flex-wrap:nowrap!important;white-space:nowrap!important}
+      .main{display:grid!important;grid-template-columns:119mm 62mm!important;gap:12mm!important}
+      section{margin-bottom:7.7mm!important}
+      h2{font-size:4.8mm!important;margin-bottom:4.4mm!important;padding-bottom:2.2mm!important}
+      .item{margin-bottom:6.4mm!important}
+      .item-head{display:flex!important;flex-direction:row!important;justify-content:space-between!important;gap:5mm!important;margin-bottom:2mm!important}
+      h3{font-size:3.55mm!important}
+      .company,.school{font-size:3.25mm!important}
+      .place-small{font-size:2.8mm!important}
+      .date{min-width:33mm!important;text-align:right!important;font-size:2.8mm!important}
+      li{font-size:2.75mm!important;line-height:1.36!important;margin-bottom:1mm!important}
+      .summary p{font-size:2.9mm!important;line-height:1.42!important}
+      .edu-item{margin-bottom:5.5mm!important}
+      .edu-meta{font-size:2.8mm!important;gap:7mm!important;margin-top:2mm!important}
+      .skill,.language{margin-bottom:5.4mm!important}
+      .skill-name,.language-name{font-size:2.9mm!important}
+      .rating-box{min-width:21mm!important}
+      .dots{gap:1.2mm!important;margin-bottom:1mm!important}
+      .dot{width:3mm!important;height:3mm!important}
+      .level{font-size:2.7mm!important}
     }
   </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 
 <body>
@@ -302,192 +147,419 @@
 
       <main class="main">
         <div class="left">
-          <section>
+          <section class="experience">
             <h2>Experience</h2>
-
-            <div class="item">
-              <div class="item-head">
-                <div>
-                  <h3>Senior Software Engineer</h3>
-                  <div class="company">Google</div>
-                  <div class="place-small">Mountain View, CA</div>
-                </div>
-                <div class="date">Jan 2020 - Present</div>
-              </div>
-
-              <ul>
-                <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-                <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-                <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-                <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
-              </ul>
-            </div>
-
-            <div class="item">
-              <div class="item-head">
-                <div>
-                  <h3>Product Team Lead</h3>
-                  <div class="company">Dropbox</div>
-                  <div class="place-small">Mountain View, CA</div>
-                </div>
-                <div class="date">Nov 2018 - Dec 2019</div>
-              </div>
-
-              <ul>
-                <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-                <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-                <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-              </ul>
-            </div>
           </section>
 
-          <section>
+          <section class="education">
             <h2>Education</h2>
-
-            <div class="edu-item">
-              <h3>Master of Science in Computer Science</h3>
-              <div class="school">Stanford University</div>
-              <div class="edu-meta">
-                <span>2016 - 2018</span>
-                <span>Stanford, CA</span>
-              </div>
-            </div>
-
-            <div class="edu-item">
-              <h3>Bachelor of Science in Computer Science</h3>
-              <div class="school">Carnegie Mellon University</div>
-              <div class="edu-meta">
-                <span>2013 - 2016</span>
-                <span>Pittsburgh, PA</span>
-              </div>
-            </div>
           </section>
 
           <section class="certifications">
             <h2>Certifications</h2>
-
-            <ul>
-              <li>Certified Scrum Master by Atlassian<br>Issued Jun 2017</li>
-              <li>Certified React Native Developer<br>Issued May 2019</li>
-              <li>Certified Apple Developer<br>Issued Apr 2021</li>
-            </ul>
+            <ul></ul>
           </section>
         </div>
 
         <aside class="right">
           <section class="summary">
             <h2>Summary</h2>
-            <p>
-              Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems.
-              Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both
-              small and large teams across multiple projects and companies.
-            </p>
+            <p></p>
           </section>
 
-          <section>
+          <section class="skills">
             <h2>Skills</h2>
-
-            <div class="skill">
-              <div class="skill-top">
-                <span class="skill-name">Back-end development</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-                  </div>
-                  <div class="level">Expert</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill">
-              <div class="skill-top">
-                <span class="skill-name">Front-end development</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-                  </div>
-                  <div class="level">Advanced</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill">
-              <div class="skill-top">
-                <span class="skill-name">Data Bases</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-                  </div>
-                  <div class="level">Advanced</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill">
-              <div class="skill-top">
-                <span class="skill-name">Machine Learning</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
-                  </div>
-                  <div class="level">Proficient</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill">
-              <div class="skill-top">
-                <span class="skill-name">UX Design</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                  </div>
-                  <div class="level">Beginner</div>
-                </div>
-              </div>
-            </div>
+            <div class="skills-list"></div>
           </section>
 
-          <section>
+          <section class="languages">
             <h2>Languages</h2>
-
-            <div class="language">
-              <div class="language-top">
-                <span class="language-name">English</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-                  </div>
-                  <div class="level">Native</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="language">
-              <div class="language-top">
-                <span class="language-name">Spanish</span>
-                <div class="rating-box">
-                  <div class="dots">
-                    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-                  </div>
-                  <div class="level">Fluent</div>
-                </div>
-              </div>
-            </div>
+            <div class="languages-list"></div>
           </section>
 
           <section class="achievements">
             <h2>Achievements</h2>
-
-            <ul>
-              <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-person team</li>
-              <li>Coordinated a year-long release of a six-part platform project</li>
-            </ul>
+            <ul></ul>
           </section>
         </aside>
       </main>
     </div>
   </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+
+  <button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+
+  <script>
+    function downloadPDF(){window.print()}
+
+    (function(){
+      const TEXT={
+        en:{back:"Back",builder:"CV Builder",personal:"Personal",fullName:"Full name",jobTitle:"Job title",phone:"Phone",email:"Email",location:"Location",summary:"Summary",skills:"Skills",skill:"Skill",level:"Level",dots:"Dots",languages:"Languages",language:"Language",achievements:"Achievements",achievement:"Achievement",experience:"Experience",role:"Role",company:"Company",date:"Date",place:"Place",details:"Details",education:"Education",degree:"Degree",school:"School",certifications:"Certifications",certification:"Certification",add:"Add",remove:"Remove",downloadPDF:"Download PDF"},
+        uz:{back:"Orqaga",builder:"CV yaratish",personal:"Shaxsiy",fullName:"To'liq ism",jobTitle:"Kasb",phone:"Telefon",email:"Email",location:"Manzil",summary:"Xulosa",skills:"Ko'nikmalar",skill:"Ko'nikma",level:"Daraja",dots:"Nuqtalar",languages:"Tillar",language:"Til",achievements:"Yutuqlar",achievement:"Yutuq",experience:"Tajriba",role:"Lavozim",company:"Kompaniya",date:"Sana",place:"Joy",details:"Tafsilotlar",education:"Ta'lim",degree:"Daraja",school:"O'quv joyi",certifications:"Sertifikatlar",certification:"Sertifikat",add:"Qo'shish",remove:"O'chirish",downloadPDF:"PDF yuklab olish"},
+        ru:{back:"Назад",builder:"Конструктор CV",personal:"Личные данные",fullName:"ФИО",jobTitle:"Должность",phone:"Телефон",email:"Email",location:"Город",summary:"О себе",skills:"Навыки",skill:"Навык",level:"Уровень",dots:"Точки",languages:"Языки",language:"Язык",achievements:"Достижения",achievement:"Достижение",experience:"Опыт",role:"Роль",company:"Компания",date:"Дата",place:"Место",details:"Детали",education:"Образование",degree:"Степень",school:"Учебное место",certifications:"Сертификаты",certification:"Сертификат",add:"Добавить",remove:"Удалить",downloadPDF:"Скачать PDF"}
+      };
+
+      const DEFAULTS={
+        en:{
+          fields:{fullName:"Taylor Parker",jobTitle:"Senior Software Engineer | Product Team Lead",phone:"321-554-8877",email:"321-554-8877",location:"Mountain View, CA",summary:"Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies."},
+          collections:{
+            experience:[
+              {role:"Senior Software Engineer",company:"Google",date:"Jan 2020 - Present",place:"Mountain View, CA",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.\nDeveloped and maintained comprehensive library of design assets for easy access and reuse."},
+              {role:"Product Team Lead",company:"Dropbox",date:"Nov 2018 - Dec 2019",place:"Mountain View, CA",details:"Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."}
+            ],
+            education:[
+              {degree:"Master of Science in Computer Science",school:"Stanford University",date:"2016 - 2018",place:"Stanford, CA"},
+              {degree:"Bachelor of Science in Computer Science",school:"Carnegie Mellon University",date:"2013 - 2016",place:"Pittsburgh, PA"}
+            ],
+            certifications:[
+              {value:"Certified Scrum Master by Atlassian\nIssued Jun 2017"},
+              {value:"Certified React Native Developer\nIssued May 2019"},
+              {value:"Certified Apple Developer\nIssued Apr 2021"}
+            ],
+            skills:[
+              {name:"Back-end development",dots:5,level:"Expert"},
+              {name:"Front-end development",dots:4,level:"Advanced"},
+              {name:"Data Bases",dots:4,level:"Advanced"},
+              {name:"Machine Learning",dots:3,level:"Proficient"},
+              {name:"UX Design",dots:1,level:"Beginner"}
+            ],
+            languages:[
+              {name:"English",dots:5,level:"Native"},
+              {name:"Spanish",dots:4,level:"Fluent"}
+            ],
+            achievements:[
+              {value:"Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-person team"},
+              {value:"Coordinated a year-long release of a six-part platform project"}
+            ]
+          }
+        },
+        uz:{
+          fields:{fullName:"Taylor Parker",jobTitle:"Katta dasturiy ta'minot muhandisi | Product Team Lead",phone:"321-554-8877",email:"321-554-8877",location:"Mountain View, CA",summary:"10+ yillik tajribaga ega dasturiy ta'minot muhandisi. Veb ilovalar va backend tizimlarini ishlab chiqishda tajribaga ega. Toza, tushunarli va qo'llab-quvvatlash oson bo'lgan kod yozadi. Kichik va katta jamoalar bilan turli loyihalarda ishlagan."},
+          collections:{
+            experience:[
+              {role:"Katta dasturiy ta'minot muhandisi",company:"Google",date:"Yan 2020 - Hozir",place:"Mountain View, CA",details:"Brend va strategiyaga mos dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddat va budjet talablariga rioya qildi.\nMijozlar va hamkorlarga murakkab g'oyalarni tushuntirish uchun vizual taqdimotlar yaratdi.\nDizayn resurslari kutubxonasini ishlab chiqdi va yuritdi."},
+              {role:"Mahsulot jamoasi rahbari",company:"Dropbox",date:"Noy 2018 - Dek 2019",place:"Mountain View, CA",details:"Brendga mos va samarali dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddatlarga rioya qildi.\nMurakkab g'oyalarni tushunarli yetkazish uchun taqdimotlar yaratdi."}
+            ],
+            education:[
+              {degree:"Kompyuter fanlari magistri",school:"Stanford Universiteti",date:"2016 - 2018",place:"Stanford, CA"},
+              {degree:"Kompyuter fanlari bakalavri",school:"Carnegie Mellon Universiteti",date:"2013 - 2016",place:"Pittsburgh, PA"}
+            ],
+            certifications:[
+              {value:"Atlassian tomonidan Certified Scrum Master\nBerilgan: Iyun 2017"},
+              {value:"Certified React Native Developer\nBerilgan: May 2019"},
+              {value:"Certified Apple Developer\nBerilgan: Aprel 2021"}
+            ],
+            skills:[
+              {name:"Backend dasturlash",dots:5,level:"Ekspert"},
+              {name:"Frontend dasturlash",dots:4,level:"Yuqori"},
+              {name:"Ma'lumotlar bazalari",dots:4,level:"Yuqori"},
+              {name:"Machine Learning",dots:3,level:"Yaxshi"},
+              {name:"UX dizayn",dots:1,level:"Boshlang'ich"}
+            ],
+            languages:[
+              {name:"Ingliz tili",dots:5,level:"Native"},
+              {name:"Ispan tili",dots:4,level:"Ravon"}
+            ],
+            achievements:[
+              {value:"12 million dollarlik dasturiy loyiha dizayndan tarqatilishigacha bo'lgan jarayonni boshqargan"},
+              {value:"Olti qismli platforma loyihasining bir yillik reliz jarayonini muvofiqlashtirgan"}
+            ]
+          }
+        },
+        ru:{
+          fields:{fullName:"Taylor Parker",jobTitle:"Старший инженер ПО | Руководитель продуктовой команды",phone:"321-554-8877",email:"321-554-8877",location:"Mountain View, CA",summary:"Инженер программного обеспечения с опытом более 10 лет в разработке веб-приложений и backend-систем. Пишет понятный и поддерживаемый код. Работал как с небольшими, так и с крупными командами над разными проектами."},
+          collections:{
+            experience:[
+              {role:"Старший инженер ПО",company:"Google",date:"Янв 2020 - Настоящее время",place:"Mountain View, CA",details:"Разрабатывал материалы, соответствующие бренду и стратегии.\nОдновременно управлял несколькими проектами, соблюдая сроки и бюджет.\nСоздавал визуальные презентации для клиентов и партнеров.\nРазрабатывал и поддерживал библиотеку дизайн-ресурсов."},
+              {role:"Руководитель продуктовой команды",company:"Dropbox",date:"Ноя 2018 - Дек 2019",place:"Mountain View, CA",details:"Создавал материалы в рамках бренда и стратегии.\nУправлял несколькими проектами одновременно.\nГотовил визуальные презентации для передачи сложных идей."}
+            ],
+            education:[
+              {degree:"Магистр компьютерных наук",school:"Стэнфордский университет",date:"2016 - 2018",place:"Stanford, CA"},
+              {degree:"Бакалавр компьютерных наук",school:"Университет Карнеги-Меллона",date:"2013 - 2016",place:"Pittsburgh, PA"}
+            ],
+            certifications:[
+              {value:"Certified Scrum Master от Atlassian\nВыдано: июнь 2017"},
+              {value:"Certified React Native Developer\nВыдано: май 2019"},
+              {value:"Certified Apple Developer\nВыдано: апрель 2021"}
+            ],
+            skills:[
+              {name:"Backend-разработка",dots:5,level:"Эксперт"},
+              {name:"Frontend-разработка",dots:4,level:"Продвинутый"},
+              {name:"Базы данных",dots:4,level:"Продвинутый"},
+              {name:"Machine Learning",dots:3,level:"Уверенный"},
+              {name:"UX-дизайн",dots:1,level:"Начальный"}
+            ],
+            languages:[
+              {name:"Английский",dots:5,level:"Носитель"},
+              {name:"Испанский",dots:4,level:"Свободный"}
+            ],
+            achievements:[
+              {value:"Руководил программным проектом стоимостью $12M от дизайна до запуска"},
+              {value:"Координировал годовой релиз платформенного проекта из шести частей"}
+            ]
+          }
+        }
+      };
+
+      let language=localStorage.getItem("cv-maker-language")||"en";
+      let state=clone(DEFAULTS[language]);
+      let panel;
+
+      document.addEventListener("DOMContentLoaded",init);
+
+      function init(){
+        const resume=document.querySelector(".resume");
+        const workspace=document.createElement("main");
+        workspace.className="builder-workspace";
+        const preview=document.createElement("div");
+        preview.className="builder-preview";
+        panel=document.createElement("aside");
+        panel.className="builder-panel";
+        resume.parentNode.insertBefore(workspace,resume);
+        preview.appendChild(resume);
+        workspace.appendChild(preview);
+        workspace.appendChild(panel);
+        document.body.classList.add("template-builder-ready");
+        renderPanel();renderResume();bindEvents();
+      }
+
+      function t(k){return TEXT[language]?.[k]||TEXT.en[k]||k}
+
+      function bindEvents(){
+        panel.addEventListener("input",e=>{
+          const input=e.target;
+          if(input.matches("[data-field]")){state.fields[input.dataset.field]=input.value;renderResume()}
+          if(input.matches("[data-collection]")){
+            const item=state.collections[input.dataset.collection][Number(input.dataset.index)];
+            if(!item)return;
+            item[input.dataset.key]=input.value;
+            renderResume();
+          }
+        });
+
+        panel.addEventListener("change",e=>{
+          const input=e.target;
+          if(input.matches("[data-builder-language]")){
+            language=input.value;
+            localStorage.setItem("cv-maker-language",language);
+            state=clone(DEFAULTS[language]);
+            renderPanel();renderResume();
+          }
+        });
+
+        panel.addEventListener("click",e=>{
+          const add=e.target.closest("[data-add]");
+          const remove=e.target.closest("[data-remove]");
+          const back=e.target.closest("[data-builder-back]");
+
+          if(back){e.preventDefault();if(window.history.length>1)window.history.back();return}
+          if(add){state.collections[add.dataset.add].push(blank(add.dataset.add));renderPanel();renderResume()}
+          if(remove){
+            const arr=state.collections[remove.dataset.remove];
+            if(arr.length>1){arr.splice(Number(remove.dataset.index),1);renderPanel();renderResume()}
+          }
+        });
+      }
+
+      function blank(type){
+        if(type==="experience")return{role:"",company:"",date:"",place:"",details:""};
+        if(type==="education")return{degree:"",school:"",date:"",place:""};
+        if(type==="skills"||type==="languages")return{name:"",dots:3,level:""};
+        return{value:""};
+      }
+
+      function renderPanel(){
+        panel.innerHTML=`
+          <header class="builder-panel-header">
+            <div class="builder-panel-top">
+              <a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+              <select class="builder-lang" data-builder-language>
+                <option value="en"${language==="en"?" selected":""}>EN</option>
+                <option value="uz"${language==="uz"?" selected":""}>UZ</option>
+                <option value="ru"${language==="ru"?" selected":""}>RU</option>
+              </select>
+            </div>
+            <h2>${t("builder")}</h2>
+          </header>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("personal")}</h3></div>
+            <div class="builder-grid">
+              ${field(t("fullName"),"fullName",state.fields.fullName)}
+              ${field(t("jobTitle"),"jobTitle",state.fields.jobTitle)}
+              ${field(t("phone"),"phone",state.fields.phone)}
+              ${field(t("email"),"email",state.fields.email)}
+              ${field(t("location"),"location",state.fields.location,true)}
+            </div>
+          </section>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("summary")}</h3></div>
+            ${field(t("summary"),"summary",state.fields.summary,true,"textarea")}
+          </section>
+
+          ${section("experience",t("experience"),expEntry)}
+          ${section("education",t("education"),eduEntry)}
+          ${section("certifications",t("certifications"),simpleEntry,t("certification"))}
+          ${section("skills",t("skills"),ratingEntry,t("skill"))}
+          ${section("languages",t("languages"),ratingEntry,t("language"))}
+          ${section("achievements",t("achievements"),simpleEntry,t("achievement"))}
+        `;
+      }
+
+      function field(label,key,value,wide,type){
+        const control=type==="textarea"
+          ?`<textarea data-field="${key}">${esc(value)}</textarea>`
+          :`<input data-field="${key}" value="${attr(value)}">`;
+        return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${control}</label>`;
+      }
+
+      function section(type,title,renderer,label){
+        return`
+          <section class="builder-section">
+            <div class="builder-section-title">
+              <h3>${title}</h3>
+              <button class="builder-button" type="button" data-add="${type}">${t("add")}</button>
+            </div>
+            ${state.collections[type].map((entry,index)=>renderer(type,entry,index,label)).join("")}
+          </section>`;
+      }
+
+      function expEntry(type,e,i){
+        return`<div class="builder-entry"><div class="builder-grid">
+          ${cf(t("role"),type,i,"role",e.role)}
+          ${cf(t("company"),type,i,"company",e.company)}
+          ${cf(t("date"),type,i,"date",e.date)}
+          ${cf(t("place"),type,i,"place",e.place)}
+          ${cf(t("details"),type,i,"details",e.details,true,"textarea")}
+        </div>${removeBtn(type,i)}</div>`;
+      }
+
+      function eduEntry(type,e,i){
+        return`<div class="builder-entry"><div class="builder-grid">
+          ${cf(t("degree"),type,i,"degree",e.degree)}
+          ${cf(t("school"),type,i,"school",e.school)}
+          ${cf(t("date"),type,i,"date",e.date)}
+          ${cf(t("place"),type,i,"place",e.place)}
+        </div>${removeBtn(type,i)}</div>`;
+      }
+
+      function ratingEntry(type,e,i,label){
+        return`<div class="builder-entry"><div class="builder-grid">
+          ${cf(label,type,i,"name",e.name)}
+          ${cf(t("level"),type,i,"level",e.level)}
+          ${cf(t("dots"),type,i,"dots",e.dots,true)}
+        </div>${removeBtn(type,i)}</div>`;
+      }
+
+      function simpleEntry(type,e,i,label){
+        return`<div class="builder-entry">${cf(label,type,i,"value",e.value,true,"textarea")}${removeBtn(type,i)}</div>`;
+      }
+
+      function cf(label,type,i,key,value,wide,kind){
+        const attrs=`data-collection="${type}" data-index="${i}" data-key="${key}"`;
+        const control=kind==="textarea"?`<textarea ${attrs}>${esc(value)}</textarea>`:`<input ${attrs} value="${attr(value)}">`;
+        return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${control}</label>`;
+      }
+
+      function removeBtn(type,i){
+        const disabled=state.collections[type].length<=1?" disabled":"";
+        return`<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${disabled}>${t("remove")}</button></div>`;
+      }
+
+      function renderResume(){
+        document.querySelector(".download-pdf-btn").textContent=t("downloadPDF");
+        document.querySelector(".header h1").textContent=state.fields.fullName;
+        document.querySelector(".header .subtitle").textContent=state.fields.jobTitle;
+        document.querySelector(".summary h2").textContent=t("summary");
+        document.querySelector(".summary p").textContent=state.fields.summary;
+        document.querySelector(".skills h2").textContent=t("skills");
+        document.querySelector(".languages h2").textContent=t("languages");
+        document.querySelector(".achievements h2").textContent=t("achievements");
+
+        document.querySelector(".contact-row").innerHTML=`
+          <span>📞 ${esc(state.fields.phone)}</span>
+          <span>✉️ ${esc(state.fields.email)}</span>
+          <span>📍 ${esc(state.fields.location)}</span>
+        `;
+
+        renderExperience();
+        renderEducation();
+        renderList(".certifications ul",state.collections.certifications,true);
+        renderRatings(".skills-list",state.collections.skills,"skill");
+        renderRatings(".languages-list",state.collections.languages,"language");
+        renderList(".achievements ul",state.collections.achievements);
+      }
+
+      function renderExperience(){
+        const box=document.querySelector(".experience");
+        box.innerHTML=`<h2>${t("experience")}</h2>`;
+        state.collections.experience.filter(hasValue).forEach(e=>{
+          const div=document.createElement("div");
+          div.className="item";
+          div.innerHTML=`
+            <div class="item-head">
+              <div>
+                <h3>${esc(e.role)}</h3>
+                <div class="company">${esc(e.company)}</div>
+                <div class="place-small">${esc(e.place)}</div>
+              </div>
+              <div class="date">${esc(e.date)}</div>
+            </div>
+            <ul>${lines(e.details).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+          box.appendChild(div);
+        });
+      }
+
+      function renderEducation(){
+        const box=document.querySelector(".education");
+        box.innerHTML=`<h2>${t("education")}</h2>`;
+        state.collections.education.filter(hasValue).forEach(e=>{
+          const div=document.createElement("div");
+          div.className="edu-item";
+          div.innerHTML=`
+            <h3>${esc(e.degree)}</h3>
+            <div class="school">${esc(e.school)}</div>
+            <div class="edu-meta"><span>${esc(e.date)}</span><span>${esc(e.place)}</span></div>`;
+          box.appendChild(div);
+        });
+        document.querySelector(".certifications h2").textContent=t("certifications");
+      }
+
+      function renderRatings(selector,arr,className){
+        const box=document.querySelector(selector);
+        box.innerHTML="";
+        arr.filter(hasValue).forEach(item=>{
+          const dots=Math.max(0,Math.min(5,Number(item.dots)||0));
+          const div=document.createElement("div");
+          div.className=className;
+          div.innerHTML=`
+            <div class="${className}-top">
+              <span class="${className}-name">${esc(item.name)}</span>
+              <div class="rating-box">
+                <div class="dots">${[1,2,3,4,5].map(n=>`<span class="dot${n<=dots?" filled":""}"></span>`).join("")}</div>
+                <div class="level">${esc(item.level)}</div>
+              </div>
+            </div>`;
+          box.appendChild(div);
+        });
+      }
+
+      function renderList(selector,arr,multi){
+        const ul=document.querySelector(selector);
+        ul.innerHTML="";
+        arr.filter(hasValue).forEach(e=>{
+          const li=document.createElement("li");
+          li.innerHTML=multi?esc(e.value).replace(/\n/g,"<br>"):esc(e.value);
+          ul.appendChild(li);
+        });
+      }
+
+      function hasValue(obj){return Object.values(obj).some(v=>String(v||"").trim())}
+      function lines(v){return String(v||"").split("\n").map(x=>x.trim()).filter(Boolean)}
+      function clone(v){return JSON.parse(JSON.stringify(v))}
+      function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+      function attr(v){return esc(v).replace(/"/g,"&quot;")}
+    })();
+  </script>
 </body>
 </html>

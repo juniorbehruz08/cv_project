@@ -2,442 +2,1433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olivia Parker Resume</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Olivia Parker Resume</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #e9e4e7;
-      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
-      color: #22223a;
-    }
+        body {
+            background: #e9e4e7;
+            font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+            color: #22223a;
+        }
 
-    .resume {
-      width: 850px;
-      min-height: 1130px;
-      margin: 30px auto;
-      background: #f5eff3;
-      padding: 44px 46px;
-    }
+        .resume {
+            width: 850px;
+            height: 1130px;
+            margin: 30px auto;
+            background: #f5eff3;
+            padding: 44px 46px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-      margin-bottom: 60px;
-    }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            margin-bottom: 58px;
+        }
 
-    .profile-img {
-      width: 128px;
-      height: 128px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #c8c8c8;
-      display: block;
-    }
+        .profile-img,
+        .profile-placeholder {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: radial-gradient(circle at 35% 25%, #d9d9d9, #9ca3af);
+            display: block;
+            flex: 0 0 auto;
+        }
 
-    .header-info h1 {
-      font-size: 38px;
-      font-weight: 800;
-      color: #252542;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
-    }
+        .profile-placeholder {
+            display: grid;
+            place-items: center;
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+        }
 
-    .header-info .title {
-      font-size: 16px;
-      color: #aa4f97;
-      margin-bottom: 26px;
-    }
+        .header-info h1 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #252542;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
 
-    .contact {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 11px;
-      color: #777285;
-    }
+        .header-info .title {
+            font-size: 16px;
+            color: #aa4f97;
+            margin-bottom: 26px;
+        }
 
-    .contact span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 11px;
+            color: #777285;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
 
-    .main {
-      display: grid;
-      grid-template-columns: 245px 1fr;
-      gap: 68px;
-    }
+        .contact span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    h2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #24233e;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+        .main {
+            display: grid;
+            grid-template-columns: 245px 1fr;
+            gap: 68px;
+        }
 
-    h2::after {
-      content: "";
-      height: 1px;
-      background: #d8d1d6;
-      flex: 1;
-    }
+        h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #24233e;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            line-height: 1.1;
+        }
 
-    .section {
-      margin-bottom: 38px;
-    }
+        h2::after {
+            content: "";
+            height: 1px;
+            background: #d8d1d6;
+            flex: 1;
+        }
 
-    .summary p {
-      font-size: 12px;
-      line-height: 1.65;
-      color: #6b6674;
-    }
+        .section {
+            margin-bottom: 38px;
+        }
 
-    .skill {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      margin-bottom: 24px;
-      column-gap: 16px;
-    }
+        .summary p {
+            font-size: 12px;
+            line-height: 1.65;
+            color: #6b6674;
+        }
 
-    .skill-name {
-      font-size: 12px;
-      color: #6b6674;
-    }
+        .skill {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            margin-bottom: 24px;
+            column-gap: 16px;
+        }
 
-    .dots {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 4px;
-    }
+        .skill-name {
+            font-size: 12px;
+            color: #6b6674;
+        }
 
-    .dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: #d9d4d8;
-    }
+        .dots {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 4px;
+            justify-content: flex-end;
+        }
 
-    .dot.filled {
-      background: #bc45a9;
-    }
+        .dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #d9d4d8;
+        }
 
-    .level {
-      font-size: 11px;
-      color: #6b6674;
-      text-align: right;
-    }
+        .dot.filled {
+            background: #bc45a9;
+        }
 
-    ul {
-      padding-left: 16px;
-    }
+        .level {
+            font-size: 11px;
+            color: #6b6674;
+            text-align: right;
+        }
 
-    li {
-      font-size: 12px;
-      line-height: 1.55;
-      color: #6b6674;
-      margin-bottom: 6px;
-    }
+        ul {
+            padding-left: 16px;
+        }
 
-    .job,
-    .edu-item {
-      margin-bottom: 33px;
-    }
+        li {
+            font-size: 12px;
+            line-height: 1.55;
+            color: #6b6674;
+            margin-bottom: 6px;
+            padding-left: 2px;
+        }
 
-    .job-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 8px;
-    }
+        .job,
+        .edu-item {
+            margin-bottom: 33px;
+        }
 
-    h3 {
-      font-size: 15px;
-      font-weight: 800;
-      color: #252542;
-      margin-bottom: 5px;
-    }
+        .job:last-child,
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
 
-    .company,
-    .school {
-      font-size: 13px;
-      color: #aa4f97;
-    }
+        .job-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 8px;
+        }
 
-    .date-location {
-      font-size: 11px;
-      color: #6b6674;
-      line-height: 1.5;
-      text-align: right;
-      min-width: 160px;
-    }
+        h3 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #252542;
+            margin-bottom: 5px;
+            line-height: 1.25;
+        }
 
-    .edu-meta {
-      display: flex;
-      gap: 34px;
-      font-size: 12px;
-      color: #6b6674;
-      margin-top: 10px;
-    }
+        .company,
+        .school {
+            font-size: 13px;
+            color: #aa4f97;
+        }
 
-    .certifications li {
-      margin-bottom: 4px;
-    }
+        .date-location {
+            font-size: 11px;
+            color: #6b6674;
+            line-height: 1.5;
+            text-align: right;
+            min-width: 160px;
+        }
 
-    @media print {
-      body {
-        background: white;
-      }
+        .edu-meta {
+            display: flex;
+            gap: 34px;
+            font-size: 12px;
+            color: #6b6674;
+            margin-top: 10px;
+        }
 
-      .resume {
-        margin: 0;
-        width: 100%;
-        min-height: 100vh;
-      }
+        .certifications li {
+            margin-bottom: 4px;
+        }
 
-      @page {
-        size: A4;
-        margin: 0;
-      }
-    }
+        .download-pdf-btn {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 9999;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: #aa4f97;
+            color: #ffffff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 0 18px;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+        }
 
-    @media (max-width: 900px) {
-      .resume {
-        width: 100%;
-        margin: 0;
-        padding: 32px 24px;
-      }
+        .download-pdf-btn:hover {
+            background: #923d81;
+        }
 
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+        body.template-builder-ready {
+            min-width: 0;
+            overflow-x: auto;
+        }
 
-      .contact {
-        flex-wrap: wrap;
-        gap: 14px;
-      }
+        .builder-workspace {
+            width: min(1340px, calc(100% - 32px));
+            margin: 22px auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 390px;
+            gap: 24px;
+            align-items: start;
+        }
 
-      .main {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
+        .builder-preview {
+            min-width: 0;
+            overflow: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-bottom: 24px;
+        }
 
-      .job-head {
-        flex-direction: column;
-        gap: 4px;
-      }
+        .builder-preview > .resume {
+            flex: 0 0 auto;
+            margin: 0 !important;
+        }
 
-      .date-location {
-        text-align: left;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
+        .builder-panel {
+            position: sticky;
+            top: 18px;
+            max-height: calc(100vh - 36px);
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid #d9e1ea;
+            border-radius: 8px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.13);
+            color: #172033;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+        }
+
+        .builder-panel * {
+            box-sizing: border-box;
+        }
+
+        .builder-panel-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #ffffff;
+            border-bottom: 1px solid #e4ebf2;
+            padding: 16px 18px;
+        }
+
+        .builder-panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .builder-back {
+            color: #aa4f97;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .builder-lang {
+            width: 88px;
+            height: 34px;
+            border: 1px solid #cbd6e2;
+            border-radius: 6px;
+            background: #f8fafc;
+            color: #172033;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 0 8px;
+        }
+
+        .builder-panel h2 {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: #172033;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.15;
+        }
+
+        .builder-panel h2::after,
+        .builder-panel h3::after {
+            content: none !important;
+        }
+
+        .builder-section {
+            padding: 18px;
+            border-bottom: 1px solid #edf1f5;
+        }
+
+        .builder-section:last-child {
+            border-bottom: 0;
+        }
+
+        .builder-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .builder-section h3 {
+            display: block;
+            margin: 0;
+            color: #172033;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .builder-field {
+            display: grid;
+            gap: 6px;
+        }
+
+        .builder-field.builder-wide {
+            grid-column: 1 / -1;
+        }
+
+        .builder-field span {
+            color: #5b6778;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .builder-field input,
+        .builder-field textarea,
+        .builder-field select {
+            width: 100%;
+            border: 1px solid #cfd9e5;
+            border-radius: 6px;
+            background: #fbfdff;
+            color: #172033;
+            font: inherit;
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 10px 11px;
+            outline: none;
+            transition: border-color 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .builder-field input[type="file"] {
+            height: auto;
+            padding: 9px;
+        }
+
+        .builder-field textarea {
+            min-height: 86px;
+            resize: vertical;
+        }
+
+        .builder-field input:focus,
+        .builder-field textarea:focus,
+        .builder-field select:focus {
+            border-color: #aa4f97;
+            box-shadow: 0 0 0 3px rgba(170, 79, 151, 0.14);
+        }
+
+        .builder-entry {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 12px;
+        }
+
+        .builder-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .builder-entry-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .builder-button {
+            height: 34px;
+            border: 1px solid #aa4f97;
+            border-radius: 6px;
+            background: #aa4f97;
+            color: #ffffff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 0 13px;
+        }
+
+        .builder-button:hover {
+            background: #923d81;
+        }
+
+        .builder-button.builder-secondary {
+            border-color: #cbd6e2;
+            background: #ffffff;
+            color: #425069;
+        }
+
+        .builder-button.builder-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        .builder-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.45;
+        }
+
+        @media (max-width: 1240px) {
+            .builder-workspace {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .builder-panel {
+                position: static;
+                max-height: none;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                background: #ffffff;
+            }
+
+            .resume {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                margin: 0;
+                padding: 32px 24px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 32px;
+            }
+
+            .contact {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .main {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .job-head {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .date-location {
+                text-align: left;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                overflow: hidden !important;
+            }
+
+            .download-pdf-btn,
+            .builder-panel {
+                display: none !important;
+            }
+
+            .builder-workspace,
+            .builder-preview {
+                display: block !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+            }
+
+            .resume {
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                margin: 0 !important;
+                padding: 10.5mm 11.5mm !important;
+                box-shadow: none !important;
+                overflow: hidden !important;
+            }
+
+            .header {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 9mm !important;
+                margin-bottom: 14mm !important;
+            }
+
+            .contact {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                gap: 7mm !important;
+                font-size: 2.75mm !important;
+                white-space: nowrap !important;
+            }
+
+            .profile-slot {
+                flex: 0 0 31mm !important;
+            }
+
+            .header-info {
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+            }
+
+            .profile-img,
+            .profile-placeholder {
+                width: 31mm !important;
+                height: 31mm !important;
+            }
+
+            .header-info h1 {
+                font-size: 9.4mm !important;
+            }
+
+            .header-info .title {
+                font-size: 4mm !important;
+                margin-bottom: 6mm !important;
+            }
+
+            .contact {
+                gap: 7mm !important;
+                font-size: 2.75mm !important;
+            }
+
+            .main {
+                display: grid !important;
+                grid-template-columns: 61mm 1fr !important;
+                gap: 17mm !important;
+            }
+
+            h2 {
+                font-size: 5mm !important;
+                margin-bottom: 4.4mm !important;
+            }
+
+            .section {
+                margin-bottom: 9mm !important;
+            }
+
+            .summary p,
+            li,
+            .skill-name {
+                font-size: 3mm !important;
+            }
+
+            .skill {
+                margin-bottom: 5.7mm !important;
+            }
+
+            .dot {
+                width: 3.2mm !important;
+                height: 3.2mm !important;
+            }
+
+            .level {
+                font-size: 2.8mm !important;
+            }
+
+            h3 {
+                font-size: 3.8mm !important;
+            }
+
+            .company,
+            .school {
+                font-size: 3.3mm !important;
+            }
+
+            .date-location {
+                font-size: 2.8mm !important;
+                text-align: right !important;
+            }
+
+            .edu-meta {
+                font-size: 3mm !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="resume">
-
+<div class="resume">
     <header class="header">
-      <img src="" alt="Profile photo" class="profile-img">
-
-      <div class="header-info">
-        <h1>Olivia Parker</h1>
-        <p class="title">Senior Graphic Designer</p>
-
-        <div class="contact">
-          <span>📞 321-554-8877</span>
-          <span>✉️ hi@oparker.design</span>
-          <span>📍 London, United Kingdom</span>
+        <div class="profile-slot">
+            <div class="profile-placeholder">OP</div>
         </div>
-      </div>
+
+        <div class="header-info">
+            <h1>Olivia Parker</h1>
+            <p class="title">Senior Graphic Designer</p>
+
+            <div class="contact">
+                <span>📞 321-554-8877</span>
+                <span>✉ hi@oparker.design</span>
+                <span>📍 London, United Kingdom</span>
+            </div>
+        </div>
     </header>
 
     <main class="main">
+        <aside class="left">
+            <section class="section summary">
+                <h2>Summary</h2>
+                <p></p>
+            </section>
 
-      <aside class="left">
-        <section class="section summary">
-          <h2>Summary</h2>
-          <p>
-            Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems.
-            Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with
-            both small and large teams across multiple projects and companies.
-          </p>
+            <section class="section skills">
+                <h2>Skills</h2>
+                <div class="skills-list"></div>
+            </section>
+
+            <section class="section achievements">
+                <h2>Achievements</h2>
+                <ul></ul>
+            </section>
+        </aside>
+
+        <section class="right">
+            <section class="section experience">
+                <h2>Experience</h2>
+            </section>
+
+            <section class="section education">
+                <h2>Education</h2>
+            </section>
+
+            <section class="section certifications">
+                <h2>Certifications</h2>
+                <ul></ul>
+            </section>
         </section>
-
-        <section class="section">
-          <h2>Skills</h2>
-
-          <div class="skill">
-            <div class="skill-name">Photoshop</div>
-            <div>
-              <div class="dots">
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-              </div>
-              <div class="level">Expert</div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-name">Illustrator</div>
-            <div>
-              <div class="dots">
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot"></span>
-              </div>
-              <div class="level">Advanced</div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-name">In Design</div>
-            <div>
-              <div class="dots">
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot"></span>
-              </div>
-              <div class="level">Advanced</div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-name">Figma</div>
-            <div>
-              <div class="dots">
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot filled"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-              <div class="level">Proficient</div>
-            </div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-name">After Effects</div>
-            <div>
-              <div class="dots">
-                <span class="dot filled"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-              </div>
-              <div class="level">Beginner</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>Achievements</h2>
-          <ul>
-            <li>Spearheaded a $12M software project, from design to distribution, as a senior software engineer in a 12-people team</li>
-            <li>Coordinated a year-long release of a six-part platform project</li>
-          </ul>
-        </section>
-      </aside>
-
-      <section class="right">
-
-        <section class="section">
-          <h2>Experience</h2>
-
-          <div class="job">
-            <div class="job-head">
-              <div>
-                <h3>Senior Graphic Designer</h3>
-                <div class="company">Amazon</div>
-              </div>
-              <div class="date-location">
-                Jan 2020 - Present<br>
-                London, United Kingdom
-              </div>
-            </div>
-
-            <ul>
-              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="job-head">
-              <div>
-                <h3>Design Team Lead</h3>
-                <div class="company">Adobe</div>
-              </div>
-              <div class="date-location">
-                Nov 2018 - Dec 2019<br>
-                London, United Kingdom
-              </div>
-            </div>
-
-            <ul>
-              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>Education</h2>
-
-          <div class="edu-item">
-            <h3>Master of Design in Computer Science</h3>
-            <div class="school">Stanford University</div>
-            <div class="edu-meta">
-              <span>2016 - 2018</span>
-              <span>Stanford, CA</span>
-            </div>
-          </div>
-
-          <div class="edu-item">
-            <h3>Bachelor of Art in Computer Science</h3>
-            <div class="school">Carnegie Mellon University</div>
-            <div class="edu-meta">
-              <span>2013 - 2016</span>
-              <span>Pittsburgh, PA</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="section certifications">
-          <h2>Certifications</h2>
-          <ul>
-            <li>Certified Graphic Designer by Adobe<br>Issued September 2021</li>
-            <li>Certified Graphic Designer by Figma<br>Issued September 2021</li>
-          </ul>
-        </section>
-
-      </section>
     </main>
-  </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+</div>
+
+<button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+
+<script>
+    function downloadPDF() {
+        window.print();
+    }
+
+    (function () {
+        const TEXT = {
+            en: {
+                back: "Back",
+                builder: "CV Builder",
+                personal: "Personal",
+                photo: "Profile photo",
+                fullName: "Full name",
+                jobTitle: "Job title",
+                phone: "Phone",
+                email: "Email",
+                location: "Location",
+                summary: "Summary",
+                skills: "Skills",
+                skill: "Skill",
+                level: "Level",
+                dots: "Dots",
+                achievements: "Achievements",
+                achievement: "Achievement",
+                experience: "Experience",
+                role: "Role",
+                company: "Company",
+                date: "Date",
+                place: "Place",
+                details: "Details",
+                education: "Education",
+                degree: "Degree",
+                school: "School",
+                certifications: "Certifications",
+                certification: "Certification",
+                add: "Add",
+                remove: "Remove",
+                downloadPDF: "Download PDF"
+            },
+            uz: {
+                back: "Orqaga",
+                builder: "CV yaratish",
+                personal: "Shaxsiy",
+                photo: "Profil rasmi",
+                fullName: "To'liq ism",
+                jobTitle: "Kasb",
+                phone: "Telefon",
+                email: "Email",
+                location: "Manzil",
+                summary: "Xulosa",
+                skills: "Ko'nikmalar",
+                skill: "Ko'nikma",
+                level: "Daraja",
+                dots: "Nuqtalar",
+                achievements: "Yutuqlar",
+                achievement: "Yutuq",
+                experience: "Tajriba",
+                role: "Lavozim",
+                company: "Kompaniya",
+                date: "Sana",
+                place: "Joy",
+                details: "Tafsilotlar",
+                education: "Ta'lim",
+                degree: "Daraja",
+                school: "O'quv joyi",
+                certifications: "Sertifikatlar",
+                certification: "Sertifikat",
+                add: "Qo'shish",
+                remove: "O'chirish",
+                downloadPDF: "PDF yuklab olish"
+            },
+            ru: {
+                back: "Назад",
+                builder: "Конструктор CV",
+                personal: "Личные данные",
+                photo: "Фото профиля",
+                fullName: "ФИО",
+                jobTitle: "Должность",
+                phone: "Телефон",
+                email: "Email",
+                location: "Город",
+                summary: "О себе",
+                skills: "Навыки",
+                skill: "Навык",
+                level: "Уровень",
+                dots: "Точки",
+                achievements: "Достижения",
+                achievement: "Достижение",
+                experience: "Опыт",
+                role: "Роль",
+                company: "Компания",
+                date: "Дата",
+                place: "Место",
+                details: "Детали",
+                education: "Образование",
+                degree: "Степень",
+                school: "Учебное место",
+                certifications: "Сертификаты",
+                certification: "Сертификат",
+                add: "Добавить",
+                remove: "Удалить",
+                downloadPDF: "Скачать PDF"
+            }
+        };
+
+        const DEFAULTS = {
+            en: {
+                fields: {
+                    fullName: "Olivia Parker",
+                    jobTitle: "Senior Graphic Designer",
+                    phone: "321-554-8877",
+                    email: "hi@oparker.design",
+                    location: "London, United Kingdom",
+                    summary:
+                        "Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies.",
+                    photo: ""
+                },
+                collections: {
+                    skills: [
+                        {name: "Photoshop", dots: 5, level: "Expert"},
+                        {name: "Illustrator", dots: 4, level: "Advanced"},
+                        {name: "In Design", dots: 4, level: "Advanced"},
+                        {name: "Figma", dots: 3, level: "Proficient"},
+                        {name: "After Effects", dots: 1, level: "Beginner"}
+                    ],
+                    achievements: [
+                        {value: "Spearheaded a $12M software project, from design to distribution, as a senior software engineer in a 12-people team"},
+                        {value: "Coordinated a year-long release of a six-part platform project"}
+                    ],
+                    experience: [
+                        {
+                            role: "Senior Graphic Designer",
+                            company: "Amazon",
+                            date: "Jan 2020 - Present",
+                            place: "London, United Kingdom",
+                            details:
+                                "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."
+                        },
+                        {
+                            role: "Design Team Lead",
+                            company: "Adobe",
+                            date: "Nov 2018 - Dec 2019",
+                            place: "London, United Kingdom",
+                            details:
+                                "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Master of Design in Computer Science",
+                            school: "Stanford University",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Bachelor of Art in Computer Science",
+                            school: "Carnegie Mellon University",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Certified Graphic Designer by Adobe\nIssued September 2021"},
+                        {value: "Certified Graphic Designer by Figma\nIssued September 2021"}
+                    ]
+                }
+            },
+            uz: {
+                fields: {
+                    fullName: "Olivia Parker",
+                    jobTitle: "Katta grafik dizayner",
+                    phone: "321-554-8877",
+                    email: "hi@oparker.design",
+                    location: "London, Birlashgan Qirollik",
+                    summary:
+                        "10+ yillik tajribaga ega ijodiy grafik dizayner. Brend identifikatsiyasi, vizual kommunikatsiya va raqamli dizayn loyihalarida ishlagan. Kichik va katta jamoalar bilan samarali hamkorlik qilib, aniq, zamonaviy va foydalanuvchiga qulay dizaynlar yaratadi.",
+                    photo: ""
+                },
+                collections: {
+                    skills: [
+                        {name: "Photoshop", dots: 5, level: "Ekspert"},
+                        {name: "Illustrator", dots: 4, level: "Yuqori"},
+                        {name: "InDesign", dots: 4, level: "Yuqori"},
+                        {name: "Figma", dots: 3, level: "Yaxshi"},
+                        {name: "After Effects", dots: 1, level: "Boshlang'ich"}
+                    ],
+                    achievements: [
+                        {value: "12 million dollarlik dasturiy loyiha dizaynidan tarqatilishigacha bo'lgan jarayonni boshqargan"},
+                        {value: "Olti qismli platforma loyihasining bir yillik reliz jarayonini muvofiqlashtirgan"}
+                    ],
+                    experience: [
+                        {
+                            role: "Katta grafik dizayner",
+                            company: "Amazon",
+                            date: "Yan 2020 - Hozir",
+                            place: "London, Birlashgan Qirollik",
+                            details:
+                                "Brendga mos va strategik dizayn materiallarini ishlab chiqdi.\nBir nechta dizayn loyihalarini bir vaqtda boshqarib, muddat va budjet talablariga rioya qildi.\nMijozlar va hamkorlarga murakkab g'oyalarni tushunarli yetkazish uchun vizual taqdimotlar yaratdi."
+                        },
+                        {
+                            role: "Dizayn jamoasi rahbari",
+                            company: "Adobe",
+                            date: "Noy 2018 - Dek 2019",
+                            place: "London, Birlashgan Qirollik",
+                            details:
+                                "Brendga mos va ta'sirchan dizayn materiallarini yaratdi.\nBir nechta dizayn loyihalarini o'z vaqtida yetkazish uchun jamoani boshqardi."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Kompyuter fanlari bo'yicha dizayn magistri",
+                            school: "Stanford Universiteti",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Kompyuter fanlari bo'yicha san'at bakalavri",
+                            school: "Carnegie Mellon Universiteti",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Adobe tomonidan sertifikatlangan grafik dizayner\nBerilgan: Sentabr 2021"},
+                        {value: "Figma tomonidan sertifikatlangan grafik dizayner\nBerilgan: Sentabr 2021"}
+                    ]
+                }
+            },
+            ru: {
+                fields: {
+                    fullName: "Olivia Parker",
+                    jobTitle: "Старший графический дизайнер",
+                    phone: "321-554-8877",
+                    email: "hi@oparker.design",
+                    location: "Лондон, Великобритания",
+                    summary:
+                        "Креативный графический дизайнер с опытом более 10 лет в создании брендинга, визуальной коммуникации и цифровых дизайн-проектов. Умеет создавать понятные, современные и удобные визуальные решения, работая как с небольшими, так и с крупными командами.",
+                    photo: ""
+                },
+                collections: {
+                    skills: [
+                        {name: "Photoshop", dots: 5, level: "Эксперт"},
+                        {name: "Illustrator", dots: 4, level: "Продвинутый"},
+                        {name: "InDesign", dots: 4, level: "Продвинутый"},
+                        {name: "Figma", dots: 3, level: "Уверенный"},
+                        {name: "After Effects", dots: 1, level: "Начальный"}
+                    ],
+                    achievements: [
+                        {value: "Руководила дизайн-частью проекта стоимостью $12M от концепции до запуска"},
+                        {value: "Координировала годовой релиз платформенного проекта из шести частей"}
+                    ],
+                    experience: [
+                        {
+                            role: "Старший графический дизайнер",
+                            company: "Amazon",
+                            date: "Янв 2020 - Настоящее время",
+                            place: "Лондон, Великобритания",
+                            details:
+                                "Разрабатывала дизайн-материалы, соответствующие бренду и стратегии компании.\nОдновременно управляла несколькими дизайн-проектами, соблюдая сроки и бюджет.\nСоздавала визуальные презентации для понятной передачи сложных идей клиентам и партнерам."
+                        },
+                        {
+                            role: "Руководитель дизайн-команды",
+                            company: "Adobe",
+                            date: "Ноя 2018 - Дек 2019",
+                            place: "Лондон, Великобритания",
+                            details:
+                                "Создавала выразительные дизайн-материалы в рамках фирменного стиля.\nРуководила несколькими проектами и обеспечивала своевремную сдачу работ."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Магистр дизайна в компьютерных науках",
+                            school: "Стэнфордский университет",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Бакалавр искусств в компьютерных науках",
+                            school: "Университет Карнеги-Меллона",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Сертифицированный графический дизайнер Adobe\nВыдано: сентябрь 2021"},
+                        {value: "Сертифицированный графический дизайнер Figma\nВыдано: сентябрь 2021"}
+                    ]
+                }
+            }
+        };
+
+        let language = localStorage.getItem("cv-maker-language") || "en";
+        let state = deepClone(DEFAULTS[language]);
+        let panel;
+
+        document.addEventListener("DOMContentLoaded", init);
+
+        function init() {
+            const resume = document.querySelector(".resume");
+            if (!resume) return;
+
+            const workspace = document.createElement("main");
+            workspace.className = "builder-workspace";
+
+            const preview = document.createElement("div");
+            preview.className = "builder-preview";
+
+            panel = document.createElement("aside");
+            panel.className = "builder-panel";
+
+            resume.parentNode.insertBefore(workspace, resume);
+            preview.appendChild(resume);
+            workspace.appendChild(preview);
+            workspace.appendChild(panel);
+
+            document.body.classList.add("template-builder-ready");
+
+            renderPanel();
+            renderResume();
+            bindEvents();
+        }
+
+        function t(key) {
+            return (TEXT[language] && TEXT[language][key]) || TEXT.en[key] || key;
+        }
+
+        function bindEvents() {
+            panel.addEventListener("input", function (event) {
+                const input = event.target;
+
+                if (input.matches("[data-field]")) {
+                    state.fields[input.dataset.field] = input.value;
+                    renderResume();
+                }
+
+                if (input.matches("[data-collection]")) {
+                    const collection = state.collections[input.dataset.collection];
+                    const entry = collection[Number(input.dataset.index)];
+                    if (!entry) return;
+                    entry[input.dataset.key] = input.value;
+                    renderResume();
+                }
+            });
+
+            panel.addEventListener("change", function (event) {
+                const input = event.target;
+
+                if (input.matches("[data-builder-language]")) {
+                    language = input.value;
+                    localStorage.setItem("cv-maker-language", language);
+                    state = deepClone(DEFAULTS[language]);
+                    renderPanel();
+                    renderResume();
+                }
+
+                if (input.matches("[data-photo]")) {
+                    const file = input.files && input.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        state.fields.photo = reader.result;
+                        renderResume();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            panel.addEventListener("click", function (event) {
+                const add = event.target.closest("[data-add]");
+                const remove = event.target.closest("[data-remove]");
+                const back = event.target.closest("[data-builder-back]");
+
+                if (back) {
+                    event.preventDefault();
+                    if (window.history.length > 1) window.history.back();
+                    return;
+                }
+
+                if (add) {
+                    state.collections[add.dataset.add].push(blankFor(add.dataset.add));
+                    renderPanel();
+                    renderResume();
+                }
+
+                if (remove) {
+                    const collection = state.collections[remove.dataset.remove];
+                    const index = Number(remove.dataset.index);
+
+                    if (collection.length > 1) {
+                        collection.splice(index, 1);
+                        renderPanel();
+                        renderResume();
+                    }
+                }
+            });
+        }
+
+        function blankFor(type) {
+            if (type === "skills") return {name: "", dots: 3, level: ""};
+            if (type === "achievements") return {value: ""};
+            if (type === "experience") return {role: "", company: "", date: "", place: "", details: ""};
+            if (type === "education") return {degree: "", school: "", date: "", place: ""};
+            if (type === "certifications") return {value: ""};
+            return {value: ""};
+        }
+
+        function renderPanel() {
+            panel.innerHTML = `
+          <header class="builder-panel-header">
+            <div class="builder-panel-top">
+              <a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+              <select class="builder-lang" data-builder-language>
+                <option value="en"${language === "en" ? " selected" : ""}>EN</option>
+                <option value="uz"${language === "uz" ? " selected" : ""}>UZ</option>
+                <option value="ru"${language === "ru" ? " selected" : ""}>RU</option>
+              </select>
+            </div>
+            <h2>${t("builder")}</h2>
+          </header>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("personal")}</h3></div>
+            <div class="builder-grid">
+              <label class="builder-field builder-wide">
+                <span>${t("photo")}</span>
+                <input type="file" accept="image/*" data-photo>
+              </label>
+              ${field(t("fullName"), "fullName", state.fields.fullName)}
+              ${field(t("jobTitle"), "jobTitle", state.fields.jobTitle)}
+              ${field(t("phone"), "phone", state.fields.phone)}
+              ${field(t("email"), "email", state.fields.email)}
+              ${field(t("location"), "location", state.fields.location)}
+            </div>
+          </section>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("summary")}</h3></div>
+            ${field(t("summary"), "summary", state.fields.summary, true, "textarea")}
+          </section>
+
+          ${collectionSection("skills", t("skills"), renderSkillEntry)}
+          ${collectionSection("achievements", t("achievements"), renderSimpleEntry, t("achievement"))}
+          ${collectionSection("experience", t("experience"), renderExperienceEntry)}
+          ${collectionSection("education", t("education"), renderEducationEntry)}
+          ${collectionSection("certifications", t("certifications"), renderSimpleEntry, t("certification"))}
+        `;
+        }
+
+        function field(label, key, value, wide, type) {
+            const control =
+                type === "textarea"
+                    ? `<textarea data-field="${key}">${escapeHtml(value)}</textarea>`
+                    : `<input data-field="${key}" value="${escapeAttr(value)}">`;
+
+            return `
+          <label class="builder-field${wide ? " builder-wide" : ""}">
+            <span>${label}</span>
+            ${control}
+          </label>
+        `;
+        }
+
+        function collectionSection(type, title, renderer, label) {
+            return `
+          <section class="builder-section">
+            <div class="builder-section-title">
+              <h3>${title}</h3>
+              <button class="builder-button" type="button" data-add="${type}">${t("add")}</button>
+            </div>
+            ${state.collections[type].map((entry, index) => renderer(type, entry, index, label)).join("")}
+          </section>
+        `;
+        }
+
+        function renderSkillEntry(type, entry, index) {
+            return `
+          <div class="builder-entry">
+            <div class="builder-grid">
+              ${collectionField(t("skill"), type, index, "name", entry.name)}
+              ${collectionField(t("level"), type, index, "level", entry.level)}
+              <label class="builder-field builder-wide">
+                <span>${t("dots")}</span>
+                <select data-collection="${type}" data-index="${index}" data-key="dots">
+                  <option value="1"${Number(entry.dots) === 1 ? " selected" : ""}>1</option>
+                  <option value="2"${Number(entry.dots) === 2 ? " selected" : ""}>2</option>
+                  <option value="3"${Number(entry.dots) === 3 ? " selected" : ""}>3</option>
+                  <option value="4"${Number(entry.dots) === 4 ? " selected" : ""}>4</option>
+                  <option value="5"${Number(entry.dots) === 5 ? " selected" : ""}>5</option>
+                </select>
+              </label>
+            </div>
+            ${removeButton(type, index)}
+          </div>
+        `;
+        }
+
+        function renderExperienceEntry(type, entry, index) {
+            return `
+          <div class="builder-entry">
+            <div class="builder-grid">
+              ${collectionField(t("role"), type, index, "role", entry.role)}
+              ${collectionField(t("company"), type, index, "company", entry.company)}
+              ${collectionField(t("date"), type, index, "date", entry.date)}
+              ${collectionField(t("place"), type, index, "place", entry.place)}
+              ${collectionField(t("details"), type, index, "details", entry.details, true, "textarea")}
+            </div>
+            ${removeButton(type, index)}
+          </div>
+        `;
+        }
+
+        function renderEducationEntry(type, entry, index) {
+            return `
+          <div class="builder-entry">
+            <div class="builder-grid">
+              ${collectionField(t("degree"), type, index, "degree", entry.degree)}
+              ${collectionField(t("school"), type, index, "school", entry.school)}
+              ${collectionField(t("date"), type, index, "date", entry.date)}
+              ${collectionField(t("place"), type, index, "place", entry.place)}
+            </div>
+            ${removeButton(type, index)}
+          </div>
+        `;
+        }
+
+        function renderSimpleEntry(type, entry, index, label) {
+            return `
+          <div class="builder-entry">
+            ${collectionField(label, type, index, "value", entry.value, true, "textarea")}
+            ${removeButton(type, index)}
+          </div>
+        `;
+        }
+
+        function collectionField(label, collection, index, key, value, wide, type) {
+            const attrs = `data-collection="${collection}" data-index="${index}" data-key="${key}"`;
+            const control =
+                type === "textarea"
+                    ? `<textarea ${attrs}>${escapeHtml(value)}</textarea>`
+                    : `<input ${attrs} value="${escapeAttr(value)}">`;
+
+            return `
+          <label class="builder-field${wide ? " builder-wide" : ""}">
+            <span>${label}</span>
+            ${control}
+          </label>
+        `;
+        }
+
+        function removeButton(type, index) {
+            const disabled = state.collections[type].length <= 1 ? " disabled" : "";
+            return `
+          <div class="builder-entry-actions">
+            <button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${index}"${disabled}>
+              ${t("remove")}
+            </button>
+          </div>
+        `;
+        }
+
+        function renderResume() {
+            document.querySelector(".download-pdf-btn").textContent = t("downloadPDF");
+            document.querySelector(".header-info h1").textContent = state.fields.fullName;
+            document.querySelector(".header-info .title").textContent = state.fields.jobTitle;
+
+            const slot = document.querySelector(".profile-slot");
+            if (state.fields.photo) {
+                slot.innerHTML = `<img src="${state.fields.photo}" alt="Profile photo" class="profile-img">`;
+            } else {
+                const initials = state.fields.fullName
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase();
+
+                slot.innerHTML = `<div class="profile-placeholder">${escapeHtml(initials)}</div>`;
+            }
+
+            document.querySelector(".contact").innerHTML = `
+          <span>📞 ${escapeHtml(state.fields.phone)}</span>
+          <span>✉ ${escapeHtml(state.fields.email)}</span>
+          <span>📍 ${escapeHtml(state.fields.location)}</span>
+        `;
+
+            document.querySelector(".summary h2").textContent = t("summary");
+            document.querySelector(".summary p").textContent = state.fields.summary;
+
+            document.querySelector(".skills h2").textContent = t("skills");
+            document.querySelector(".achievements h2").textContent = t("achievements");
+            document.querySelector(".certifications h2").textContent = t("certifications");
+
+            renderSkills();
+            renderSimpleList(".achievements ul", state.collections.achievements);
+            renderExperience();
+            renderEducation();
+            renderSimpleList(".certifications ul", state.collections.certifications, true);
+        }
+
+        function renderSkills() {
+            const list = document.querySelector(".skills-list");
+            list.innerHTML = "";
+
+            state.collections.skills.filter(hasValue).forEach((skill) => {
+                const dots = Number(skill.dots) || 0;
+                const item = document.createElement("div");
+                item.className = "skill";
+
+                item.innerHTML = `
+            <div class="skill-name">${escapeHtml(skill.name)}</div>
+            <div>
+              <div class="dots">
+                ${[1, 2, 3, 4, 5].map((num) => `<span class="dot${num <= dots ? " filled" : ""}"></span>`).join("")}
+              </div>
+              <div class="level">${escapeHtml(skill.level)}</div>
+            </div>
+          `;
+
+                list.appendChild(item);
+            });
+        }
+
+        function renderExperience() {
+            const section = document.querySelector(".experience");
+            section.innerHTML = `<h2>${t("experience")}</h2>`;
+
+            state.collections.experience.filter(hasValue).forEach((entry) => {
+                const item = document.createElement("div");
+                item.className = "job";
+
+                item.innerHTML = `
+            <div class="job-head">
+              <div>
+                <h3>${escapeHtml(entry.role)}</h3>
+                <div class="company">${escapeHtml(entry.company)}</div>
+              </div>
+              <div class="date-location">
+                ${escapeHtml(entry.date)}<br>
+                ${escapeHtml(entry.place)}
+              </div>
+            </div>
+            <ul>
+              ${lines(entry.details).map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+            </ul>
+          `;
+
+                section.appendChild(item);
+            });
+        }
+
+        function renderEducation() {
+            const section = document.querySelector(".education");
+            section.innerHTML = `<h2>${t("education")}</h2>`;
+
+            state.collections.education.filter(hasValue).forEach((entry) => {
+                const item = document.createElement("div");
+                item.className = "edu-item";
+
+                item.innerHTML = `
+            <h3>${escapeHtml(entry.degree)}</h3>
+            <div class="school">${escapeHtml(entry.school)}</div>
+            <div class="edu-meta">
+              <span>${escapeHtml(entry.date)}</span>
+              <span>${escapeHtml(entry.place)}</span>
+            </div>
+          `;
+
+                section.appendChild(item);
+            });
+        }
+
+        function renderSimpleList(selector, collection, multiline) {
+            const list = document.querySelector(selector);
+            list.innerHTML = "";
+
+            collection.filter(hasValue).forEach((entry) => {
+                const li = document.createElement("li");
+                li.innerHTML = multiline ? escapeHtml(entry.value).replace(/\n/g, "<br>") : escapeHtml(entry.value);
+                list.appendChild(li);
+            });
+        }
+
+        function hasValue(entry) {
+            return Object.values(entry).some((value) => String(value || "").trim());
+        }
+
+        function lines(text) {
+            return String(text || "")
+                .split("\n")
+                .map((line) => line.trim())
+                .filter(Boolean);
+        }
+
+        function deepClone(value) {
+            return JSON.parse(JSON.stringify(value));
+        }
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value).replace(/"/g, "&quot;");
+        }
+    })();
+</script>
 </body>
 </html>

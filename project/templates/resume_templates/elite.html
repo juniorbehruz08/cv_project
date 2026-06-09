@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Madison Bennett Resume</title>
+    <title>Madison Bennett Resume Builder</title>
     <style>
         * {
             margin: 0;
@@ -14,13 +14,13 @@
 
         body {
             background: #d9d9d9;
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: Georgia, "Times New Roman", serif;
             color: #202936
         }
 
         .resume {
             width: 850px;
-            min-height: 1100px;
+            height: 1100px;
             margin: 30px auto;
             background: #fff;
             overflow: hidden
@@ -30,7 +30,7 @@
             height: 242px;
             padding: 46px 46px 30px;
             color: #fff;
-            background: linear-gradient(rgba(15, 18, 28, .78), rgba(15, 18, 28, .78)), url('');
+            background: linear-gradient(rgba(15, 18, 28, .78), rgba(15, 18, 28, .78)), var(--hero-bg);
             background-size: cover;
             background-position: center;
             position: relative
@@ -40,7 +40,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(16, 18, 29, .9), rgba(16, 18, 29, .55));
+            background: linear-gradient(90deg, rgba(16, 18, 29, .9), rgba(16, 18, 29, .55))
         }
 
         .hero-content {
@@ -77,7 +77,7 @@
         }
 
         .section {
-            margin-bottom: 33px
+            margin-bottom: 31px
         }
 
         h2 {
@@ -95,7 +95,7 @@
         }
 
         .job, .edu-item {
-            margin-bottom: 30px
+            margin-bottom: 28px
         }
 
         .row {
@@ -145,29 +145,237 @@
         }
 
         .achievements {
-            margin-top: 42px
+            margin-top: 40px
         }
 
-        @media print {
-            body {
-                background: #fff
+        .download-pdf-btn {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 9999;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: #008078;
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 0 18px;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, .22)
+        }
+
+        body.template-builder-ready {
+            min-width: 0;
+            overflow-x: auto
+        }
+
+        .builder-workspace {
+            width: min(1340px, calc(100% - 32px));
+            margin: 22px auto;
+            display: grid;
+            grid-template-columns:minmax(0, 1fr) 390px;
+            gap: 24px;
+            align-items: start
+        }
+
+        .builder-preview {
+            min-width: 0;
+            overflow: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-bottom: 24px
+        }
+
+        .builder-preview > .resume {
+            flex: 0 0 auto;
+            margin: 0 !important
+        }
+
+        .builder-panel {
+            position: sticky;
+            top: 18px;
+            max-height: calc(100vh - 36px);
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #d9e1ea;
+            border-radius: 8px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .13);
+            color: #172033;
+            font-family: Inter, "Segoe UI", Arial, sans-serif
+        }
+
+        .builder-panel * {
+            box-sizing: border-box
+        }
+
+        .builder-panel-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #fff;
+            border-bottom: 1px solid #e4ebf2;
+            padding: 16px 18px
+        }
+
+        .builder-panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .builder-back {
+            color: #008078;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none
+        }
+
+        .builder-lang {
+            width: 88px;
+            height: 34px;
+            border: 1px solid #cbd6e2;
+            border-radius: 6px;
+            background: #f8fafc;
+            color: #172033;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 0 8px
+        }
+
+        .builder-panel h2 {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: #172033;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.15
+        }
+
+        .builder-section {
+            padding: 18px;
+            border-bottom: 1px solid #edf1f5
+        }
+
+        .builder-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px
+        }
+
+        .builder-section h3 {
+            display: block;
+            margin: 0;
+            color: #172033;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.2
+        }
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 12px
+        }
+
+        .builder-field {
+            display: grid;
+            gap: 6px
+        }
+
+        .builder-field.builder-wide {
+            grid-column: 1/-1
+        }
+
+        .builder-field span {
+            color: #5b6778;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .builder-field input, .builder-field textarea, .builder-field select {
+            width: 100%;
+            border: 1px solid #cfd9e5;
+            border-radius: 6px;
+            background: #fbfdff;
+            color: #172033;
+            font: inherit;
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 10px 11px;
+            outline: none
+        }
+
+        .builder-field textarea {
+            min-height: 86px;
+            resize: vertical
+        }
+
+        .builder-entry {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 12px
+        }
+
+        .builder-entry-actions {
+            display: flex;
+            justify-content: flex-end
+        }
+
+        .builder-button {
+            height: 34px;
+            border: 1px solid #008078;
+            border-radius: 6px;
+            background: #008078;
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 0 13px
+        }
+
+        .builder-button.builder-secondary {
+            border-color: #cbd6e2;
+            background: #fff;
+            color: #425069
+        }
+
+        .builder-button:disabled {
+            cursor: not-allowed;
+            opacity: .45
+        }
+
+        @media (max-width: 1240px) {
+            .builder-workspace {
+                grid-template-columns:minmax(0, 1fr)
             }
 
-            .resume {
-                margin: 0;
-                width: 100%;
-                min-height: 100vh
-            }
-
-            @page {
-                size: A4;
-                margin: 0
+            .builder-panel {
+                position: static;
+                max-height: none;
+                order: -1
             }
         }
 
         @media (max-width: 900px) {
             .resume {
                 width: 100%;
+                height: auto;
+                min-height: 100vh;
                 margin: 0
             }
 
@@ -192,8 +400,120 @@
                 gap: 12px
             }
         }
+
+        @media (max-width: 700px) {
+            .builder-workspace {
+                width: min(100% - 20px, 100%);
+                margin: 10px auto
+            }
+
+            .builder-grid {
+                grid-template-columns:1fr
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0
+            }
+
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+                overflow: hidden !important
+            }
+
+            .download-pdf-btn, .builder-panel {
+                display: none !important
+            }
+
+            .builder-workspace, .builder-preview {
+                display: block !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important
+            }
+
+            .resume {
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                overflow: hidden !important
+            }
+
+            .hero {
+                height: 60mm !important;
+                padding: 11mm 11mm 7mm !important
+            }
+
+            .hero h1 {
+                font-size: 9.5mm !important;
+                margin-bottom: 3mm !important
+            }
+
+            .hero .role {
+                font-size: 4.2mm !important;
+                margin-bottom: 6mm !important
+            }
+
+            .contact {
+                font-size: 2.9mm !important;
+                gap: 3.7mm 6mm !important
+            }
+
+            .content {
+                padding: 8mm 9mm !important
+            }
+
+            .section {
+                margin-bottom: 7mm !important
+            }
+
+            h2 {
+                font-size: 5mm !important;
+                margin-bottom: 3.5mm !important;
+                padding-bottom: 2mm !important
+            }
+
+            .summary p {
+                font-size: 3mm !important;
+                line-height: 1.32 !important
+            }
+
+            .job, .edu-item {
+                margin-bottom: 6mm !important
+            }
+
+            .row {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important
+            }
+
+            .job h3, .edu-item h3 {
+                font-size: 3.7mm !important
+            }
+
+            .company, .school {
+                font-size: 3.4mm !important
+            }
+
+            .date, .location, .meta {
+                font-size: 3mm !important
+            }
+
+            .job li, .achievements li {
+                font-size: 2.85mm !important;
+                line-height: 1.28 !important
+            }
+        }
     </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
 </head>
 <body>
 <div class="resume">
@@ -201,76 +521,407 @@
         <div class="hero-content">
             <h1>Madison Bennett</h1>
             <div class="role">Chief Marketing Officer</div>
-            <div class="contact">
-                <span>📞 321-554-8877</span><span>✉️ 321-554-8877</span><span>📍 Stanford, CA</span><span>in&nbsp; https://linkedin.com/in/taylorparker</span><span>🔗 https://madisonbennett.me</span>
-            </div>
+            <div class="contact"></div>
         </div>
     </header>
     <main class="content">
         <section class="section summary"><h2>Summary</h2>
-            <p>Passionate Software Engineer with 10+ years of experience in developing web applications and backend
-                systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced
-                in working with both small and large teams across multiple projects and companies. Able to work
-                independently of remote locations or in office environments as needed by the company.</p></section>
-        <section class="section"><h2>Experience</h2>
-            <div class="job">
-                <div class="row">
-                    <div><h3>Senior Software Engineer</h3>
-                        <div class="company">Google</div>
-                        <div class="location">Stanford, CA</div>
-                    </div>
-                    <div class="date">Jan 2020 - Present</div>
-                </div>
-                <ul>
-                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
-                        on-strategy.
-                    </li>
-                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
-                        constraints.
-                    </li>
-                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
-                        stakeholders.
-                    </li>
-                    <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
-                </ul>
-            </div>
-            <div class="job">
-                <div class="row">
-                    <div><h3>Product Team Lead</h3>
-                        <div class="company">Dropbox</div>
-                        <div class="location">Mountain View, CA</div>
-                    </div>
-                    <div class="date">Nov 2018 - Dec 2019</div>
-                </div>
-                <ul>
-                    <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and
-                        on-strategy.
-                    </li>
-                    <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget
-                        constraints.
-                    </li>
-                    <li>Created compelling visual presentations to effectively communicate complex ideas to clients and
-                        stakeholders.
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <section class="section"><h2>Education</h2>
-            <div class="edu-item"><h3>Master of Science in Computer Science</h3>
-                <div class="school">Stanford University</div>
-                <div class="meta"><span>2016 - 2018</span><span>Stanford, CA</span></div>
-            </div>
-        </section>
+            <p></p></section>
+        <section class="section experience"><h2>Experience</h2></section>
+        <section class="section education"><h2>Education</h2></section>
         <section class="section achievements"><h2>Achievements</h2>
-            <ul>
-                <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a
-                    12-people team
-                </li>
-                <li>Coordinated a year-long release of a six-part platform project</li>
-            </ul>
+            <ul></ul>
         </section>
     </main>
 </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+<button class="download-pdf-btn" onclick="downloadPDF()">Download PDF</button>
+
+<script>
+    function downloadPDF() {
+        window.print()
+    }
+
+    (function () {
+        const TEXT = {
+            en: {
+                back: "Back",
+                builder: "CV Builder",
+                personal: "Personal",
+                fullName: "Full name",
+                jobTitle: "Job title",
+                phone: "Phone",
+                email: "Email",
+                location: "Location",
+                linkedin: "LinkedIn",
+                website: "Website",
+                heroImageUrl: "Hero image URL",
+                heroImageUpload: "Upload hero image",
+                summary: "Summary",
+                experience: "Experience",
+                role: "Role",
+                company: "Company",
+                date: "Date",
+                place: "Place",
+                details: "Details",
+                education: "Education",
+                degree: "Degree",
+                school: "School",
+                achievements: "Achievements",
+                achievement: "Achievement",
+                add: "Add",
+                remove: "Remove",
+                downloadPDF: "Download PDF"
+            },
+            uz: {
+                back: "Orqaga",
+                builder: "CV yaratish",
+                personal: "Shaxsiy",
+                fullName: "To'liq ism",
+                jobTitle: "Kasb",
+                phone: "Telefon",
+                email: "Email",
+                location: "Manzil",
+                linkedin: "LinkedIn",
+                website: "Website",
+                heroImageUrl: "Header rasm URL",
+                heroImageUpload: "Header rasm yuklash",
+                summary: "Xulosa",
+                experience: "Tajriba",
+                role: "Lavozim",
+                company: "Kompaniya",
+                date: "Sana",
+                place: "Joy",
+                details: "Tafsilotlar",
+                education: "Ta'lim",
+                degree: "Daraja",
+                school: "O'quv joyi",
+                achievements: "Yutuqlar",
+                achievement: "Yutuq",
+                add: "Qo'shish",
+                remove: "O'chirish",
+                downloadPDF: "PDF yuklab olish"
+            },
+            ru: {
+                back: "Назад",
+                builder: "Конструктор CV",
+                personal: "Личные данные",
+                fullName: "ФИО",
+                jobTitle: "Должность",
+                phone: "Телефон",
+                email: "Email",
+                location: "Город",
+                linkedin: "LinkedIn",
+                website: "Website",
+                heroImageUrl: "URL изображения",
+                heroImageUpload: "Загрузить изображение",
+                summary: "О себе",
+                experience: "Опыт",
+                role: "Роль",
+                company: "Компания",
+                date: "Дата",
+                place: "Место",
+                details: "Детали",
+                education: "Образование",
+                degree: "Степень",
+                school: "Учебное место",
+                achievements: "Достижения",
+                achievement: "Достижение",
+                add: "Добавить",
+                remove: "Удалить",
+                downloadPDF: "Скачать PDF"
+            }
+        };
+        const DEFAULT_HERO = "linear-gradient(135deg,#171a24,#313643)";
+        const DEFAULTS = {
+            en: {
+                fields: {
+                    fullName: "Madison Bennett",
+                    jobTitle: "Chief Marketing Officer",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Stanford, CA",
+                    linkedin: "https://linkedin.com/in/taylorparker",
+                    website: "https://madisonbennett.me",
+                    heroImageUrl: "",
+                    summary: "Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies. Able to work independently of remote locations or in office environments as needed by the company."
+                }, collections: {
+                    experience: [{
+                        role: "Senior Software Engineer",
+                        company: "Google",
+                        date: "Jan 2020 - Present",
+                        place: "Stanford, CA",
+                        details: "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.\nDeveloped and maintained comprehensive library of design assets for easy access and reuse."
+                    }, {
+                        role: "Product Team Lead",
+                        company: "Dropbox",
+                        date: "Nov 2018 - Dec 2019",
+                        place: "Mountain View, CA",
+                        details: "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."
+                    }],
+                    education: [{
+                        degree: "Master of Science in Computer Science",
+                        school: "Stanford University",
+                        date: "2016 - 2018",
+                        place: "Stanford, CA"
+                    }],
+                    achievements: [{value: "Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-people team"}, {value: "Coordinated a year-long release of a six-part platform project"}]
+                }
+            },
+            uz: {
+                fields: {
+                    fullName: "Madison Bennett",
+                    jobTitle: "Marketing bo'yicha bosh direktor",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Stanford, CA",
+                    linkedin: "https://linkedin.com/in/taylorparker",
+                    website: "https://madisonbennett.me",
+                    heroImageUrl: "",
+                    summary: "10+ yillik tajribaga ega mutaxassis. Veb ilovalar va backend tizimlarini ishlab chiqishda tajribaga ega. Toza, tushunarli va qo'llab-quvvatlash oson bo'lgan yechimlar yaratadi. Kichik va katta jamoalar bilan turli loyihalarda ishlagan."
+                },
+                collections: {
+                    experience: [{
+                        role: "Katta dasturiy ta'minot muhandisi",
+                        company: "Google",
+                        date: "Yan 2020 - Hozir",
+                        place: "Stanford, CA",
+                        details: "Brend va strategiyaga mos dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddatlarga rioya qildi.\nMurakkab g'oyalarni tushunarli yetkazish uchun taqdimotlar yaratdi."
+                    }],
+                    education: [{
+                        degree: "Kompyuter fanlari magistri",
+                        school: "Stanford Universiteti",
+                        date: "2016 - 2018",
+                        place: "Stanford, CA"
+                    }],
+                    achievements: [{value: "12 million dollarlik dasturiy loyiha jarayonini boshqargan"}, {value: "Olti qismli platforma loyihasining reliz jarayonini muvofiqlashtirgan"}]
+                }
+            },
+            ru: {
+                fields: {
+                    fullName: "Madison Bennett",
+                    jobTitle: "Директор по маркетингу",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Stanford, CA",
+                    linkedin: "https://linkedin.com/in/taylorparker",
+                    website: "https://madisonbennett.me",
+                    heroImageUrl: "",
+                    summary: "Специалист с опытом более 10 лет в разработке веб-приложений и backend-систем. Создает понятные и поддерживаемые решения. Работал как с небольшими, так и с крупными командами."
+                },
+                collections: {
+                    experience: [{
+                        role: "Старший инженер ПО",
+                        company: "Google",
+                        date: "Янв 2020 - Настоящее время",
+                        place: "Stanford, CA",
+                        details: "Разрабатывал материалы, соответствующие бренду и стратегии.\nУправлял несколькими проектами одновременно.\nСоздавал визуальные презентации для клиентов."
+                    }],
+                    education: [{
+                        degree: "Магистр компьютерных наук",
+                        school: "Стэнфордский университет",
+                        date: "2016 - 2018",
+                        place: "Stanford, CA"
+                    }],
+                    achievements: [{value: "Руководил программным проектом стоимостью $12M от дизайна до запуска"}, {value: "Координировал годовой релиз платформенного проекта"}]
+                }
+            }
+        };
+        let language = localStorage.getItem("cv-maker-language") || "en";
+        if (!DEFAULTS[language]) language = "en";
+        let state = clone(DEFAULTS[language]), panel;
+        document.addEventListener("DOMContentLoaded", init);
+
+        function init() {
+            const resume = document.querySelector(".resume"), workspace = document.createElement("main"),
+                preview = document.createElement("div");
+            workspace.className = "builder-workspace";
+            preview.className = "builder-preview";
+            panel = document.createElement("aside");
+            panel.className = "builder-panel";
+            resume.parentNode.insertBefore(workspace, resume);
+            preview.appendChild(resume);
+            workspace.appendChild(preview);
+            workspace.appendChild(panel);
+            document.body.classList.add("template-builder-ready");
+            renderPanel();
+            renderResume();
+            bindEvents()
+        }
+
+        function t(k) {
+            return TEXT[language]?.[k] || TEXT.en[k] || k
+        }
+
+        function bindEvents() {
+            panel.addEventListener("input", e => {
+                const input = e.target;
+                if (input.matches("[data-field]")) {
+                    state.fields[input.dataset.field] = input.value;
+                    renderResume()
+                }
+                if (input.matches("[data-collection]")) {
+                    const item = state.collections[input.dataset.collection][Number(input.dataset.index)];
+                    if (item) {
+                        item[input.dataset.key] = input.value;
+                        renderResume()
+                    }
+                }
+            });
+            panel.addEventListener("change", e => {
+                const input = e.target;
+                if (input.matches("[data-hero-upload]")) {
+                    const file = input.files && input.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        state.fields.heroImageUrl = reader.result;
+                        renderResume()
+                    };
+                    reader.readAsDataURL(file);
+                    return
+                }
+                if (input.matches("[data-builder-language]")) {
+                    language = input.value;
+                    localStorage.setItem("cv-maker-language", language);
+                    state = clone(DEFAULTS[language]);
+                    renderPanel();
+                    renderResume()
+                }
+            });
+            panel.addEventListener("click", e => {
+                const add = e.target.closest("[data-add]"), remove = e.target.closest("[data-remove]"),
+                    back = e.target.closest("[data-builder-back]");
+                if (back) {
+                    e.preventDefault();
+                    if (window.history.length > 1) window.history.back();
+                    return
+                }
+                if (add) {
+                    state.collections[add.dataset.add].push(blank(add.dataset.add));
+                    renderPanel();
+                    renderResume()
+                }
+                if (remove) {
+                    const arr = state.collections[remove.dataset.remove];
+                    if (arr.length > 1) {
+                        arr.splice(Number(remove.dataset.index), 1);
+                        renderPanel();
+                        renderResume()
+                    }
+                }
+            });
+        }
+
+        function blank(type) {
+            if (type === "experience") return {role: "", company: "", date: "", place: "", details: ""};
+            if (type === "education") return {degree: "", school: "", date: "", place: ""};
+            return {value: ""}
+        }
+
+        function renderPanel() {
+            panel.innerHTML = `<header class="builder-panel-header"><div class="builder-panel-top"><a class="builder-back" href="/" data-builder-back>${t("back")}</a><select class="builder-lang" data-builder-language><option value="en"${language === "en" ? " selected" : ""}>EN</option><option value="uz"${language === "uz" ? " selected" : ""}>UZ</option><option value="ru"${language === "ru" ? " selected" : ""}>RU</option></select></div><h2>${t("builder")}</h2></header>
+<section class="builder-section"><div class="builder-section-title"><h3>${t("personal")}</h3></div><div class="builder-grid">${field(t("fullName"), "fullName", state.fields.fullName)}${field(t("jobTitle"), "jobTitle", state.fields.jobTitle)}${field(t("phone"), "phone", state.fields.phone)}${field(t("email"), "email", state.fields.email)}${field(t("location"), "location", state.fields.location, true)}${field(t("linkedin"), "linkedin", state.fields.linkedin, true)}${field(t("website"), "website", state.fields.website, true)}</div></section>
+<section class="builder-section"><div class="builder-section-title"><h3>${t("summary")}</h3></div>${field(t("summary"), "summary", state.fields.summary, true, "textarea")}</section>
+${section("experience", t("experience"), expEntry)}${section("education", t("education"), eduEntry)}${section("achievements", t("achievements"), simpleEntry, t("achievement"))}`;
+        }
+
+        function field(label, key, value, wide, type) {
+            const c = type === "textarea" ? `<textarea data-field="${key}">${esc(value)}</textarea>` : `<input data-field="${key}" value="${attr(value)}">`;
+            return `<label class="builder-field${wide ? " builder-wide" : ""}"><span>${label}</span>${c}</label>`
+        }
+
+        function section(type, title, renderer, label) {
+            return `<section class="builder-section"><div class="builder-section-title"><h3>${title}</h3><button class="builder-button" type="button" data-add="${type}">${t("add")}</button></div>${state.collections[type].map((e, i) => renderer(type, e, i, label)).join("")}</section>`
+        }
+
+        function expEntry(type, e, i) {
+            return `<div class="builder-entry"><div class="builder-grid">${cf(t("role"), type, i, "role", e.role)}${cf(t("company"), type, i, "company", e.company)}${cf(t("date"), type, i, "date", e.date)}${cf(t("place"), type, i, "place", e.place)}${cf(t("details"), type, i, "details", e.details, true, "textarea")}</div>${removeBtn(type, i)}</div>`
+        }
+
+        function eduEntry(type, e, i) {
+            return `<div class="builder-entry"><div class="builder-grid">${cf(t("degree"), type, i, "degree", e.degree)}${cf(t("school"), type, i, "school", e.school)}${cf(t("date"), type, i, "date", e.date)}${cf(t("place"), type, i, "place", e.place)}</div>${removeBtn(type, i)}</div>`
+        }
+
+        function simpleEntry(type, e, i, label) {
+            return `<div class="builder-entry">${cf(label, type, i, "value", e.value, true, "textarea")}${removeBtn(type, i)}</div>`
+        }
+
+        function cf(label, type, i, key, value, wide, kind) {
+            const attrs = `data-collection="${type}" data-index="${i}" data-key="${key}"`;
+            const c = kind === "textarea" ? `<textarea ${attrs}>${esc(value)}</textarea>` : `<input ${attrs} value="${attr(value)}">`;
+            return `<label class="builder-field${wide ? " builder-wide" : ""}"><span>${label}</span>${c}</label>`
+        }
+
+        function removeBtn(type, i) {
+            return `<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${state.collections[type].length <= 1 ? " disabled" : ""}>${t("remove")}</button></div>`
+        }
+
+        function renderResume() {
+            document.querySelector(".download-pdf-btn").textContent = t("downloadPDF");
+            document.querySelector(".hero").style.setProperty("--hero-bg", DEFAULT_HERO);
+            document.querySelector(".hero h1").textContent = state.fields.fullName;
+            document.querySelector(".hero .role").textContent = state.fields.jobTitle;
+            document.querySelector(".contact").innerHTML = `<span>📞 ${esc(state.fields.phone)}</span><span>✉️ ${esc(state.fields.email)}</span><span>📍 ${esc(state.fields.location)}</span><span>in&nbsp; ${esc(state.fields.linkedin)}</span><span>🔗 ${esc(state.fields.website)}</span>`;
+            document.querySelector(".summary h2").textContent = t("summary");
+            document.querySelector(".summary p").textContent = state.fields.summary;
+            renderExperience();
+            renderEducation();
+            renderList(".achievements ul", state.collections.achievements);
+            document.querySelector(".achievements h2").textContent = t("achievements")
+        }
+
+        function renderExperience() {
+            const box = document.querySelector(".experience");
+            box.innerHTML = `<h2>${t("experience")}</h2>`;
+            state.collections.experience.filter(hasValue).forEach(e => {
+                const div = document.createElement("div");
+                div.className = "job";
+                div.innerHTML = `<div class="row"><div><h3>${esc(e.role)}</h3><div class="company">${esc(e.company)}</div><div class="location">${esc(e.place)}</div></div><div class="date">${esc(e.date)}</div></div><ul>${lines(e.details).map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+                box.appendChild(div)
+            })
+        }
+
+        function renderEducation() {
+            const box = document.querySelector(".education");
+            box.innerHTML = `<h2>${t("education")}</h2>`;
+            state.collections.education.filter(hasValue).forEach(e => {
+                const div = document.createElement("div");
+                div.className = "edu-item";
+                div.innerHTML = `<h3>${esc(e.degree)}</h3><div class="school">${esc(e.school)}</div><div class="meta"><span>${esc(e.date)}</span><span>${esc(e.place)}</span></div>`;
+                box.appendChild(div)
+            })
+        }
+
+        function renderList(sel, arr) {
+            const ul = document.querySelector(sel);
+            ul.innerHTML = "";
+            arr.filter(hasValue).forEach(e => {
+                const li = document.createElement("li");
+                li.innerHTML = esc(e.value);
+                ul.appendChild(li)
+            })
+        }
+
+        function hasValue(o) {
+            return Object.values(o).some(v => String(v || "").trim())
+        }
+
+        function lines(v) {
+            return String(v || "").split("\n").map(x => x.trim()).filter(Boolean)
+        }
+
+        function clone(v) {
+            return JSON.parse(JSON.stringify(v))
+        }
+
+        function esc(v) {
+            return String(v || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        }
+
+        function attr(v) {
+            return esc(v).replace(/"/g, "&quot;")
+        }
+    })();
+</script>
 </body>
 </html>

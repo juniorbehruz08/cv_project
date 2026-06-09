@@ -4,411 +4,511 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>CV Maker Demo</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260605-hover-create-2">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260608-redesign-fixed">
+    <style>
+        body {
+            background: #080b14;
+            color: #f8fafc
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            padding: 0 48px;
+            background: rgba(8, 11, 20, .82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .brand, .account-nav a {
+            color: #f8fafc
+        }
+
+        .brand-mark {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            border-radius: 14px
+        }
+
+        .language-switcher {
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .12)
+        }
+
+        .lang-btn {
+            color: #cbd5e1
+        }
+
+        .lang-btn.is-active {
+            background: #fff;
+            color: #080b14
+        }
+
+        .hero-section {
+            width: min(1240px, calc(100% - 40px));
+            min-height: 720px;
+            grid-template-columns:1fr .95fr;
+            gap: 64px;
+            margin-top: 0
+        }
+
+        .eyebrow {
+            width: fit-content;
+            padding: 9px 14px;
+            border: 1px solid rgba(125, 211, 252, .24);
+            border-radius: 999px;
+            background: rgba(14, 165, 233, .12);
+            color: #7dd3fc;
+            letter-spacing: .08em
+        }
+
+        .hero-copy h1 {
+            max-width: 760px;
+            color: #fff;
+            font-size: clamp(3rem, 7vw, 6.6rem);
+            line-height: .9;
+            letter-spacing: -.075em
+        }
+
+        .hero-text {
+            color: #cbd5e1;
+            font-size: 1.16rem
+        }
+
+        .hero-actions .primary-btn {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            border: 0;
+            border-radius: 999px;
+            box-shadow: 0 18px 40px rgba(6, 182, 212, .18)
+        }
+
+        .hero-actions .ghost-btn {
+            border-color: rgba(255, 255, 255, .16);
+            background: rgba(255, 255, 255, .07);
+            color: #f8fafc;
+            border-radius: 999px
+        }
+
+        .hero-visual {
+            min-height: 580px
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(124, 58, 237, .42), transparent 65%);
+            filter: blur(10px)
+        }
+
+        .mock-cv {
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 24px;
+            box-shadow: 0 35px 90px rgba(0, 0, 0, .5)
+        }
+
+        .mock-sidebar {
+            background: linear-gradient(180deg, #312e81, #0f172a)
+        }
+
+        .mock-sidebar span {
+            background: linear-gradient(135deg, #06b6d4, #a78bfa)
+        }
+
+        .template-section, .flow-section, .feature-section, .cta-section {
+            width: min(1240px, calc(100% - 40px));
+            margin: 80px auto 0
+        }
+
+        .section-title p {
+            color: #7dd3fc
+        }
+
+        .section-title h2 {
+            color: #fff;
+            letter-spacing: -.045em
+        }
+
+        .feature-section {
+            display: grid;
+            grid-template-columns:.9fr 1.1fr;
+            gap: 22px
+        }
+
+        .feature-card {
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .04));
+            padding: 34px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, .28)
+        }
+
+        .feature-card h2, .feature-card h3 {
+            margin: 0;
+            color: #fff
+        }
+
+        .feature-card h2 {
+            font-size: clamp(2rem, 4vw, 3.8rem);
+            line-height: .98;
+            letter-spacing: -.06em
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.7
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 14px
+        }
+
+        .feature-mini {
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .06);
+            padding: 22px
+        }
+
+        .template-grid {
+            grid-template-columns:repeat(3, minmax(0, 1fr));
+            gap: 22px
+        }
+
+        .template-card {
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .07);
+            box-shadow: none;
+            transition: transform .18s ease, border-color .18s ease, background .18s ease
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(125, 211, 252, .45);
+            background: rgba(255, 255, 255, .11)
+        }
+
+        .template-card h3 {
+            color: #fff
+        }
+
+        .template-card p {
+            color: #cbd5e1
+        }
+
+        .template-preview {
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 18px;
+            background-color: #101827
+        }
+
+        .template-create {
+            background: #fff;
+            color: #080b14;
+            border-radius: 999px
+        }
+
+        .flow-step {
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .07);
+            box-shadow: none
+        }
+
+        .flow-step span {
+            background: rgba(125, 211, 252, .14);
+            color: #7dd3fc
+        }
+
+        .flow-step h3 {
+            color: #fff
+        }
+
+        .flow-step p {
+            color: #cbd5e1
+        }
+
+        .cta-section {
+            margin-bottom: 70px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 32px;
+            background: radial-gradient(circle at top left, rgba(124, 58, 237, .34), transparent 36%), radial-gradient(circle at bottom right, rgba(6, 182, 212, .26), transparent 36%), rgba(255, 255, 255, .07);
+            padding: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 28px
+        }
+
+        .cta-section h2 {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(2rem, 4vw, 4rem);
+            line-height: .95;
+            letter-spacing: -.06em
+        }
+
+        .cta-section p {
+            max-width: 650px;
+            color: #cbd5e1;
+            line-height: 1.7
+        }
+
+        @media (max-width: 980px) {
+            .topbar {
+                padding: 16px 20px
+            }
+
+            .hero-section, .feature-section, .cta-section {
+                grid-template-columns:1fr;
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .template-grid {
+                grid-template-columns:1fr
+            }
+        }
+    </style>
 </head>
 <body data-page-title-key="demo_page_title">
-    <header class="topbar">
-        <a class="brand" href="{% url 'resume:demo' %}" aria-label="CV Maker">
-            <span class="brand-mark">CV</span>
-            <span data-i18n="brand">CV Maker</span>
-        </a>
-
-        <div class="topbar-actions">
-            <nav class="account-nav" aria-label="Account navigation">
+<header class="topbar">
+    <a class="brand" href="{% url 'resume:demo' %}">
+        <span class="brand-mark">CV</span>
+        <span data-i18n="brand">CV Maker</span>
+    </a>
+    <div class="topbar-actions">
+        <nav class="account-nav">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'resume:profile' %}" data-i18n="profile">Profile</a>
+                <a href="{% url 'resume:logout' %}" data-i18n="logout">Logout</a>
+            {% else %}
+                <a href="{% url 'resume:login' %}" data-i18n="login">Login</a>
+                <a href="{% url 'resume:register' %}" data-i18n="register">Register</a>
+            {% endif %}
+        </nav>
+        <div class="language-switcher">
+            <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
+            <button class="lang-btn" type="button" data-lang="uz">UZ</button>
+            <button class="lang-btn" type="button" data-lang="ru">RU</button>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="hero-section">
+        <div class="hero-copy">
+            <p class="eyebrow" data-i18n="demo_hero_badge">Premium CV Builder</p>
+            <h1 data-i18n="demo_hero_title">Create a CV that actually looks professional.</h1>
+            <p class="hero-text" data-i18n="demo_hero_text">Pick a beautiful template, edit your information live, and
+                prepare a clean CV for real applications in English, Uzbek, or Russian.</p>
+            <div class="hero-actions">
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'resume:profile' %}" data-i18n="profile">Profile</a>
-                    <a href="{% url 'resume:logout' %}" data-i18n="logout">Logout</a>
+                    <a class="primary-btn link-btn" href="{% url 'resume:profile' %}" data-i18n="open_profile">Open
+                        profile</a>
                 {% else %}
-                    <a href="{% url 'resume:login' %}" data-i18n="login">Login</a>
-                    <a href="{% url 'resume:register' %}" data-i18n="register">Register</a>
+                    <a class="primary-btn link-btn" href="{% url 'resume:register' %}" data-i18n="start_building">Start
+                        building</a>
+                    <a class="ghost-btn link-btn" href="{% url 'resume:login' %}" data-i18n="login">Login</a>
                 {% endif %}
-            </nav>
-
-            <div class="language-switcher" aria-label="Language selector">
-                <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
-                <button class="lang-btn" type="button" data-lang="uz">UZ</button>
-                <button class="lang-btn" type="button" data-lang="ru">RU</button>
             </div>
         </div>
-    </header>
-
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p class="message {{ message.tags }}">{{ message }}</p>
-            {% endfor %}
+        <div class="hero-visual">
+            <article class="mock-cv mock-cv-featured">
+                <div class="mock-sidebar"><span></span><i></i><i></i><i></i></div>
+                <div class="mock-body"><b></b><strong></strong><span></span><span></span>
+                    <div class="mock-row"><i></i><i></i></div>
+                    <span></span><span></span></div>
+            </article>
+            <article class="mock-cv mock-cv-behind">
+                <div class="mock-body"><b></b><strong></strong><span></span><span></span><span></span></div>
+            </article>
         </div>
-    {% endif %}
+    </section>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-copy">
-                <p class="eyebrow" data-i18n="hero_label">CV templates for real applications</p>
-                <h1 data-i18n="hero_title">Build a polished resume without fighting the layout.</h1>
-                <p class="hero-text" data-i18n="hero_text">A multilingual CV maker for Uzbek, English, and Russian resumes. The builder will come next; this demo shows the product direction and template style.</p>
+    <section class="feature-section">
+        <div class="feature-card">
+            <h2 data-i18n="feature_title">Not just templates. A complete CV experience.</h2>
+            <p data-i18n="feature_text">A modern CV builder with a premium interface, clean templates, live editing, and
+                multilingual support.</p>
+        </div>
+        <div class="feature-list">
+            <div class="feature-mini"><h3 data-i18n="feature_live_title">Live editing</h3>
+                <p data-i18n="feature_live_text">Users can create their CV visually instead of fighting with layout
+                    manually.</p></div>
+            <div class="feature-mini"><h3 data-i18n="feature_lang_title">Multiple languages</h3>
+                <p data-i18n="feature_lang_text">English, Uzbek, and Russian support makes the product feel localized
+                    and useful.</p></div>
+            <div class="feature-mini"><h3 data-i18n="feature_templates_title">Professional templates</h3>
+                <p data-i18n="feature_templates_text">The gallery is positioned as a premium template library, not only
+                    a demo.</p></div>
+        </div>
+    </section>
 
-                <div class="hero-actions">
-                    {% if request.user.is_authenticated %}
-                        <a class="primary-btn link-btn" href="{% url 'resume:profile' %}" data-i18n="view_profile">View profile</a>
-                    {% else %}
-                        <a class="primary-btn link-btn" href="{% url 'resume:register' %}" data-i18n="create_account">Create account</a>
-                        <a class="ghost-btn link-btn" href="{% url 'resume:login' %}" data-i18n="login">Login</a>
-                    {% endif %}
-                </div>
-            </div>
+    <section class="template-section">
+        <div class="section-title">
+            <p data-i18n="template_library">Template Library</p>
+            <h2 data-i18n="choose_style">Choose your style</h2>
+        </div>
+        <div class="template-grid">
+            <article class="template-card">
+                <div class="template-preview template-mock artistic-preview"
+                     style="--template-image:url('{% static 'images/templates/artistic.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'artistic' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Artistic</h3>
+                <p data-i18n="artistic_text">Expressive accent layout for creative roles.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock bloom-preview"
+                     style="--template-image:url('{% static 'images/templates/bloom.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'bloom' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Bloom</h3>
+                <p data-i18n="bloom_text">Warm profile-first design with soft sections.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock timeless-preview"
+                     style="--template-image:url('{% static 'images/templates/timeless.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'timeless' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Timeless</h3>
+                <p data-i18n="timeless_text">Traditional structure for formal applications.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock impact-preview"
+                     style="--template-image:url('{% static 'images/templates/impact.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'impact' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Impact</h3>
+                <p data-i18n="impact_text">Bold header and strong visual hierarchy.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock expert-preview"
+                     style="--template-image:url('{% static 'images/templates/expert.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'expert' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Expert</h3>
+                <p data-i18n="expert_text">Dense professional layout for experienced users.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock elite-preview"
+                     style="--template-image:url('{% static 'images/templates/elite.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'elite' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Elite</h3>
+                <p data-i18n="elite_text">Premium balanced page with crisp spacing.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock elevate-preview"
+                     style="--template-image:url('{% static 'images/templates/elevate.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'elevate' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Elevate</h3>
+                <p data-i18n="elevate_text">Modern sidebar design for clear scanning.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock modular-preview"
+                     style="--template-image:url('{% static 'images/templates/modular.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'modular' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Modular</h3>
+                <p data-i18n="modular_text">Card-like sections for organized content.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock classic-preview"
+                     style="--template-image:url('{% static 'images/templates/classic.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'classic' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3 data-i18n="classic_template">Classic</h3>
+                <p data-i18n="classic_text">Structured, simple, and easy to scan.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock luxe-preview"
+                     style="--template-image:url('{% static 'images/templates/luxe.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'luxe' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Luxe</h3>
+                <p data-i18n="luxe_text">Elegant details for a refined impression.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock contemporary-preview"
+                     style="--template-image:url('{% static 'images/templates/contemporary.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'contemporary' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Contemporary</h3>
+                <p data-i18n="contemporary_text">Fresh spacing and clean visual rhythm.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock functional-preview"
+                     style="--template-image:url('{% static 'images/templates/functional.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'functional' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Functional</h3>
+                <p data-i18n="functional_text">Skills-first layout for career changes.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock enterprise-preview"
+                     style="--template-image:url('{% static 'images/templates/enterprise.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'enterprise' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Enterprise</h3>
+                <p data-i18n="enterprise_text">Corporate layout for business resumes.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock engage-preview"
+                     style="--template-image:url('{% static 'images/templates/engage.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'engage' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Engage</h3>
+                <p data-i18n="engage_text">Friendly design with approachable sections.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock professional-preview"
+                     style="--template-image:url('{% static 'images/templates/professional.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'professional' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Professional</h3>
+                <p data-i18n="professional_text">Reliable layout for everyday hiring.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock streamline-preview"
+                     style="--template-image:url('{% static 'images/templates/streamline.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'streamline' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Streamline</h3>
+                <p data-i18n="streamline_text">Compact layout for quick reading.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock confident-preview"
+                     style="--template-image:url('{% static 'images/templates/confident.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'confident' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Confident</h3>
+                <p data-i18n="confident_text">Strong contrast for a direct voice.</p></article>
+            <article class="template-card">
+                <div class="template-preview template-mock prestige-preview"
+                     style="--template-image:url('{% static 'images/templates/prestige.jpg' %}');"><a
+                        class="template-create" href="{% url 'resume:template_detail' 'prestige' %}"
+                        data-i18n="create_short">Create</a></div>
+                <h3>Prestige</h3>
+                <p data-i18n="prestige_text">High-end structure for senior profiles.</p></article>
+        </div>
+    </section>
 
-            <div class="hero-visual" aria-label="CV template previews">
-                <article class="mock-cv mock-cv-featured">
-                    <div class="mock-sidebar">
-                        <span></span>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-                    <div class="mock-body">
-                        <b></b>
-                        <strong></strong>
-                        <span></span>
-                        <span></span>
-                        <div class="mock-row">
-                            <i></i>
-                            <i></i>
-                        </div>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </article>
+    <section class="flow-section">
+        <div class="flow-step"><span>01</span>
+            <h3 data-i18n="flow_pick_template">Pick a template</h3>
+            <p data-i18n="flow_pick_template_text">Start from a design that already looks clean.</p></div>
+        <div class="flow-step"><span>02</span>
+            <h3 data-i18n="flow_edit_live">Edit live</h3>
+            <p data-i18n="flow_edit_live_text">Fill in your details and preview changes instantly.</p></div>
+        <div class="flow-step"><span>03</span>
+            <h3 data-i18n="flow_apply">Apply confidently</h3>
+            <p data-i18n="flow_apply_text">Use the final CV for jobs, internships, and university applications.</p>
+        </div>
+    </section>
 
-                <article class="mock-cv mock-cv-behind">
-                    <div class="mock-body">
-                        <b></b>
-                        <strong></strong>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="template-section" aria-labelledby="template-title">
-            <div class="section-title">
-                <p data-i18n="template_label">Template direction</p>
-                <h2 id="template-title" data-i18n="template_showcase_title">Clean previews before the real editor</h2>
-            </div>
-
-            <div class="template-grid">
-                <article class="template-card">
-                    <div class="template-preview template-mock artistic-preview" style="--template-image: url('{% static 'images/templates/artistic.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'artistic' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Artistic</h3>
-                    <p data-i18n="artistic_text">Expressive accent layout for creative roles.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock bloom-preview" style="--template-image: url('{% static 'images/templates/bloom.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'bloom' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Bloom</h3>
-                    <p data-i18n="bloom_text">Warm profile-first design with soft sections.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock timeless-preview" style="--template-image: url('{% static 'images/templates/timeless.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'timeless' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Timeless</h3>
-                    <p data-i18n="timeless_text">Traditional structure for formal applications.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock impact-preview" style="--template-image: url('{% static 'images/templates/impact.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'impact' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Impact</h3>
-                    <p data-i18n="impact_text">Bold header and strong visual hierarchy.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock expert-preview" style="--template-image: url('{% static 'images/templates/expert.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'expert' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Expert</h3>
-                    <p data-i18n="expert_text">Dense professional layout for experienced users.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock elite-preview" style="--template-image: url('{% static 'images/templates/elite.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'elite' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Elite</h3>
-                    <p data-i18n="elite_text">Premium balanced page with crisp spacing.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock elevate-preview" style="--template-image: url('{% static 'images/templates/elevate.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'elevate' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Elevate</h3>
-                    <p data-i18n="elevate_text">Modern sidebar design for clear scanning.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock modular-preview" style="--template-image: url('{% static 'images/templates/modular.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'modular' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Modular</h3>
-                    <p data-i18n="modular_text">Card-like sections for organized content.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock classic-preview" style="--template-image: url('{% static 'images/templates/classic.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'classic' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Classic</h3>
-                    <p data-i18n="classic_text">Structured, simple, and easy to scan.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock luxe-preview" style="--template-image: url('{% static 'images/templates/luxe.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'luxe' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Luxe</h3>
-                    <p data-i18n="luxe_text">Elegant details for a refined impression.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock contemporary-preview" style="--template-image: url('{% static 'images/templates/contemporary.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'contemporary' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Contemporary</h3>
-                    <p data-i18n="contemporary_text">Fresh spacing and clean visual rhythm.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock functional-preview" style="--template-image: url('{% static 'images/templates/functional.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'functional' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Functional</h3>
-                    <p data-i18n="functional_text">Skills-first layout for career changes.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock enterprise-preview" style="--template-image: url('{% static 'images/templates/enterprise.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'enterprise' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Enterprise</h3>
-                    <p data-i18n="enterprise_text">Corporate layout for business resumes.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock engage-preview" style="--template-image: url('{% static 'images/templates/engage.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'engage' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Engage</h3>
-                    <p data-i18n="engage_text">Friendly design with approachable sections.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock professional-preview" style="--template-image: url('{% static 'images/templates/professional.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'professional' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Professional</h3>
-                    <p data-i18n="professional_text">Reliable layout for everyday hiring.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock streamline-preview" style="--template-image: url('{% static 'images/templates/streamline.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'streamline' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Streamline</h3>
-                    <p data-i18n="streamline_text">Compact layout for quick reading.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock confident-preview" style="--template-image: url('{% static 'images/templates/confident.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'confident' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Confident</h3>
-                    <p data-i18n="confident_text">Strong contrast for a direct voice.</p>
-                </article>
-
-                <article class="template-card">
-                    <div class="template-preview template-mock prestige-preview" style="--template-image: url('{% static 'images/templates/prestige.jpg' %}?v=20260605-hover-create-2');">
-                        <a class="template-create" href="{% url 'resume:template_detail' 'prestige' %}" data-i18n="create_short">Create</a>
-                        <div class="preview-band"></div>
-                        <div class="preview-main">
-                            <span class="preview-title"></span>
-                            <span class="preview-subtitle"></span>
-                            <span class="preview-line wide"></span>
-                            <span class="preview-line"></span>
-                            <div class="preview-columns"><i></i><i></i></div>
-                        </div>
-                    </div>
-                    <h3>Prestige</h3>
-                    <p data-i18n="prestige_text">High-end structure for senior profiles.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="flow-section" aria-label="CV maker workflow">
-            <div class="flow-step">
-                <span>01</span>
-                <h3 data-i18n="flow_language">Pick a language</h3>
-                <p data-i18n="flow_language_text">Uzbek, English, and Russian stay synced across the site.</p>
-            </div>
-            <div class="flow-step">
-                <span>02</span>
-                <h3 data-i18n="flow_template">Choose a template</h3>
-                <p data-i18n="flow_template_text">The visual direction is previewed here with HTML and CSS.</p>
-            </div>
-            <div class="flow-step">
-                <span>03</span>
-                <h3 data-i18n="flow_export">Export later</h3>
-                <p data-i18n="flow_export_text">The actual builder and download history will be connected next.</p>
-            </div>
-        </section>
-    </main>
-
-    <script src="{% static 'js/main.js' %}?v=20260605-hover-create-2"></script>
+    <section class="cta-section">
+        <div><h2 data-i18n="cta_title">Ready to build your CV?</h2>
+            <p data-i18n="cta_text">Start with a template and turn your experience into a clean, serious-looking
+                resume.</p></div>
+        {% if request.user.is_authenticated %}
+            <a class="primary-btn link-btn" href="{% url 'resume:profile' %}" data-i18n="open_profile">Open profile</a>
+        {% else %}
+            <a class="primary-btn link-btn" href="{% url 'resume:register' %}" data-i18n="start_now">Start now</a>
+        {% endif %}
+    </section>
+</main>
+<script src="{% static 'js/main.js' %}?v=20260608-redesign-fixed"></script>
 </body>
 </html>

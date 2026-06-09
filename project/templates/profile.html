@@ -5,133 +5,327 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile - CV Maker</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260605-hover-create-2">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260608-dark-profile-fixed">
+    <style>
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, rgba(124, 58, 237, .30), transparent 34%), radial-gradient(circle at bottom right, rgba(6, 182, 212, .22), transparent 38%), #080b14;
+            color: #f8fafc
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            padding: 0 48px;
+            background: rgba(8, 11, 20, .82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .brand, .account-nav a {
+            color: #f8fafc
+        }
+
+        .brand-mark {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(6, 182, 212, .16)
+        }
+
+        .language-switcher {
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .12);
+            box-shadow: none;
+            backdrop-filter: blur(14px)
+        }
+
+        .lang-btn {
+            color: #cbd5e1
+        }
+
+        .lang-btn.is-active {
+            background: #fff;
+            color: #080b14
+        }
+
+        .messages {
+            margin-top: 24px
+        }
+
+        .message {
+            border-color: rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .08);
+            color: #f8fafc
+        }
+
+        .profile-shell {
+            width: min(1240px, calc(100% - 40px));
+            margin: 44px auto 70px;
+            grid-template-columns:minmax(0, 1fr) 420px;
+            gap: 28px
+        }
+
+        .profile-card {
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: 32px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .095), rgba(255, 255, 255, .045));
+            box-shadow: 0 30px 90px rgba(0, 0, 0, .34);
+            backdrop-filter: blur(18px);
+            padding: 36px
+        }
+
+        .back-link {
+            color: #7dd3fc
+        }
+
+        .profile-summary {
+            align-items: center;
+            padding: 28px;
+            border-radius: 28px;
+            background: radial-gradient(circle at top right, rgba(6, 182, 212, .18), transparent 42%), rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10)
+        }
+
+        .profile-picture, .profile-picture.placeholder {
+            width: 126px;
+            height: 126px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, .16);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .28)
+        }
+
+        .profile-picture.placeholder {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4)
+        }
+
+        .eyebrow, .section-heading p {
+            color: #7dd3fc;
+            letter-spacing: .08em
+        }
+
+        .profile-summary h1 {
+            color: #fff;
+            font-size: clamp(2.2rem, 4vw, 4rem);
+            line-height: .95;
+            letter-spacing: -.06em
+        }
+
+        .profile-summary p:last-child {
+            color: #cbd5e1
+        }
+
+        .account-form label {
+            color: #cbd5e1
+        }
+
+        .account-form input {
+            min-height: 50px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            padding: 13px 15px
+        }
+
+        .account-form input:focus {
+            border-color: rgba(125, 211, 252, .7);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, .16)
+        }
+
+        .primary-btn {
+            min-height: 52px;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(6, 182, 212, .18)
+        }
+
+        .section-heading h2 {
+            color: #fff;
+            font-size: 2rem;
+            letter-spacing: -.04em
+        }
+
+        .download-list {
+            gap: 14px
+        }
+
+        .download-item {
+            border-color: rgba(255, 255, 255, .10);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .07)
+        }
+
+        .download-item h3 {
+            color: #fff
+        }
+
+        .download-item p, .empty-state {
+            color: #cbd5e1
+        }
+
+        .download-item span {
+            background: rgba(125, 211, 252, .14);
+            color: #7dd3fc
+        }
+
+        .errorlist {
+            color: #fca5a5
+        }
+
+        .profile-form label:has(input[type="file"]) {
+            position: relative
+        }
+
+        .profile-form label:has(input[type="file"]) a, .profile-form label:has(input[type="file"]) br, .profile-form label:has(input[type="file"]) input[type="checkbox"], .profile-form label:has(input[type="file"]) label[for$="-clear_id"] {
+            display: none !important
+        }
+
+        .profile-form input[type="file"] {
+            color: transparent
+        }
+
+        .profile-form input[type="file"]::file-selector-button {
+            min-height: 40px;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            color: #fff;
+            font-weight: 800;
+            padding: 0 16px;
+            cursor: pointer
+        }
+
+        @media (max-width: 980px) {
+            .topbar {
+                height: auto;
+                padding: 16px 20px
+            }
+
+            .profile-shell {
+                grid-template-columns:1fr
+            }
+        }
+
+        @media (max-width: 620px) {
+            .profile-shell {
+                width: min(100% - 24px, 1240px);
+                margin-top: 24px
+            }
+
+            .profile-card {
+                border-radius: 24px;
+                padding: 24px
+            }
+
+            .profile-summary {
+                padding: 22px
+            }
+
+            .form-grid {
+                grid-template-columns:1fr
+            }
+        }
+    </style>
 </head>
 <body data-page-title-key="profile_page_title">
-    <header class="topbar">
-        <a class="brand" href="{% url 'resume:demo' %}">
-            <span class="brand-mark">CV</span>
-            <span data-i18n="brand">CV Maker</span>
-        </a>
-
-        <div class="topbar-actions">
-            <nav class="account-nav" aria-label="Account navigation">
-                <a href="{% url 'resume:demo' %}" data-i18n="demo">Demo</a>
-                <a href="{% url 'resume:logout' %}" data-i18n="logout">Logout</a>
-            </nav>
-
-            <div class="language-switcher" aria-label="Language selector">
-                <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
-                <button class="lang-btn" type="button" data-lang="uz">UZ</button>
-                <button class="lang-btn" type="button" data-lang="ru">RU</button>
-            </div>
+<header class="topbar">
+    <a class="brand" href="{% url 'resume:demo' %}">
+        <span class="brand-mark">CV</span>
+        <span data-i18n="brand">CV Maker</span>
+    </a>
+    <div class="topbar-actions">
+        <nav class="account-nav" aria-label="Account navigation">
+            <a href="{% url 'resume:demo' %}" data-i18n="demo">Demo</a>
+            <a href="{% url 'resume:logout' %}" data-i18n="logout">Logout</a>
+        </nav>
+        <div class="language-switcher" aria-label="Language selector">
+            <button class="lang-btn is-active" type="button" data-lang="en">EN</button>
+            <button class="lang-btn" type="button" data-lang="uz">UZ</button>
+            <button class="lang-btn" type="button" data-lang="ru">RU</button>
         </div>
-    </header>
+    </div>
+</header>
 
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p class="message {{ message.tags }}">{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="message {{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
 
-    <main class="profile-shell">
-        <section class="profile-card">
-            <a class="back-link in-card" href="{% url 'resume:demo' %}" data-i18n="back">Back</a>
-
-            <div class="profile-summary">
-                {% if profile.picture %}
-                    <img class="profile-picture" src="{{ profile.picture.url }}" alt="{{ request.user.username }}">
-                {% else %}
-                    <div class="profile-picture placeholder">{{ request.user.username|slice:":2"|upper }}</div>
-                {% endif %}
-
-                <div>
-                    <p class="eyebrow" data-i18n="user_profile">User profile</p>
-                    <h1>{{ request.user.get_full_name|default:request.user.username }}</h1>
-                    <p>{% if profile.headline %}{{ profile.headline }}{% else %}<span data-i18n="cv_maker_user">CV Maker user</span>{% endif %}</p>
-                </div>
-            </div>
-
-            <form class="account-form profile-form" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ user_form.non_field_errors }}
-                {{ profile_form.non_field_errors }}
-
-                <div class="form-grid">
-                    <label>
-                        <span data-i18n="first_name">First name</span>
-                        {{ user_form.first_name }}
-                        {{ user_form.first_name.errors }}
-                    </label>
-
-                    <label>
-                        <span data-i18n="last_name">Last name</span>
-                        {{ user_form.last_name }}
-                        {{ user_form.last_name.errors }}
-                    </label>
-
-                    <label>
-                        <span data-i18n="email">Email</span>
-                        {{ user_form.email }}
-                        {{ user_form.email.errors }}
-                    </label>
-                </div>
-
-                <div class="form-grid">
-                    <label>
-                        <span data-i18n="profile_picture">Profile picture</span>
-                        {{ profile_form.picture }}
-                        {{ profile_form.picture.errors }}
-                    </label>
-
-                    <label>
-                        <span data-i18n="headline">Headline</span>
-                        {{ profile_form.headline }}
-                        {{ profile_form.headline.errors }}
-                    </label>
-
-                    <label>
-                        <span data-i18n="phone">Phone</span>
-                        {{ profile_form.phone }}
-                        {{ profile_form.phone.errors }}
-                    </label>
-
-                    <label>
-                        <span data-i18n="location">Location</span>
-                        {{ profile_form.location }}
-                        {{ profile_form.location.errors }}
-                    </label>
-                </div>
-
-                <button class="primary-btn" type="submit" data-i18n="save_profile">Save profile</button>
-            </form>
-        </section>
-
-        <section class="profile-card">
-            <div class="section-heading compact-heading">
-                <p data-i18n="history">History</p>
-                <h2 data-i18n="past_downloads">Past CV downloads</h2>
-            </div>
-
-            {% if downloads %}
-                <div class="download-list">
-                    {% for download in downloads %}
-                        <article class="download-item">
-                            <div>
-                                <h3>{{ download.title }}</h3>
-                                <p>{{ download.downloaded_at|date:"M d, Y H:i" }}</p>
-                            </div>
-                            <span>{{ download.language|upper }}</span>
-                        </article>
-                    {% endfor %}
-                </div>
+<main class="profile-shell">
+    <section class="profile-card">
+        <a class="back-link in-card" href="{% url 'resume:demo' %}" data-i18n="back">Back</a>
+        <div class="profile-summary">
+            {% if profile.picture %}
+                <img class="profile-picture" src="{{ profile.picture.url }}" alt="{{ request.user.username }}">
             {% else %}
-                <p class="empty-state" data-i18n="no_downloads">No CV downloads yet. When the real builder is ready, downloads will appear here.</p>
+                <div class="profile-picture placeholder">{{ request.user.username|slice:":2"|upper }}</div>
             {% endif %}
-        </section>
-    </main>
-    <script src="{% static 'js/main.js' %}?v=20260605-hover-create-2"></script>
+            <div>
+                <p class="eyebrow" data-i18n="user_profile">User profile</p>
+                <h1>{{ request.user.get_full_name|default:request.user.username }}</h1>
+                <p>{% if profile.headline %}{{ profile.headline }}{% else %}
+                    <span data-i18n="cv_maker_user">CV Maker user</span>{% endif %}</p>
+            </div>
+        </div>
+
+        <form class="account-form profile-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.non_field_errors }}
+            {{ profile_form.non_field_errors }}
+            <div class="form-grid">
+                <label><span
+                        data-i18n="first_name">First name</span>{{ user_form.first_name }}{{ user_form.first_name.errors }}
+                </label>
+                <label><span
+                        data-i18n="last_name">Last name</span>{{ user_form.last_name }}{{ user_form.last_name.errors }}
+                </label>
+                <label><span data-i18n="email">Email</span>{{ user_form.email }}{{ user_form.email.errors }}</label>
+            </div>
+            <div class="form-grid">
+                <label><span
+                        data-i18n="profile_picture">Profile picture</span>{{ profile_form.picture }}{{ profile_form.picture.errors }}
+                </label>
+                <label><span
+                        data-i18n="headline">Headline</span>{{ profile_form.headline }}{{ profile_form.headline.errors }}
+                </label>
+                <label><span data-i18n="phone">Phone</span>{{ profile_form.phone }}{{ profile_form.phone.errors }}
+                </label>
+                <label><span
+                        data-i18n="location">Location</span>{{ profile_form.location }}{{ profile_form.location.errors }}
+                </label>
+            </div>
+            <button class="primary-btn" type="submit" data-i18n="save_profile">Save profile</button>
+        </form>
+    </section>
+
+    <section class="profile-card">
+        <div class="section-heading compact-heading">
+            <p data-i18n="history">History</p>
+            <h2 data-i18n="past_downloads">Past CV downloads</h2>
+        </div>
+        {% if downloads %}
+            <div class="download-list">
+                {% for download in downloads %}
+                    <article class="download-item">
+                        <div><h3>{{ download.title }}</h3>
+                            <p>{{ download.downloaded_at|date:"M d, Y H:i" }}</p></div>
+                        <span>{{ download.language|upper }}</span>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-state" data-i18n="no_downloads">No CV downloads yet. When the real builder is ready,
+                downloads will appear here.</p>
+        {% endif %}
+    </section>
+</main>
+<script src="{% static 'js/main.js' %}?v=20260608-dark-profile-fixed"></script>
 </body>
 </html>

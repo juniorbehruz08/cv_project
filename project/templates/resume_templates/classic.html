@@ -2,357 +2,1212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taylor Parker Resume</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Taylor Parker Resume</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
 
-    body {
-      background: #ddd;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #252236;
-    }
+        body {
+            background: #ddd;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #252236
+        }
 
-    .resume {
-      width: 850px;
-      min-height: 1130px;
-      margin: 30px auto;
-      padding: 42px 44px;
-      background: #f3f0f5;
-      position: relative;
-      overflow: hidden;
-    }
+        .resume {
+            width: 850px;
+            height: 1130px;
+            margin: 30px auto;
+            padding: 42px 44px;
+            background: #f3f0f5;
+            position: relative;
+            overflow: hidden
+        }
 
-    .resume::before,
-    .resume::after {
-      content: "";
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      border: 1px solid rgba(120, 115, 135, 0.15);
-      box-shadow:
-        12px 0 0 rgba(120, 115, 135, 0.08),
-        24px 0 0 rgba(120, 115, 135, 0.06),
-        36px 0 0 rgba(120, 115, 135, 0.04),
-        48px 0 0 rgba(120, 115, 135, 0.03);
-      pointer-events: none;
-    }
+        .resume::before, .resume::after {
+            content: "";
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            border: 1px solid rgba(120, 115, 135, .15);
+            box-shadow: 12px 0 0 rgba(120, 115, 135, .08), 24px 0 0 rgba(120, 115, 135, .06), 36px 0 0 rgba(120, 115, 135, .04), 48px 0 0 rgba(120, 115, 135, .03);
+            pointer-events: none
+        }
 
-    .resume::before {
-      top: -180px;
-      right: -120px;
-    }
+        .resume::before {
+            top: -180px;
+            right: -120px
+        }
 
-    .resume::after {
-      bottom: -150px;
-      left: -180px;
-    }
+        .resume::after {
+            bottom: -150px;
+            left: -180px
+        }
 
-    .header {
-      text-align: center;
-      margin-bottom: 55px;
-      position: relative;
-      z-index: 2;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 55px;
+            position: relative;
+            z-index: 2
+        }
 
-    .header h1 {
-      font-size: 38px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+        .header h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 10px
+        }
 
-    .header p {
-      font-size: 17px;
-    }
+        .header p {
+            font-size: 17px
+        }
 
-    .main {
-      display: grid;
-      grid-template-columns: 58% 32%;
-      gap: 70px;
-      position: relative;
-      z-index: 2;
-    }
+        .main {
+            display: grid;
+            grid-template-columns:58% 32%;
+            gap: 70px;
+            position: relative;
+            z-index: 2
+        }
 
-    section {
-      margin-bottom: 38px;
-    }
+        section {
+            margin-bottom: 38px
+        }
 
-    h2 {
-      font-size: 21px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        h2 {
+            font-size: 21px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
 
-    h2::after {
-      content: "";
-      height: 1px;
-      background: #d4d0d8;
-      flex: 1;
-    }
+        h2::after {
+            content: "";
+            height: 1px;
+            background: #d4d0d8;
+            flex: 1
+        }
 
-    .item {
-      margin-bottom: 32px;
-    }
+        .item {
+            margin-bottom: 32px
+        }
 
-    .item-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 25px;
-      margin-bottom: 10px;
-    }
+        .item-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 10px
+        }
 
-    h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 5px;
-    }
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px
+        }
 
-    .company,
-    .school {
-      font-size: 14px;
-      color: #3a3150;
-    }
+        .company, .school {
+            font-size: 14px;
+            color: #3a3150
+        }
 
-    .date-place {
-      min-width: 135px;
-      text-align: right;
-      font-size: 12px;
-      line-height: 1.5;
-    }
+        .date-place {
+            min-width: 135px;
+            text-align: right;
+            font-size: 12px;
+            line-height: 1.5
+        }
 
-    ul {
-      padding-left: 16px;
-    }
+        ul {
+            padding-left: 16px
+        }
 
-    li {
-      font-size: 12px;
-      line-height: 1.45;
-      margin-bottom: 5px;
-      color: #4e4a5a;
-    }
+        li {
+            font-size: 12px;
+            line-height: 1.45;
+            margin-bottom: 5px;
+            color: #4e4a5a
+        }
 
-    .summary p {
-      font-size: 13px;
-      line-height: 1.55;
-      color: #4e4a5a;
-    }
+        .summary p {
+            font-size: 13px;
+            line-height: 1.55;
+            color: #4e4a5a
+        }
 
-    .contact-info p {
-      font-size: 13px;
-      margin-bottom: 18px;
-      color: #4e4a5a;
-    }
+        .contact-info p {
+            font-size: 13px;
+            margin-bottom: 18px;
+            color: #4e4a5a
+        }
 
-    .skill {
-      margin-bottom: 22px;
-    }
+        .skill {
+            margin-bottom: 22px
+        }
 
-    .skill-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      margin-bottom: 8px;
-      color: #4e4a5a;
-    }
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #4e4a5a
+        }
 
-    .bar {
-      height: 5px;
-      background: #dcd7e2;
-      border-radius: 10px;
-      overflow: hidden;
-    }
+        .bar {
+            height: 5px;
+            background: #dcd7e2;
+            border-radius: 10px;
+            overflow: hidden
+        }
 
-    .bar span {
-      display: block;
-      height: 100%;
-      background: #4b236e;
-      border-radius: 10px;
-    }
+        .bar span {
+            display: block;
+            height: 100%;
+            background: #4b236e;
+            border-radius: 10px
+        }
 
-    .edu-meta {
-      display: flex;
-      gap: 32px;
-      font-size: 12px;
-      margin-top: 9px;
-      color: #4e4a5a;
-    }
+        .edu-meta {
+            display: flex;
+            gap: 32px;
+            font-size: 12px;
+            margin-top: 9px;
+            color: #4e4a5a
+        }
 
-    @media print {
-      body {
-        background: white;
-      }
+        .download-pdf-btn {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 9999;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: #4b236e;
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 0 18px;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, .22)
+        }
 
-      .resume {
-        margin: 0;
-        width: 100%;
-      }
+        .download-pdf-btn:hover {
+            background: #351653
+        }
 
-      @page {
-        size: A4;
-        margin: 0;
-      }
-    }
-  </style>
-  <link rel="stylesheet" href="{% static 'css/template_builder.css' %}?v=20260605-builder-5" />
+        body.template-builder-ready {
+            min-width: 0;
+            overflow-x: auto
+        }
+
+        .builder-workspace {
+            width: min(1340px, calc(100% - 32px));
+            margin: 22px auto;
+            display: grid;
+            grid-template-columns:minmax(0, 1fr) 390px;
+            gap: 24px;
+            align-items: start
+        }
+
+        .builder-preview {
+            min-width: 0;
+            overflow: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-bottom: 24px
+        }
+
+        .builder-preview > .resume {
+            flex: 0 0 auto;
+            margin: 0 !important
+        }
+
+        .builder-panel {
+            position: sticky;
+            top: 18px;
+            max-height: calc(100vh - 36px);
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #d9e1ea;
+            border-radius: 8px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .13);
+            color: #172033;
+            font-family: Inter, "Segoe UI", Arial, sans-serif
+        }
+
+        .builder-panel * {
+            box-sizing: border-box
+        }
+
+        .builder-panel-header {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: #fff;
+            border-bottom: 1px solid #e4ebf2;
+            padding: 16px 18px
+        }
+
+        .builder-panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px
+        }
+
+        .builder-back {
+            color: #4b236e;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none
+        }
+
+        .builder-lang {
+            width: 88px;
+            height: 34px;
+            border: 1px solid #cbd6e2;
+            border-radius: 6px;
+            background: #f8fafc;
+            color: #172033;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 0 8px
+        }
+
+        .builder-panel h2 {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: #172033;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.15
+        }
+
+        .builder-panel h2::after, .builder-panel h3::after {
+            content: none !important
+        }
+
+        .builder-section {
+            padding: 18px;
+            border-bottom: 1px solid #edf1f5
+        }
+
+        .builder-section:last-child {
+            border-bottom: 0
+        }
+
+        .builder-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px
+        }
+
+        .builder-section h3 {
+            display: block;
+            margin: 0;
+            color: #172033;
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 1.2
+        }
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 12px
+        }
+
+        .builder-field {
+            display: grid;
+            gap: 6px
+        }
+
+        .builder-field.builder-wide {
+            grid-column: 1/-1
+        }
+
+        .builder-field span {
+            color: #5b6778;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .builder-field input, .builder-field textarea, .builder-field select {
+            width: 100%;
+            border: 1px solid #cfd9e5;
+            border-radius: 6px;
+            background: #fbfdff;
+            color: #172033;
+            font: inherit;
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 10px 11px;
+            outline: none;
+            transition: border-color .16s ease, box-shadow .16s ease
+        }
+
+        .builder-field textarea {
+            min-height: 86px;
+            resize: vertical
+        }
+
+        .builder-field input:focus, .builder-field textarea:focus, .builder-field select:focus {
+            border-color: #4b236e;
+            box-shadow: 0 0 0 3px rgba(75, 35, 110, .14)
+        }
+
+        .builder-entry {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 12px
+        }
+
+        .builder-entry:last-child {
+            margin-bottom: 0
+        }
+
+        .builder-entry-actions {
+            display: flex;
+            justify-content: flex-end
+        }
+
+        .builder-button {
+            height: 34px;
+            border: 1px solid #4b236e;
+            border-radius: 6px;
+            background: #4b236e;
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 0 13px
+        }
+
+        .builder-button:hover {
+            background: #351653
+        }
+
+        .builder-button.builder-secondary {
+            border-color: #cbd6e2;
+            background: #fff;
+            color: #425069
+        }
+
+        .builder-button.builder-secondary:hover {
+            background: #f1f5f9
+        }
+
+        .builder-button:disabled {
+            cursor: not-allowed;
+            opacity: .45
+        }
+
+        @media (max-width: 1240px) {
+            .builder-workspace {
+                grid-template-columns:minmax(0, 1fr)
+            }
+
+            .builder-panel {
+                position: static;
+                max-height: none;
+                order: -1
+            }
+        }
+
+        @media (max-width: 900px) {
+            body {
+                background: #fff
+            }
+
+            .resume {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                margin: 0;
+                padding: 32px 24px
+            }
+
+            .main {
+                grid-template-columns:1fr;
+                gap: 20px
+            }
+
+            .item-head {
+                flex-direction: column;
+                gap: 4px
+            }
+
+            .date-place {
+                text-align: left
+            }
+        }
+
+        @media (max-width: 700px) {
+            .builder-workspace {
+                width: min(100% - 20px, 100%);
+                margin: 10px auto;
+                gap: 14px
+            }
+
+            .builder-grid {
+                grid-template-columns:1fr
+            }
+
+            .builder-panel-header, .builder-section {
+                padding: 14px
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0
+            }
+
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+                overflow: hidden !important
+            }
+
+            .download-pdf-btn, .builder-panel {
+                display: none !important
+            }
+
+            .builder-workspace, .builder-preview {
+                display: block !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important
+            }
+
+            .resume {
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                margin: 0 !important;
+                padding: 10.5mm 11mm !important;
+                box-shadow: none !important;
+                overflow: hidden !important
+            }
+
+            .header {
+                margin-bottom: 13mm !important
+            }
+
+            .header h1 {
+                font-size: 10mm !important
+            }
+
+            .header p {
+                font-size: 4.4mm !important
+            }
+
+            .main {
+                display: grid !important;
+                grid-template-columns:116mm 63mm !important;
+                gap: 15mm !important
+            }
+
+            section {
+                margin-bottom: 9mm !important
+            }
+
+            h2 {
+                font-size: 5.2mm !important;
+                margin-bottom: 5mm !important;
+                gap: 3mm !important
+            }
+
+            .item {
+                margin-bottom: 7.5mm !important
+            }
+
+            .item-head {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                gap: 6mm !important;
+                margin-bottom: 2.5mm !important
+            }
+
+            h3 {
+                font-size: 4mm !important
+            }
+
+            .company, .school {
+                font-size: 3.5mm !important
+            }
+
+            .date-place {
+                min-width: 34mm !important;
+                text-align: right !important;
+                font-size: 3mm !important
+            }
+
+            li {
+                font-size: 3mm !important;
+                line-height: 1.38 !important;
+                margin-bottom: 1.2mm !important
+            }
+
+            .summary p, .contact-info p {
+                font-size: 3.2mm !important;
+                line-height: 1.45 !important
+            }
+
+            .skill {
+                margin-bottom: 5.5mm !important
+            }
+
+            .skill-top {
+                font-size: 3mm !important;
+                margin-bottom: 2mm !important
+            }
+
+            .bar {
+                height: 1.3mm !important
+            }
+
+            .edu-meta {
+                font-size: 3mm !important;
+                gap: 8mm !important
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="resume">
+<div class="resume">
     <header class="header">
-      <h1>Taylor Parker</h1>
-      <p>Senior Software Engineer | Product Team Lead</p>
+        <h1>Taylor Parker</h1>
+        <p>Senior Software Engineer | Product Team Lead</p>
     </header>
 
     <main class="main">
-      <div class="left">
-        <section>
-          <h2>Experience</h2>
+        <div class="left">
+            <section class="experience">
+                <h2>Experience</h2>
+            </section>
 
-          <div class="item">
-            <div class="item-head">
-              <div>
-                <h3>Senior Software Engineer</h3>
-                <div class="company">Google</div>
-              </div>
-              <div class="date-place">
-                Jan 2020 - Present<br />
-                Mountain View, CA
-              </div>
-            </div>
+            <section class="education">
+                <h2>Education</h2>
+            </section>
 
-            <ul>
-              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-              <li>Developed and maintained comprehensive library of design assets for easy access and reuse.</li>
-            </ul>
-          </div>
+            <section class="certifications">
+                <h2>Certifications</h2>
+                <ul></ul>
+            </section>
+        </div>
 
-          <div class="item">
-            <div class="item-head">
-              <div>
-                <h3>Product Team Lead</h3>
-                <div class="company">Dropbox</div>
-              </div>
-              <div class="date-place">
-                Nov 2018 - Dec 2019<br />
-                Mountain View, CA
-              </div>
-            </div>
+        <aside class="right">
+            <section class="summary">
+                <h2>Summary</h2>
+                <p></p>
+            </section>
 
-            <ul>
-              <li>Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.</li>
-              <li>Managed multiple design projects simultaneously, ensuring timely delivery within budget constraints.</li>
-              <li>Created compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.</li>
-            </ul>
-          </div>
-        </section>
+            <section class="contact-info">
+                <h2>Contact Info</h2>
+                <div class="contact-list"></div>
+            </section>
 
-        <section>
-          <h2>Education</h2>
+            <section class="skills">
+                <h2>Skills</h2>
+                <div class="skills-list"></div>
+            </section>
 
-          <div class="item">
-            <h3>Master of Science in Computer Science</h3>
-            <div class="school">Stanford University</div>
-            <div class="edu-meta">
-              <span>2016 - 2018</span>
-              <span>Stanford, CA</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Bachelor of Science in Computer Science</h3>
-            <div class="school">Carnegie Mellon University</div>
-            <div class="edu-meta">
-              <span>2013 - 2016</span>
-              <span>Pittsburgh, PA</span>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2>Certifications</h2>
-
-          <ul>
-            <li>Certified Scrum Master by Atlassian<br />Issued Jun 2017</li>
-            <li>Certified React Native Developer<br />Issued May 2019</li>
-          </ul>
-        </section>
-      </div>
-
-      <aside class="right">
-        <section class="summary">
-          <h2>Summary</h2>
-          <p>
-            Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems.
-            Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with
-            both small and large teams across multiple projects and companies.
-          </p>
-        </section>
-
-        <section class="contact-info">
-          <h2>Contact Info</h2>
-          <p>📞 &nbsp; 321-554-8877</p>
-          <p>✉️ &nbsp; 321-554-8877</p>
-          <p>📍 &nbsp; Philadelphia, Pennsylvania</p>
-        </section>
-
-        <section>
-          <h2>Skills</h2>
-
-          <div class="skill">
-            <div class="skill-top">
-              <span>Back-end development</span>
-              <span>Expert</span>
-            </div>
-            <div class="bar"><span style="width: 100%;"></span></div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-top">
-              <span>Front-end development</span>
-              <span>Advanced</span>
-            </div>
-            <div class="bar"><span style="width: 86%;"></span></div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-top">
-              <span>Data Bases</span>
-              <span>Advanced</span>
-            </div>
-            <div class="bar"><span style="width: 86%;"></span></div>
-          </div>
-
-          <div class="skill">
-            <div class="skill-top">
-              <span>Machine Learning</span>
-              <span>Proficient</span>
-            </div>
-            <div class="bar"><span style="width: 65%;"></span></div>
-          </div>
-        </section>
-
-        <section>
-          <h2>Achievements</h2>
-
-          <ul>
-            <li>Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-people team</li>
-            <li>Coordinated a year-long release of a six-part platform project</li>
-          </ul>
-        </section>
-      </aside>
+            <section class="achievements">
+                <h2>Achievements</h2>
+                <ul></ul>
+            </section>
+        </aside>
     </main>
-  </div>
-  <script src="{% static 'js/template_builder.js' %}?v=20260605-builder-5"></script>
+</div>
+
+<button class="download-pdf-btn" type="button" onclick="downloadPDF()">Download PDF</button>
+
+<script>
+    function downloadPDF() {
+        window.print()
+    }
+
+    (function () {
+        const TEXT = {
+            en: {
+                back: "Back",
+                builder: "CV Builder",
+                personal: "Personal",
+                fullName: "Full name",
+                jobTitle: "Job title",
+                phone: "Phone",
+                email: "Email",
+                location: "Location",
+                summary: "Summary",
+                contactInfo: "Contact Info",
+                skills: "Skills",
+                skill: "Skill",
+                level: "Level",
+                percent: "Percent",
+                achievements: "Achievements",
+                achievement: "Achievement",
+                experience: "Experience",
+                role: "Role",
+                company: "Company",
+                date: "Date",
+                place: "Place",
+                details: "Details",
+                education: "Education",
+                degree: "Degree",
+                school: "School",
+                certifications: "Certifications",
+                certification: "Certification",
+                add: "Add",
+                remove: "Remove",
+                downloadPDF: "Download PDF"
+            },
+            uz: {
+                back: "Orqaga",
+                builder: "CV yaratish",
+                personal: "Shaxsiy",
+                fullName: "To'liq ism",
+                jobTitle: "Kasb",
+                phone: "Telefon",
+                email: "Email",
+                location: "Manzil",
+                summary: "Xulosa",
+                contactInfo: "Aloqa ma'lumotlari",
+                skills: "Ko'nikmalar",
+                skill: "Ko'nikma",
+                level: "Daraja",
+                percent: "Foiz",
+                achievements: "Yutuqlar",
+                achievement: "Yutuq",
+                experience: "Tajriba",
+                role: "Lavozim",
+                company: "Kompaniya",
+                date: "Sana",
+                place: "Joy",
+                details: "Tafsilotlar",
+                education: "Ta'lim",
+                degree: "Daraja",
+                school: "O'quv joyi",
+                certifications: "Sertifikatlar",
+                certification: "Sertifikat",
+                add: "Qo'shish",
+                remove: "O'chirish",
+                downloadPDF: "PDF yuklab olish"
+            },
+            ru: {
+                back: "Назад",
+                builder: "Конструктор CV",
+                personal: "Личные данные",
+                fullName: "ФИО",
+                jobTitle: "Должность",
+                phone: "Телефон",
+                email: "Email",
+                location: "Город",
+                summary: "О себе",
+                contactInfo: "Контакты",
+                skills: "Навыки",
+                skill: "Навык",
+                level: "Уровень",
+                percent: "Процент",
+                achievements: "Достижения",
+                achievement: "Достижение",
+                experience: "Опыт",
+                role: "Роль",
+                company: "Компания",
+                date: "Дата",
+                place: "Место",
+                details: "Детали",
+                education: "Образование",
+                degree: "Степень",
+                school: "Учебное место",
+                certifications: "Сертификаты",
+                certification: "Сертификат",
+                add: "Добавить",
+                remove: "Удалить",
+                downloadPDF: "Скачать PDF"
+            }
+        };
+
+        const DEFAULTS = {
+            en: {
+                fields: {
+                    fullName: "Taylor Parker",
+                    jobTitle: "Senior Software Engineer | Product Team Lead",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Philadelphia, Pennsylvania",
+                    summary: "Passionate Software Engineer with 10+ years of experience in developing web applications and backend systems. Skilled at writing clear, concise code that is easy to maintain and troubleshoot. Experienced in working with both small and large teams across multiple projects and companies."
+                },
+                collections: {
+                    experience: [
+                        {
+                            role: "Senior Software Engineer",
+                            company: "Google",
+                            date: "Jan 2020 - Present",
+                            place: "Mountain View, CA",
+                            details: "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders.\nDeveloped and maintained comprehensive library of design assets for easy access and reuse."
+                        },
+                        {
+                            role: "Product Team Lead",
+                            company: "Dropbox",
+                            date: "Nov 2018 - Dec 2019",
+                            place: "Mountain View, CA",
+                            details: "Developed design deliverables that elevated, differentiated, and functioned on-brand and on-strategy.\nManaged multiple design projects simultaneously, ensuring timely delivery within budget constraints.\nCreated compelling visual presentations to effectively communicate complex ideas to clients and stakeholders."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Master of Science in Computer Science",
+                            school: "Stanford University",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Bachelor of Science in Computer Science",
+                            school: "Carnegie Mellon University",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Certified Scrum Master by Atlassian\nIssued Jun 2017"},
+                        {value: "Certified React Native Developer\nIssued May 2019"}
+                    ],
+                    skills: [
+                        {name: "Back-end development", level: "Expert", percent: 100},
+                        {name: "Front-end development", level: "Advanced", percent: 86},
+                        {name: "Data Bases", level: "Advanced", percent: 86},
+                        {name: "Machine Learning", level: "Proficient", percent: 65}
+                    ],
+                    achievements: [
+                        {value: "Spearheaded a $12M software project, from design to distribution as a senior software engineer in a 12-people team"},
+                        {value: "Coordinated a year-long release of a six-part platform project"}
+                    ]
+                }
+            },
+            uz: {
+                fields: {
+                    fullName: "Taylor Parker",
+                    jobTitle: "Katta dasturiy ta'minot muhandisi | Product Team Lead",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Philadelphia, Pennsylvania",
+                    summary: "10+ yillik tajribaga ega dasturiy ta'minot muhandisi. Veb ilovalar va backend tizimlarini ishlab chiqishda tajribaga ega. Toza, tushunarli va qo'llab-quvvatlash oson bo'lgan kod yozadi. Kichik va katta jamoalar bilan turli loyihalarda ishlagan."
+                },
+                collections: {
+                    experience: [
+                        {
+                            role: "Katta dasturiy ta'minot muhandisi",
+                            company: "Google",
+                            date: "Yan 2020 - Hozir",
+                            place: "Mountain View, CA",
+                            details: "Brend va strategiyaga mos dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddat va budjet talablariga rioya qildi.\nMijozlar va hamkorlarga murakkab g'oyalarni tushuntirish uchun vizual taqdimotlar yaratdi.\nDizayn resurslari kutubxonasini ishlab chiqdi va yuritdi."
+                        },
+                        {
+                            role: "Mahsulot jamoasi rahbari",
+                            company: "Dropbox",
+                            date: "Noy 2018 - Dek 2019",
+                            place: "Mountain View, CA",
+                            details: "Brendga mos va samarali dizayn materiallarini ishlab chiqdi.\nBir nechta loyihalarni bir vaqtda boshqarib, muddatlarga rioya qildi.\nMurakkab g'oyalarni tushunarli yetkazish uchun taqdimotlar yaratdi."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Kompyuter fanlari magistri",
+                            school: "Stanford Universiteti",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Kompyuter fanlari bakalavri",
+                            school: "Carnegie Mellon Universiteti",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Atlassian tomonidan Certified Scrum Master\nBerilgan: Iyun 2017"},
+                        {value: "Certified React Native Developer\nBerilgan: May 2019"}
+                    ],
+                    skills: [
+                        {name: "Backend dasturlash", level: "Ekspert", percent: 100},
+                        {name: "Frontend dasturlash", level: "Yuqori", percent: 86},
+                        {name: "Ma'lumotlar bazalari", level: "Yuqori", percent: 86},
+                        {name: "Machine Learning", level: "Yaxshi", percent: 65}
+                    ],
+                    achievements: [
+                        {value: "12 million dollarlik dasturiy loyiha dizayndan tarqatilishigacha bo'lgan jarayonni boshqargan"},
+                        {value: "Olti qismli platforma loyihasining bir yillik reliz jarayonini muvofiqlashtirgan"}
+                    ]
+                }
+            },
+            ru: {
+                fields: {
+                    fullName: "Taylor Parker",
+                    jobTitle: "Старший инженер ПО | Руководитель продуктовой команды",
+                    phone: "321-554-8877",
+                    email: "321-554-8877",
+                    location: "Филадельфия, Пенсильвания",
+                    summary: "Инженер программного обеспечения с опытом более 10 лет в разработке веб-приложений и backend-систем. Пишет понятный и поддерживаемый код. Работал как с небольшими, так и с крупными командами над разными проектами."
+                },
+                collections: {
+                    experience: [
+                        {
+                            role: "Старший инженер ПО",
+                            company: "Google",
+                            date: "Янв 2020 - Настоящее время",
+                            place: "Mountain View, CA",
+                            details: "Разрабатывал материалы, соответствующие бренду и стратегии.\nОдновременно управлял несколькими проектами, соблюдая сроки и бюджет.\nСоздавал визуальные презентации для клиентов и партнеров.\nРазрабатывал и поддерживал библиотеку дизайн-ресурсов."
+                        },
+                        {
+                            role: "Руководитель продуктовой команды",
+                            company: "Dropbox",
+                            date: "Ноя 2018 - Дек 2019",
+                            place: "Mountain View, CA",
+                            details: "Создавал материалы в рамках бренда и стратегии.\nУправлял несколькими проектами одновременно.\nГотовил визуальные презентации для передачи сложных идей."
+                        }
+                    ],
+                    education: [
+                        {
+                            degree: "Магистр компьютерных наук",
+                            school: "Стэнфордский университет",
+                            date: "2016 - 2018",
+                            place: "Stanford, CA"
+                        },
+                        {
+                            degree: "Бакалавр компьютерных наук",
+                            school: "Университет Карнеги-Меллона",
+                            date: "2013 - 2016",
+                            place: "Pittsburgh, PA"
+                        }
+                    ],
+                    certifications: [
+                        {value: "Certified Scrum Master от Atlassian\nВыдано: июнь 2017"},
+                        {value: "Certified React Native Developer\nВыдано: май 2019"}
+                    ],
+                    skills: [
+                        {name: "Backend-разработка", level: "Эксперт", percent: 100},
+                        {name: "Frontend-разработка", level: "Продвинутый", percent: 86},
+                        {name: "Базы данных", level: "Продвинутый", percent: 86},
+                        {name: "Machine Learning", level: "Уверенный", percent: 65}
+                    ],
+                    achievements: [
+                        {value: "Руководил программным проектом стоимостью $12M от дизайна до запуска"},
+                        {value: "Координировал годовой релиз платформенного проекта из шести частей"}
+                    ]
+                }
+            }
+        };
+
+        let language = localStorage.getItem("cv-maker-language") || "en";
+        let state = clone(DEFAULTS[language]);
+        let panel;
+
+        document.addEventListener("DOMContentLoaded", init);
+
+        function init() {
+            const resume = document.querySelector(".resume");
+            const workspace = document.createElement("main");
+            workspace.className = "builder-workspace";
+            const preview = document.createElement("div");
+            preview.className = "builder-preview";
+            panel = document.createElement("aside");
+            panel.className = "builder-panel";
+            resume.parentNode.insertBefore(workspace, resume);
+            preview.appendChild(resume);
+            workspace.appendChild(preview);
+            workspace.appendChild(panel);
+            document.body.classList.add("template-builder-ready");
+            renderPanel();
+            renderResume();
+            bindEvents();
+        }
+
+        function t(k) {
+            return TEXT[language]?.[k] || TEXT.en[k] || k
+        }
+
+        function bindEvents() {
+            panel.addEventListener("input", e => {
+                const input = e.target;
+                if (input.matches("[data-field]")) {
+                    state.fields[input.dataset.field] = input.value;
+                    renderResume()
+                }
+                if (input.matches("[data-collection]")) {
+                    const item = state.collections[input.dataset.collection][Number(input.dataset.index)];
+                    if (!item) return;
+                    item[input.dataset.key] = input.value;
+                    renderResume();
+                }
+            });
+
+            panel.addEventListener("change", e => {
+                const input = e.target;
+                if (input.matches("[data-builder-language]")) {
+                    language = input.value;
+                    localStorage.setItem("cv-maker-language", language);
+                    state = clone(DEFAULTS[language]);
+                    renderPanel();
+                    renderResume();
+                }
+            });
+
+            panel.addEventListener("click", e => {
+                const add = e.target.closest("[data-add]");
+                const remove = e.target.closest("[data-remove]");
+                const back = e.target.closest("[data-builder-back]");
+
+                if (back) {
+                    e.preventDefault();
+                    if (window.history.length > 1) window.history.back();
+                    return
+                }
+                if (add) {
+                    state.collections[add.dataset.add].push(blank(add.dataset.add));
+                    renderPanel();
+                    renderResume()
+                }
+                if (remove) {
+                    const arr = state.collections[remove.dataset.remove];
+                    if (arr.length > 1) {
+                        arr.splice(Number(remove.dataset.index), 1);
+                        renderPanel();
+                        renderResume()
+                    }
+                }
+            });
+        }
+
+        function blank(type) {
+            if (type === "experience") return {role: "", company: "", date: "", place: "", details: ""};
+            if (type === "education") return {degree: "", school: "", date: "", place: ""};
+            if (type === "skills") return {name: "", level: "", percent: 70};
+            return {value: ""};
+        }
+
+        function renderPanel() {
+            panel.innerHTML = `
+          <header class="builder-panel-header">
+            <div class="builder-panel-top">
+              <a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+              <select class="builder-lang" data-builder-language>
+                <option value="en"${language === "en" ? " selected" : ""}>EN</option>
+                <option value="uz"${language === "uz" ? " selected" : ""}>UZ</option>
+                <option value="ru"${language === "ru" ? " selected" : ""}>RU</option>
+              </select>
+            </div>
+            <h2>${t("builder")}</h2>
+          </header>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("personal")}</h3></div>
+            <div class="builder-grid">
+              ${field(t("fullName"), "fullName", state.fields.fullName)}
+              ${field(t("jobTitle"), "jobTitle", state.fields.jobTitle)}
+              ${field(t("phone"), "phone", state.fields.phone)}
+              ${field(t("email"), "email", state.fields.email)}
+              ${field(t("location"), "location", state.fields.location, true)}
+            </div>
+          </section>
+
+          <section class="builder-section">
+            <div class="builder-section-title"><h3>${t("summary")}</h3></div>
+            ${field(t("summary"), "summary", state.fields.summary, true, "textarea")}
+          </section>
+
+          ${section("experience", t("experience"), expEntry)}
+          ${section("education", t("education"), eduEntry)}
+          ${section("certifications", t("certifications"), simpleEntry, t("certification"))}
+          ${section("skills", t("skills"), skillEntry)}
+          ${section("achievements", t("achievements"), simpleEntry, t("achievement"))}
+        `;
+        }
+
+        function field(label, key, value, wide, type) {
+            const control = type === "textarea"
+                ? `<textarea data-field="${key}">${esc(value)}</textarea>`
+                : `<input data-field="${key}" value="${attr(value)}">`;
+            return `<label class="builder-field${wide ? " builder-wide" : ""}"><span>${label}</span>${control}</label>`;
+        }
+
+        function section(type, title, renderer, label) {
+            return `
+          <section class="builder-section">
+            <div class="builder-section-title">
+              <h3>${title}</h3>
+              <button class="builder-button" type="button" data-add="${type}">${t("add")}</button>
+            </div>
+            ${state.collections[type].map((entry, index) => renderer(type, entry, index, label)).join("")}
+          </section>`;
+        }
+
+        function expEntry(type, e, i) {
+            return `<div class="builder-entry"><div class="builder-grid">
+          ${cf(t("role"), type, i, "role", e.role)}
+          ${cf(t("company"), type, i, "company", e.company)}
+          ${cf(t("date"), type, i, "date", e.date)}
+          ${cf(t("place"), type, i, "place", e.place)}
+          ${cf(t("details"), type, i, "details", e.details, true, "textarea")}
+        </div>${removeBtn(type, i)}</div>`;
+        }
+
+        function eduEntry(type, e, i) {
+            return `<div class="builder-entry"><div class="builder-grid">
+          ${cf(t("degree"), type, i, "degree", e.degree)}
+          ${cf(t("school"), type, i, "school", e.school)}
+          ${cf(t("date"), type, i, "date", e.date)}
+          ${cf(t("place"), type, i, "place", e.place)}
+        </div>${removeBtn(type, i)}</div>`;
+        }
+
+        function skillEntry(type, e, i) {
+            return `<div class="builder-entry"><div class="builder-grid">
+          ${cf(t("skill"), type, i, "name", e.name)}
+          ${cf(t("level"), type, i, "level", e.level)}
+          ${cf(t("percent"), type, i, "percent", e.percent, true)}
+        </div>${removeBtn(type, i)}</div>`;
+        }
+
+        function simpleEntry(type, e, i, label) {
+            return `<div class="builder-entry">${cf(label, type, i, "value", e.value, true, "textarea")}${removeBtn(type, i)}</div>`;
+        }
+
+        function cf(label, type, i, key, value, wide, kind) {
+            const attrs = `data-collection="${type}" data-index="${i}" data-key="${key}"`;
+            const control = kind === "textarea" ? `<textarea ${attrs}>${esc(value)}</textarea>` : `<input ${attrs} value="${attr(value)}">`;
+            return `<label class="builder-field${wide ? " builder-wide" : ""}"><span>${label}</span>${control}</label>`;
+        }
+
+        function removeBtn(type, i) {
+            const disabled = state.collections[type].length <= 1 ? " disabled" : "";
+            return `<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${disabled}>${t("remove")}</button></div>`;
+        }
+
+        function renderResume() {
+            document.querySelector(".download-pdf-btn").textContent = t("downloadPDF");
+            document.querySelector(".header h1").textContent = state.fields.fullName;
+            document.querySelector(".header p").textContent = state.fields.jobTitle;
+            document.querySelector(".summary h2").textContent = t("summary");
+            document.querySelector(".summary p").textContent = state.fields.summary;
+            document.querySelector(".contact-info h2").textContent = t("contactInfo");
+            document.querySelector(".skills h2").textContent = t("skills");
+            document.querySelector(".achievements h2").textContent = t("achievements");
+
+            document.querySelector(".contact-list").innerHTML = `
+          <p>📞 &nbsp; ${esc(state.fields.phone)}</p>
+          <p>✉️ &nbsp; ${esc(state.fields.email)}</p>
+          <p>📍 &nbsp; ${esc(state.fields.location)}</p>
+        `;
+
+            renderExperience();
+            renderEducation();
+            renderList(".certifications ul", state.collections.certifications, true);
+            renderSkills();
+            renderList(".achievements ul", state.collections.achievements);
+        }
+
+        function renderExperience() {
+            const box = document.querySelector(".experience");
+            box.innerHTML = `<h2>${t("experience")}</h2>`;
+            state.collections.experience.filter(hasValue).forEach(e => {
+                const div = document.createElement("div");
+                div.className = "item";
+                div.innerHTML = `
+            <div class="item-head">
+              <div><h3>${esc(e.role)}</h3><div class="company">${esc(e.company)}</div></div>
+              <div class="date-place">${esc(e.date)}<br>${esc(e.place)}</div>
+            </div>
+            <ul>${lines(e.details).map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+                box.appendChild(div);
+            });
+        }
+
+        function renderEducation() {
+            const box = document.querySelector(".education");
+            box.innerHTML = `<h2>${t("education")}</h2>`;
+            state.collections.education.filter(hasValue).forEach(e => {
+                const div = document.createElement("div");
+                div.className = "item";
+                div.innerHTML = `
+            <h3>${esc(e.degree)}</h3>
+            <div class="school">${esc(e.school)}</div>
+            <div class="edu-meta"><span>${esc(e.date)}</span><span>${esc(e.place)}</span></div>`;
+                box.appendChild(div);
+            });
+            document.querySelector(".certifications h2").textContent = t("certifications");
+        }
+
+        function renderSkills() {
+            const box = document.querySelector(".skills-list");
+            box.innerHTML = "";
+            state.collections.skills.filter(hasValue).forEach(s => {
+                const div = document.createElement("div");
+                div.className = "skill";
+                div.innerHTML = `
+            <div class="skill-top"><span>${esc(s.name)}</span><span>${esc(s.level)}</span></div>
+            <div class="bar"><span style="width:${Math.max(0, Math.min(100, Number(s.percent) || 0))}%;"></span></div>`;
+                box.appendChild(div);
+            });
+        }
+
+        function renderList(selector, arr, multi) {
+            const ul = document.querySelector(selector);
+            ul.innerHTML = "";
+            arr.filter(hasValue).forEach(e => {
+                const li = document.createElement("li");
+                li.innerHTML = multi ? esc(e.value).replace(/\n/g, "<br>") : esc(e.value);
+                ul.appendChild(li);
+            });
+        }
+
+        function hasValue(obj) {
+            return Object.values(obj).some(v => String(v || "").trim())
+        }
+
+        function lines(v) {
+            return String(v || "").split("\n").map(x => x.trim()).filter(Boolean)
+        }
+
+        function clone(v) {
+            return JSON.parse(JSON.stringify(v))
+        }
+
+        function esc(v) {
+            return String(v || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        }
+
+        function attr(v) {
+            return esc(v).replace(/"/g, "&quot;")
+        }
+    })();
+</script>
 </body>
 </html>
