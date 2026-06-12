@@ -174,7 +174,7 @@
 
   function getSavedLanguage() {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    return Object.prototype.hasOwnProperty.call(TEXT, saved) ? saved : "en";
+    return Object.prototype.hasOwnProperty.call(TEXT, saved) ? saved : "uz";
   }
 
   function t(key) {

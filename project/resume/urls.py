@@ -5,8 +5,8 @@ app_name = 'resume'
 
 urlpatterns = [
     path('', demo, name='demo'),
-    path('login/', login_view, name='login'),
-    path('register/', register_view, name='register'),
+    path('login/', auth_view, {'mode': 'login'}, name='login'),
+    path('register/', auth_view, {'mode': 'register'}, name='register'),
     path('logout/', logout_view, name='logout'),
     path('profile/', profile_view, name='profile'),
     path('template/<slug:slug>/', template_detail, name='template_detail'),

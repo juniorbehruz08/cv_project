@@ -1,4 +1,5 @@
 RESUME_TEMPLATES = [
+    {'slug': 'obyektivka', 'name': 'Obyektivka', 'preview': 'images/templates/obyektivka.jpg', 'template': 'resume_templates/obyektivka.html'},
     {'slug': 'artistic', 'name': 'Artistic', 'preview': 'images/templates/artistic.jpg', 'template': 'resume_templates/artistic.html'},
     {'slug': 'bloom', 'name': 'Bloom', 'preview': 'images/templates/bloom.jpg', 'template': 'resume_templates/bloom.html'},
     {'slug': 'timeless', 'name': 'Timeless', 'preview': 'images/templates/timeless.jpg', 'template': 'resume_templates/timeless.html'},

@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        brand: "CV Maker",
+        brand: "TarjimaGo",
         step_label: "Demo builder",
         title: "Create a clean CV in minutes",
         full_name: "Full name",
@@ -58,6 +58,28 @@ const translations = {
         demo_hero_title: "Create a CV that actually looks professional.",
         demo_hero_text: "Pick a beautiful template, edit your information live, and prepare a clean CV for real applications in English, Uzbek, or Russian.",
         start_building: "Start building",
+
+        obyektivka_card_badge: "Official document",
+        obyektivka_card_title: "Obyektivka (Ma'lumotnoma)",
+        obyektivka_card_text: "Prepare an official personal reference with photo, work history, and a family members table — in Uzbek (Latin or Cyrillic) and Russian.",
+        obyektivka_card_btn: "Create obyektivka",
+        cv_card_badge: "Premium CV Builder",
+        cv_card_title: "Create CV",
+        cv_card_text: "Pick a beautiful template, edit your information live, and download a clean professional CV in three languages.",
+
+        auth_page_title: "Login or Register - TarjimaGo",
+        auth_hero_title: "Your CV workspace.",
+        auth_hero_text: "Sign in to build resumes and obyektivka documents, download PDFs, and keep your history in one clean interface.",
+        auth_pill_1: "Live templates",
+        auth_pill_2: "3 languages",
+        auth_pill_3: "PDF download",
+        login_title: "Welcome back",
+        login_sub: "Login to continue building your documents.",
+        register_title: "Create account",
+        register_sub: "Set up your TarjimaGo profile in a few seconds.",
+        remember_me: "Remember me",
+        forgot_password: "Forgot password?",
+        agree_terms: "I agree to the terms",
 
         feature_title: "Not just templates. A complete CV experience.",
         feature_text: "A modern CV builder with a premium interface, clean templates, live editing, and multilingual support.",
@@ -140,7 +162,7 @@ const translations = {
     },
 
     uz: {
-        brand: "CV Tayyorlash",
+        brand: "TarjimaGo",
         step_label: "Demo konstruktor",
         title: "Chiroyli CV ni bir necha daqiqada yarating",
         full_name: "To'liq ism",
@@ -195,9 +217,31 @@ const translations = {
         open_profile: "Profilni ochish",
 
         demo_hero_badge: "Premium CV Builder",
-        demo_hero_title: "Haqiqatan professional ko'rinadigan CV yarating.",
+        demo_hero_title: "Professional ko'rinadigan CV yarating.",
         demo_hero_text: "Chiroyli shablonni tanlang, ma'lumotlaringizni jonli tahrir qiling va ingliz, o'zbek yoki rus tilida toza CV tayyorlang.",
         start_building: "Yaratishni boshlash",
+
+        obyektivka_card_badge: "Rasmiy hujjat",
+        obyektivka_card_title: "Obyektivka (Ma'lumotnoma)",
+        obyektivka_card_text: "Rasm, mehnat faoliyati va qarindoshlar jadvali bilan rasmiy ma'lumotnoma tayyorlang — o'zbek (lotin yoki kirill) va rus tillarida.",
+        obyektivka_card_btn: "Obyektivka yaratish",
+        cv_card_badge: "Premium CV Builder",
+        cv_card_title: "CV yaratish",
+        cv_card_text: "Chiroyli shablonni tanlang, ma'lumotlaringizni jonli tahrir qiling va uch tilda toza professional CV yuklab oling.",
+
+        auth_page_title: "Kirish yoki ro'yxatdan o'tish - TarjimaGo",
+        auth_hero_title: "Sizning CV ish maydoningiz.",
+        auth_hero_text: "Rezyume va obyektivka hujjatlarini yaratish, PDF yuklab olish va tarixni saqlash uchun tizimga kiring.",
+        auth_pill_1: "Jonli shablonlar",
+        auth_pill_2: "3 ta til",
+        auth_pill_3: "PDF yuklab olish",
+        login_title: "Xush kelibsiz",
+        login_sub: "Hujjatlaringizni yaratishni davom ettirish uchun kiring.",
+        register_title: "Hisob yaratish",
+        register_sub: "TarjimaGo profilingizni bir necha soniyada yarating.",
+        remember_me: "Meni eslab qol",
+        forgot_password: "Parolni unutdingizmi?",
+        agree_terms: "Shartlarga roziman",
 
         feature_title: "Bu shunchaki shablonlar emas. Bu to'liq CV tajribasi.",
         feature_text: "Premium interfeys, toza shablonlar, jonli tahrirlash va ko'p tilli qo'llab-quvvatlashga ega zamonaviy CV builder.",
@@ -280,7 +324,7 @@ const translations = {
     },
 
     ru: {
-        brand: "CV Maker",
+        brand: "TarjimaGo",
         step_label: "Демо конструктор",
         title: "Создайте аккуратное резюме за минуты",
         full_name: "Полное имя",
@@ -338,6 +382,28 @@ const translations = {
         demo_hero_title: "Создайте CV, которое выглядит профессионально.",
         demo_hero_text: "Выберите красивый шаблон, редактируйте данные вживую и подготовьте аккуратное CV на английском, узбекском или русском.",
         start_building: "Начать создание",
+
+        obyektivka_card_badge: "Официальный документ",
+        obyektivka_card_title: "Объективка (Маълумотнома)",
+        obyektivka_card_text: "Подготовьте официальную справку с фото, трудовой деятельностью и таблицей родственников — на узбекском (латиница или кириллица) и русском.",
+        obyektivka_card_btn: "Создать объективку",
+        cv_card_badge: "Премиум CV Builder",
+        cv_card_title: "Создать CV",
+        cv_card_text: "Выберите красивый шаблон, редактируйте данные вживую и скачайте аккуратное профессиональное CV на трёх языках.",
+
+        auth_page_title: "Вход или регистрация - TarjimaGo",
+        auth_hero_title: "Ваше рабочее пространство CV.",
+        auth_hero_text: "Войдите, чтобы создавать резюме и объективки, скачивать PDF и хранить историю в одном интерфейсе.",
+        auth_pill_1: "Живые шаблоны",
+        auth_pill_2: "3 языка",
+        auth_pill_3: "Скачивание PDF",
+        login_title: "С возвращением",
+        login_sub: "Войдите, чтобы продолжить создание документов.",
+        register_title: "Создать аккаунт",
+        register_sub: "Создайте профиль TarjimaGo за несколько секунд.",
+        remember_me: "Запомнить меня",
+        forgot_password: "Забыли пароль?",
+        agree_terms: "Я согласен с условиями",
 
         feature_title: "Не просто шаблоны. Полный опыт создания CV.",
         feature_text: "Современный CV builder с премиальным интерфейсом, чистыми шаблонами, живым редактированием и поддержкой нескольких языков.",
@@ -420,7 +486,32 @@ const translations = {
     },
 };
 
-let currentLanguage = "en";
+let currentLanguage = "uz";
+
+const THEME_KEY = "cv-maker-theme";
+
+function applyTheme(theme) {
+    const normalized = theme === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = normalized;
+    localStorage.setItem(THEME_KEY, normalized);
+
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+        button.textContent = normalized === "dark" ? "☀️" : "🌙";
+        button.setAttribute("aria-label", normalized === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    });
+}
+
+function toggleTheme() {
+    applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+}
+
+function initTheme() {
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+        button.addEventListener("click", toggleTheme);
+    });
+
+    applyTheme(localStorage.getItem(THEME_KEY) || "light");
+}
 
 function setLanguage(lang) {
     const dictionary = translations[lang] || translations.en;
@@ -451,7 +542,7 @@ function initLanguageSwitcher() {
         button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
 
-    setLanguage(localStorage.getItem("cv-maker-language") || "en");
+    setLanguage(localStorage.getItem("cv-maker-language") || "uz");
 }
 
 function initTemplateHover() {
@@ -461,7 +552,20 @@ function initTemplateHover() {
     });
 }
 
+function initStartNowScroll() {
+    document.querySelectorAll("[data-scroll-to]").forEach((button) => {
+        button.addEventListener("click", () => {
+            const target = document.querySelector(button.dataset.scrollTo);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
     initLanguageSwitcher();
     initTemplateHover();
+    initStartNowScroll();
 });

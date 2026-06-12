@@ -1,0 +1,404 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Obyektivka - Ma'lumotnoma Builder</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#d8d8d8;font-family:"Times New Roman",Georgia,serif;color:#000}
+.resume{width:850px;min-height:1130px;margin:22px auto;background:#fff;padding:48px 56px 44px;overflow:hidden}
+.doc-title{text-align:center;font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:22px;text-transform:uppercase}
+.doc-head{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:24px;margin-bottom:18px}
+.doc-name{font-size:18px;font-weight:700;text-align:center;margin-bottom:6px;text-transform:uppercase}
+.doc-position{font-size:14.5px;text-align:center;line-height:1.4}
+.doc-head-main{display:flex;flex-direction:column;justify-content:center}
+.doc-photo{width:132px;height:170px;border:1px solid #555;background:#f3f4f6;display:grid;place-items:center;overflow:hidden}
+.doc-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.doc-photo span{color:#9ca3af;font-size:11px;font-family:Arial,sans-serif}
+.doc-info{display:grid;grid-template-columns:1fr 1fr;gap:7px 34px;margin:14px 0 8px}
+.doc-info .row{font-size:13.4px;line-height:1.45}
+.doc-info .row.wide{grid-column:1/-1}
+.doc-info .label{font-weight:700}
+.doc-section-title{text-align:center;font-size:15.5px;font-weight:700;letter-spacing:1.4px;margin:24px 0 12px;text-transform:uppercase}
+.career-item{display:grid;grid-template-columns:170px minmax(0,1fr);gap:18px;font-size:13.4px;line-height:1.5;margin-bottom:9px}
+.career-item .years{font-weight:700;white-space:nowrap}
+.family-title{text-align:center;font-size:14.5px;font-weight:700;margin:26px 0 12px}
+table.family{width:100%;border-collapse:collapse;font-size:12.2px;color:#000;background:#fff}
+table.family th,table.family td{border:1px solid #000;color:#000;padding:6px 8px;text-align:center;vertical-align:middle;line-height:1.35;background:#fff}
+table.family th{background:#e8edf3;font-weight:700}
+table.family td.left{text-align:left}
+
+.download-pdf-btn{position:fixed;right:24px;bottom:24px;z-index:9999;height:44px;border:0;border-radius:999px;background:#17142f;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:14px;font-weight:800;padding:0 18px;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.22)}
+.download-word-btn{position:fixed;right:24px;bottom:80px;z-index:9999;height:44px;border:0;border-radius:999px;background:#2b579a;color:#fff;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:14px;font-weight:800;padding:0 18px;cursor:pointer;box-shadow:0 12px 30px rgba(43,87,154,.3)}
+body.template-builder-ready{min-width:0;overflow-x:auto}
+.builder-workspace{width:min(1340px,calc(100% - 32px));margin:22px auto;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}
+.builder-preview{min-width:0;overflow:auto;display:flex;justify-content:flex-start;align-items:flex-start;padding-bottom:24px}
+.builder-preview>.resume{flex:0 0 auto;margin:0!important}
+.builder-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;background:#fff;border:1px solid #d9e1ea;border-radius:8px;box-shadow:0 18px 45px rgba(15,23,42,.13);color:#172033;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.builder-panel *{box-sizing:border-box}
+.builder-panel-header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e4ebf2;padding:16px 18px}
+.builder-panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.builder-back{color:#17142f;font-size:13px;font-weight:700;text-decoration:none}
+.builder-lang{width:150px;height:34px;border:1px solid #cbd6e2;border-radius:6px;background:#f8fafc;color:#172033;font:inherit;font-size:13px;font-weight:700;padding:0 8px}
+.builder-panel h2{display:block;margin:0;padding:0;border:0;color:#172033;font-size:22px;font-weight:800}
+.builder-section{padding:18px;border-bottom:1px solid #edf1f5}
+.builder-section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.builder-section h3{margin:0;color:#172033;font-size:14px;font-weight:800}
+.builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.builder-field{display:grid;gap:6px}
+.builder-field.builder-wide{grid-column:1/-1}
+.builder-field span{color:#5b6778;font-size:12px;font-weight:700}
+.builder-field input,.builder-field textarea{width:100%;border:1px solid #cfd9e5;border-radius:6px;background:#fbfdff;color:#172033;font:inherit;font-size:14px;line-height:1.35;padding:10px 11px;outline:none}
+.builder-field textarea{min-height:70px;resize:vertical}
+.builder-entry{display:grid;gap:12px;padding:14px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;margin-bottom:12px}
+.builder-entry-actions{display:flex;justify-content:flex-end}
+.builder-button{height:34px;border:1px solid #17142f;border-radius:6px;background:#17142f;color:#fff;cursor:pointer;font:inherit;font-size:13px;font-weight:800;padding:0 13px}
+.builder-button.builder-secondary{border-color:#cbd6e2;background:#fff;color:#425069}
+.builder-button:disabled{cursor:not-allowed;opacity:.45}
+.builder-photo-preview{margin-top:10px;width:84px;height:108px;border:1px solid #cfd9e5;border-radius:6px;overflow:hidden;background:#f1f5f9}
+.builder-photo-preview img{width:100%;height:100%;object-fit:cover;display:block}
+
+@media(max-width:1240px){.builder-workspace{grid-template-columns:minmax(0,1fr)}.builder-panel{position:static;max-height:none;order:-1}}
+@media(max-width:900px){.resume{width:100%;min-height:100vh;margin:0;padding:28px 22px}.builder-grid{grid-template-columns:1fr}.doc-head{grid-template-columns:1fr;justify-items:center}.doc-info{grid-template-columns:1fr}.career-item{grid-template-columns:1fr;gap:2px}}
+
+@media print{
+@page{size:A4;margin:10mm 12mm}
+*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+html,body{width:auto;height:auto;margin:0!important;padding:0!important;background:#fff!important;overflow:visible!important}
+.download-pdf-btn,.download-word-btn,.builder-panel{display:none!important}
+.builder-workspace,.builder-preview{display:block!important;width:auto!important;margin:0!important;padding:0!important;overflow:visible!important}
+.resume{width:100%!important;min-height:auto!important;margin:0!important;padding:0!important;overflow:visible!important}
+table.family{page-break-inside:auto}
+table.family tr{page-break-inside:avoid}
+table.family th{background:#e8edf3!important;color:#000!important}
+table.family th,table.family td{border:1px solid #000!important;color:#000!important;background-color:#fff!important}
+table.family th{background-color:#e8edf3!important}
+}
+</style>
+</head>
+
+<body>
+<div class="resume">
+  <div class="doc-title">MA'LUMOTNOMA</div>
+  <div class="doc-head">
+    <div class="doc-head-main">
+      <div class="doc-name"></div>
+      <div class="doc-position"></div>
+    </div>
+    <div class="doc-photo"><span>3 x 4</span></div>
+  </div>
+  <div class="doc-info"></div>
+  <div class="doc-section-title">MEHNAT FAOLIYATI</div>
+  <div class="doc-career"></div>
+  <div class="family-title"></div>
+  <table class="family">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<button class="download-word-btn" type="button"
+        onclick="{% if can_download %}downloadWord(){% else %}window.location.href='{% url 'resume:login' %}?next={{ request.path|urlencode }}'{% endif %}">Download Word</button>
+<button class="download-pdf-btn{% if is_guest_demo %} guest-download-locked{% endif %}" type="button"
+        onclick="{% if can_download %}downloadPDF(){% else %}window.location.href='{% url 'resume:login' %}?next={{ request.path|urlencode }}'{% endif %}">Download PDF</button>
+
+<script>
+function downloadPDF(){window.print()}
+
+(function(){
+const STATE_KEY="cv-builder-state-obyektivka";
+const LANG_KEY="obyektivka-language";
+
+// Builder panel + document labels in Uzbek Latin (uzl), Uzbek Cyrillic (uzc) and Russian (ru)
+const TEXT={
+uzl:{back:"Orqaga",builder:"Obyektivka yaratish",docLang:"Hujjat tili",personal:"Shaxsiy",fullName:"F.I.Sh.",position:"Lavozimi",photo:"Rasm (3x4)",info:"Asosiy ma'lumotlar",birth:"Tug'ilgan yili va joyi",nationality:"Millati",party:"Partiyaviyligi",education:"Ma'lumoti",university:"Tamomlagan o'quv yurti",specialty:"Mutaxassisligi",degree:"Ilmiy darajasi",rank:"Ilmiy unvoni",langs:"Chet tillarini bilishi",awards:"Davlat mukofotlari",deputy:"Deputatligi",career:"Mehnat faoliyati",years:"Yillari",work:"Lavozimi va ish joyi",family:"Qarindoshlari",relation:"Qarindoshligi",name:"F.I.Sh.",famBirth:"Tug'ilgan yili va joyi",famWork:"Ish joyi va lavozimi",famAddress:"Turar joyi",add:"Qo'shish",remove:"O'chirish",downloadPDF:"PDF yuklab olish",downloadWord:"Word yuklab olish"},
+uzc:{back:"Орқага",builder:"Объективка яратиш",docLang:"Ҳужжат тили",personal:"Шахсий",fullName:"Ф.И.Ш.",position:"Лавозими",photo:"Расм (3x4)",info:"Асосий маълумотлар",birth:"Туғилган йили ва жойи",nationality:"Миллати",party:"Партиявийлиги",education:"Маълумоти",university:"Тамомлаган ўқув юрти",specialty:"Мутахассислиги",degree:"Илмий даражаси",rank:"Илмий унвони",langs:"Чет тилларини билиши",awards:"Давлат мукофотлари",deputy:"Депутатлиги",career:"Меҳнат фаолияти",years:"Йиллари",work:"Лавозими ва иш жойи",family:"Қариндошлари",relation:"Қариндошлиги",name:"Ф.И.Ш.",famBirth:"Туғилган йили ва жойи",famWork:"Иш жойи ва лавозими",famAddress:"Турар жойи",add:"Қўшиш",remove:"Ўчириш",downloadPDF:"PDF юклаб олиш",downloadWord:"Word юклаб олиш"},
+ru:{back:"Назад",builder:"Создание объективки",docLang:"Язык документа",personal:"Личные данные",fullName:"Ф.И.О.",position:"Должность",photo:"Фото (3x4)",info:"Основные сведения",birth:"Год и место рождения",nationality:"Национальность",party:"Партийность",education:"Образование",university:"Оконченное учебное заведение",specialty:"Специальность",degree:"Учёная степень",rank:"Учёное звание",langs:"Знание иностранных языков",awards:"Государственные награды",deputy:"Депутатство",career:"Трудовая деятельность",years:"Годы",work:"Должность и место работы",family:"Родственники",relation:"Родство",name:"Ф.И.О.",famBirth:"Год и место рождения",famWork:"Место работы и должность",famAddress:"Место жительства",add:"Добавить",remove:"Удалить",downloadPDF:"Скачать PDF",downloadWord:"Скачать Word"}
+};
+
+// Labels printed inside the document itself
+const DOC={
+uzl:{title:"MA'LUMOTNOMA",birth:"Tug'ilgan yili va joyi:",nationality:"Millati:",party:"Partiyaviyligi:",education:"Ma'lumoti:",university:"Tamomlagan o'quv yurti:",specialty:"Mutaxassisligi:",degree:"Ilmiy darajasi:",rank:"Ilmiy unvoni:",langs:"Chet tillarini bilishi:",awards:"Davlat mukofotlari bilan taqdirlanganmi:",deputy:"Xalq deputatlari kengashi a'zosimi:",career:"MEHNAT FAOLIYATI",familyTitle:"Qarindoshlari haqida ma'lumot",cols:["Qarindoshligi","F.I.Sh.","Tug'ilgan yili va joyi","Ish joyi va lavozimi","Turar joyi"]},
+uzc:{title:"МАЪЛУМОТНОМА",birth:"Туғилган йили ва жойи:",nationality:"Миллати:",party:"Партиявийлиги:",education:"Маълумоти:",university:"Тамомлаган ўқув юрти:",specialty:"Мутахассислиги:",degree:"Илмий даражаси:",rank:"Илмий унвони:",langs:"Чет тилларини билиши:",awards:"Давлат мукофотлари билан тақдирланганми:",deputy:"Халқ депутатлари кенгаши аъзосими:",career:"МЕҲНАТ ФАОЛИЯТИ",familyTitle:"Қариндошлари ҳақида маълумот",cols:["Қариндошлиги","Ф.И.Ш.","Туғилган йили ва жойи","Иш жойи ва лавозими","Турар жойи"]},
+ru:{title:"СПРАВКА",birth:"Год и место рождения:",nationality:"Национальность:",party:"Партийность:",education:"Образование:",university:"Окончил(а):",specialty:"Специальность:",degree:"Учёная степень:",rank:"Учёное звание:",langs:"Знание иностранных языков:",awards:"Государственные награды:",deputy:"Член совета народных депутатов:",career:"ТРУДОВАЯ ДЕЯТЕЛЬНОСТЬ",familyTitle:"Сведения о родственниках",cols:["Родство","Ф.И.О.","Год и место рождения","Место работы и должность","Место жительства"]}
+};
+
+const DEFAULTS={
+uzl:{
+fields:{fullName:"ALIYEV VALIJON SOLIJONOVICH",position:"\"Tarjima Go\" MChJ bosh direktori",photo:"",birth:"1985-yil 12-mart, Toshkent shahri",nationality:"O'zbek",party:"Yo'q",education:"Oliy",university:"2008-yil, Toshkent davlat iqtisodiyot universiteti",specialty:"Iqtisodchi",degree:"Yo'q",rank:"Yo'q",langs:"Ingliz, rus tillari",awards:"Yo'q",deputy:"Yo'q"},
+collections:{
+career:[{years:"2003-2008 y.",work:"Toshkent davlat iqtisodiyot universiteti talabasi"},{years:"2008-2015 y.",work:"\"Ipak Yo'li\" banki boshqaruvi yetakchi mutaxassisi, Toshkent shahri"},{years:"2015 y. - h.v.",work:"\"Tarjima Go\" MChJ bosh direktori, Toshkent shahri"}],
+family:[{relation:"Otasi",name:"Aliyev Solijon Karimovich",birth:"1958-yil, Toshkent shahri",work:"Pensioner",address:"Toshkent shahri, Yunusobod tumani"},{relation:"Onasi",name:"Aliyeva Mavluda Tursunovna",birth:"1962-yil, Toshkent shahri",work:"Uy bekasi",address:"Toshkent shahri, Yunusobod tumani"},{relation:"Turmush o'rtog'i",name:"Aliyeva Nilufar Baxtiyorovna",birth:"1988-yil, Samarqand shahri",work:"49-maktab o'qituvchisi, Toshkent shahri",address:"Toshkent shahri, Yunusobod tumani"}]
+}},
+uzc:{
+fields:{fullName:"АЛИЕВ ВАЛИЖОН СОЛИЖОНОВИЧ",position:"\"Таржима Го\" МЧЖ бош директори",photo:"",birth:"1985 йил 12 март, Тошкент шаҳри",nationality:"Ўзбек",party:"Йўқ",education:"Олий",university:"2008 йил, Тошкент давлат иқтисодиёт университети",specialty:"Иқтисодчи",degree:"Йўқ",rank:"Йўқ",langs:"Инглиз, рус тиллари",awards:"Йўқ",deputy:"Йўқ"},
+collections:{
+career:[{years:"2003-2008 й.",work:"Тошкент давлат иқтисодиёт университети талабаси"},{years:"2008-2015 й.",work:"\"Ипак Йўли\" банки бошқаруви етакчи мутахассиси, Тошкент шаҳри"},{years:"2015 й. - ҳ.в.",work:"\"Таржима Го\" МЧЖ бош директори, Тошкент шаҳри"}],
+family:[{relation:"Отаси",name:"Алиев Солижон Каримович",birth:"1958 йил, Тошкент шаҳри",work:"Пенсионер",address:"Тошкент шаҳри, Юнусобод тумани"},{relation:"Онаси",name:"Алиева Мавлуда Турсуновна",birth:"1962 йил, Тошкент шаҳри",work:"Уй бекаси",address:"Тошкент шаҳри, Юнусобод тумани"},{relation:"Турмуш ўртоғи",name:"Алиева Нилуфар Бахтиёровна",birth:"1988 йил, Самарқанд шаҳри",work:"49-мактаб ўқитувчиси, Тошкент шаҳри",address:"Тошкент шаҳри, Юнусобод тумани"}]
+}},
+ru:{
+fields:{fullName:"АЛИЕВ ВАЛИЖОН СОЛИДЖОНОВИЧ",position:"Генеральный директор ООО \"Таржима Го\"",photo:"",birth:"12 марта 1985 года, г. Ташкент",nationality:"Узбек",party:"Нет",education:"Высшее",university:"2008 г., Ташкентский государственный экономический университет",specialty:"Экономист",degree:"Нет",rank:"Нет",langs:"Английский, русский языки",awards:"Нет",deputy:"Нет"},
+collections:{
+career:[{years:"2003-2008 гг.",work:"Студент Ташкентского государственного экономического университета"},{years:"2008-2015 гг.",work:"Ведущий специалист правления банка \"Ипак Йули\", г. Ташкент"},{years:"2015 г. - н.в.",work:"Генеральный директор ООО \"Таржима Го\", г. Ташкент"}],
+family:[{relation:"Отец",name:"Алиев Солиджон Каримович",birth:"1958 г., г. Ташкент",work:"Пенсионер",address:"г. Ташкент, Юнусабадский район"},{relation:"Мать",name:"Алиева Мавлюда Турсуновна",birth:"1962 г., г. Ташкент",work:"Домохозяйка",address:"г. Ташкент, Юнусабадский район"},{relation:"Супруга",name:"Алиева Нилюфар Бахтияровна",birth:"1988 г., г. Самарканд",work:"Учитель школы №49, г. Ташкент",address:"г. Ташкент, Юнусабадский район"}]
+}}
+};
+
+const INFO_ROWS=[["birth",false],["nationality",false],["party",false],["education",false],["university",true],["specialty",false],["degree",false],["rank",false],["langs",true],["awards",true],["deputy",true]];
+
+let language=localStorage.getItem(LANG_KEY)||((localStorage.getItem("cv-maker-language")==="ru")?"ru":"uzl");
+if(!TEXT[language])language="uzl";
+let state=clone(DEFAULTS[language]),panel;
+
+// Restore everything the visitor already typed (survives login/register redirects)
+try{
+const saved=JSON.parse(localStorage.getItem(STATE_KEY));
+if(saved&&saved.state&&saved.language&&TEXT[saved.language]){
+language=saved.language;
+state=mergeState(clone(DEFAULTS[language]),saved.state);
+}
+}catch(e){}
+
+document.addEventListener("DOMContentLoaded",init);
+
+function init(){
+const resume=document.querySelector(".resume"),workspace=document.createElement("main"),preview=document.createElement("div");
+workspace.className="builder-workspace";preview.className="builder-preview";panel=document.createElement("aside");panel.className="builder-panel";
+resume.parentNode.insertBefore(workspace,resume);preview.appendChild(resume);workspace.appendChild(preview);workspace.appendChild(panel);
+document.body.classList.add("template-builder-ready");
+renderPanel();renderResume();bindEvents();
+}
+
+function t(k){return TEXT[language]?.[k]||TEXT.uzl[k]||k}
+function d(){return DOC[language]||DOC.uzl}
+
+function bindEvents(){
+panel.addEventListener("input",e=>{
+const input=e.target;
+if(input.matches("[data-field]")){state.fields[input.dataset.field]=input.value;renderResume()}
+if(input.matches("[data-collection]")){
+const item=state.collections[input.dataset.collection][Number(input.dataset.index)];
+if(item){item[input.dataset.key]=input.value;renderResume()}
+}
+});
+panel.addEventListener("change",e=>{
+const input=e.target;
+if(input.matches("[data-builder-language]")){
+const previousDefaults=JSON.stringify(DEFAULTS[language]);
+const untouched=JSON.stringify(state)===previousDefaults;
+language=input.value;localStorage.setItem(LANG_KEY,language);
+if(untouched)state=clone(DEFAULTS[language]);
+renderPanel();renderResume();
+}
+if(input.matches("[data-photo]")){
+const file=input.files&&input.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=function(){state.fields.photo=reader.result;renderPanel();renderResume()};
+reader.readAsDataURL(file);
+}
+});
+panel.addEventListener("click",e=>{
+const add=e.target.closest("[data-add]"),remove=e.target.closest("[data-remove]"),back=e.target.closest("[data-builder-back]");
+if(back){e.preventDefault();if(window.history.length>1)window.history.back();return}
+if(add){state.collections[add.dataset.add].push(blank(add.dataset.add));renderPanel();renderResume()}
+if(remove){const arr=state.collections[remove.dataset.remove];if(arr.length>1){arr.splice(Number(remove.dataset.index),1);renderPanel();renderResume()}}
+});
+}
+
+function blank(type){
+if(type==="career")return{years:"",work:""};
+return{relation:"",name:"",birth:"",work:"",address:""};
+}
+
+function renderPanel(){
+panel.innerHTML=`
+<header class="builder-panel-header">
+<div class="builder-panel-top">
+<a class="builder-back" href="/" data-builder-back>${t("back")}</a>
+<select class="builder-lang" data-builder-language aria-label="${t("docLang")}">
+<option value="uzl"${language==="uzl"?" selected":""}>O'zbekcha (lotin)</option>
+<option value="uzc"${language==="uzc"?" selected":""}>Ўзбекча (кирилл)</option>
+<option value="ru"${language==="ru"?" selected":""}>Русский</option>
+</select>
+</div>
+<h2>${t("builder")}</h2>
+</header>
+
+<section class="builder-section">
+<div class="builder-section-title"><h3>${t("personal")}</h3></div>
+<div class="builder-grid">
+${field(t("fullName"),"fullName",state.fields.fullName,true)}
+${field(t("position"),"position",state.fields.position,true)}
+</div>
+<label class="builder-field builder-wide" style="margin-top:12px">
+<span>${t("photo")}</span>
+<input type="file" accept="image/*" data-photo>
+</label>
+${state.fields.photo?`<div class="builder-photo-preview"><img src="${attr(state.fields.photo)}" alt=""></div>`:""}
+</section>
+
+<section class="builder-section">
+<div class="builder-section-title"><h3>${t("info")}</h3></div>
+<div class="builder-grid">
+${field(t("birth"),"birth",state.fields.birth,true)}
+${field(t("nationality"),"nationality",state.fields.nationality)}
+${field(t("party"),"party",state.fields.party)}
+${field(t("education"),"education",state.fields.education)}
+${field(t("specialty"),"specialty",state.fields.specialty)}
+${field(t("university"),"university",state.fields.university,true)}
+${field(t("degree"),"degree",state.fields.degree)}
+${field(t("rank"),"rank",state.fields.rank)}
+${field(t("langs"),"langs",state.fields.langs,true)}
+${field(t("awards"),"awards",state.fields.awards,true)}
+${field(t("deputy"),"deputy",state.fields.deputy,true)}
+</div>
+</section>
+
+${section("career",t("career"),careerEntry)}
+${section("family",t("family"),familyEntry)}
+`;
+}
+
+function field(label,key,value,wide){
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span><input data-field="${key}" value="${attr(value)}"></label>`;
+}
+
+function section(type,title,renderer){
+return`<section class="builder-section"><div class="builder-section-title"><h3>${title}</h3><button class="builder-button" type="button" data-add="${type}">${t("add")}</button></div>${state.collections[type].map((e,i)=>renderer(type,e,i)).join("")}</section>`;
+}
+
+function careerEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("years"),type,i,"years",e.years)}${cf(t("work"),type,i,"work",e.work,true,"textarea")}</div>${removeBtn(type,i)}</div>`;
+}
+
+function familyEntry(type,e,i){
+return`<div class="builder-entry"><div class="builder-grid">${cf(t("relation"),type,i,"relation",e.relation)}${cf(t("name"),type,i,"name",e.name)}${cf(t("famBirth"),type,i,"birth",e.birth)}${cf(t("famWork"),type,i,"work",e.work)}${cf(t("famAddress"),type,i,"address",e.address,true)}</div>${removeBtn(type,i)}</div>`;
+}
+
+function cf(label,type,i,key,value,wide,kind){
+const attrs=`data-collection="${type}" data-index="${i}" data-key="${key}"`;
+const c=kind==="textarea"?`<textarea ${attrs}>${esc(value)}</textarea>`:`<input ${attrs} value="${attr(value)}">`;
+return`<label class="builder-field${wide?" builder-wide":""}"><span>${label}</span>${c}</label>`;
+}
+
+function removeBtn(type,i){
+return`<div class="builder-entry-actions"><button class="builder-button builder-secondary" type="button" data-remove="${type}" data-index="${i}"${state.collections[type].length<=1?" disabled":""}>${t("remove")}</button></div>`;
+}
+
+function renderResume(){
+const doc=d();
+document.querySelector(".download-pdf-btn").textContent=t("downloadPDF");
+document.querySelector(".download-word-btn").textContent=t("downloadWord");
+document.documentElement.lang=language==="ru"?"ru":"uz";
+document.querySelector(".doc-title").textContent=doc.title;
+document.querySelector(".doc-name").textContent=state.fields.fullName;
+document.querySelector(".doc-position").textContent=state.fields.position;
+
+const photoBox=document.querySelector(".doc-photo");
+photoBox.innerHTML=state.fields.photo?`<img src="${attr(state.fields.photo)}" alt="">`:"<span>3 x 4</span>";
+
+document.querySelector(".doc-info").innerHTML=INFO_ROWS.map(([key,wide])=>{
+const value=state.fields[key];
+if(!String(value||"").trim())return"";
+return`<div class="row${wide?" wide":""}"><span class="label">${doc[key]}</span> ${esc(value)}</div>`;
+}).join("");
+
+document.querySelector(".doc-section-title").textContent=doc.career;
+document.querySelector(".doc-career").innerHTML=state.collections.career.filter(hasValue).map(e=>
+`<div class="career-item"><div class="years">${esc(e.years)}</div><div>${esc(e.work)}</div></div>`
+).join("");
+
+document.querySelector(".family-title").textContent=doc.familyTitle;
+document.querySelector("table.family thead").innerHTML=`<tr>${doc.cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr>`;
+document.querySelector("table.family tbody").innerHTML=state.collections.family.filter(hasValue).map(e=>
+`<tr><td>${esc(e.relation)}</td><td class="left">${esc(e.name)}</td><td>${esc(e.birth)}</td><td class="left">${esc(e.work)}</td><td class="left">${esc(e.address)}</td></tr>`
+).join("");
+
+persistState();
+}
+
+function persistState(){
+try{localStorage.setItem(STATE_KEY,JSON.stringify({language:language,state:state}))}catch(e){}
+}
+
+function mergeState(base,saved){
+if(saved.fields)Object.assign(base.fields,saved.fields);
+if(saved.collections){
+Object.keys(base.collections).forEach(key=>{
+if(Array.isArray(saved.collections[key]))base.collections[key]=saved.collections[key];
+});
+}
+return base;
+}
+
+// Builds a Word-compatible HTML document from the current state and downloads it as .doc
+window.downloadWord=function(){
+const doc=d(),f=state.fields;
+
+const info=INFO_ROWS.map(([key])=>{
+const value=f[key];
+if(!String(value||"").trim())return"";
+return`<p style="margin:0 0 4pt;font-size:11pt"><b>${doc[key]}</b> ${esc(value)}</p>`;
+}).join("");
+
+const career=state.collections.career.filter(hasValue).map(e=>
+`<tr><td style="width:120pt;vertical-align:top;padding:2pt 8pt 2pt 0;font-size:11pt"><b>${esc(e.years)}</b></td><td style="vertical-align:top;padding:2pt 0;font-size:11pt">${esc(e.work)}</td></tr>`
+).join("");
+
+const familyRows=state.collections.family.filter(hasValue).map(e=>
+`<tr>${[e.relation,e.name,e.birth,e.work,e.address].map(v=>`<td style="border:1pt solid #000000;padding:3pt 5pt;font-size:10pt;vertical-align:middle">${esc(v)}</td>`).join("")}</tr>`
+).join("");
+
+const photo=f.photo?`<img src="${attr(f.photo)}" width="113" height="151" style="border:1pt solid #555555">`:"";
+
+const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="utf-8"><title>${doc.title}</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+@page WordSection1{size:595.3pt 841.9pt;margin:42.5pt 42.5pt 42.5pt 56.7pt}
+div.WordSection1{page:WordSection1}
+body{font-family:"Times New Roman",serif;font-size:11pt;color:#000000}
+</style></head>
+<body><div class="WordSection1">
+<p style="text-align:center;font-size:16pt;font-weight:bold;letter-spacing:2pt;margin:0 0 14pt">${doc.title}</p>
+<table style="width:100%;border-collapse:collapse" cellspacing="0" cellpadding="0"><tr>
+<td style="vertical-align:middle;text-align:center">
+<p style="font-size:13pt;font-weight:bold;text-transform:uppercase;margin:0 0 4pt">${esc(f.fullName)}</p>
+<p style="margin:0;font-size:11.5pt">${esc(f.position)}</p>
+</td>
+<td style="width:125pt;text-align:right;vertical-align:top">${photo}</td>
+</tr></table>
+<div style="margin:10pt 0 0">${info}</div>
+<p style="text-align:center;font-weight:bold;letter-spacing:1.5pt;font-size:12pt;margin:14pt 0 8pt">${doc.career}</p>
+<table style="width:100%;border-collapse:collapse" cellspacing="0" cellpadding="0">${career}</table>
+<p style="text-align:center;font-weight:bold;font-size:11.5pt;margin:14pt 0 8pt">${doc.familyTitle}</p>
+<table style="width:100%;border-collapse:collapse" cellspacing="0" cellpadding="0">
+<tr>${doc.cols.map(c=>`<th style="border:1pt solid #000000;background:#e8edf3;padding:3pt 5pt;font-size:10pt">${esc(c)}</th>`).join("")}</tr>
+${familyRows}
+</table>
+</div></body></html>`;
+
+const blob=new Blob(["\ufeff",html],{type:"application/msword"});
+const url=URL.createObjectURL(blob);
+const link=document.createElement("a");
+link.href=url;
+link.download=(language==="ru"?"obyektivka":"malumotnoma")+".doc";
+document.body.appendChild(link);
+link.click();
+link.remove();
+window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+
+function hasValue(o){return Object.values(o).some(v=>String(v||"").trim())}
+function clone(v){return JSON.parse(JSON.stringify(v))}
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function attr(v){return esc(v).replace(/"/g,"&quot;")}
+})();
+</script>
+{% include 'resume_templates/_guest_demo_notice.html' %}
+{% include 'resume_templates/_snapshot_recorder.html' %}
+</body>
+</html>

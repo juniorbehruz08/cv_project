@@ -47,6 +47,7 @@
     .builder-panel, .builder-workspace, .builder-preview, .download-pdf-btn,
     .guest-demo-notice { display: none !important; }
     @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: #fff !important; }
       .resume { margin: 0 !important; }
     }

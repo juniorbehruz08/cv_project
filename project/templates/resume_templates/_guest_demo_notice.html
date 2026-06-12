@@ -86,7 +86,7 @@
   <strong data-guest-demo-title>Demo mode</strong>
   <p data-guest-demo-text>You can try this template, but downloading is available only after login or registration.</p>
   <div class="guest-demo-actions">
-    <a href="{% url 'resume:register' %}" data-guest-demo-register>Register</a>
+    <a href="{% url 'resume:register' %}?next={{ request.path|urlencode }}" data-guest-demo-register>Register</a>
     <a href="{% url 'resume:login' %}?next={{ request.path|urlencode }}" data-guest-demo-login>Login</a>
   </div>
 </aside>
@@ -119,7 +119,7 @@
   };
 
   function updateGuestDemoCopy() {
-    const copy = guestDemoCopy[localStorage.getItem("cv-maker-language")] || guestDemoCopy.en;
+    const copy = guestDemoCopy[localStorage.getItem("cv-maker-language")] || guestDemoCopy.uz;
     document.querySelector("[data-guest-demo-title]").textContent = copy.title;
     document.querySelector("[data-guest-demo-text]").textContent = copy.text;
     document.querySelector("[data-guest-demo-register]").textContent = copy.register;

@@ -66,6 +66,7 @@ body.template-builder-ready{min-width:0;overflow-x:auto}
 
 @media print{
 @page{size:A4;margin:0}
+*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:#fff!important;overflow:hidden!important}
 .download-pdf-btn,.builder-panel{display:none!important}
 .builder-workspace,.builder-preview{display:block!important;width:210mm!important;height:297mm!important;margin:0!important;padding:0!important;overflow:hidden!important}
@@ -133,9 +134,23 @@ fields:{fullName:"Taylor Parker",jobTitle:"Старший инженер ПО | 
 collections:{experience:[{role:"Старший инженер ПО",company:"Google",date:"Янв 2020 - Настоящее время",place:"Mountain View, CA",details:"Разрабатывал материалы, соответствующие бренду и стратегии.\nУправлял несколькими проектами одновременно."}],education:[{degree:"Магистр компьютерных наук",school:"Стэнфордский университет",date:"2016 - 2018",place:"Stanford, CA"}],skills:[{name:"Backend",level:"Эксперт",segments:5},{name:"Frontend",level:"Продвинутый",segments:4},{name:"AI",level:"Уверенный",segments:3}]}}
 };
 
-let language=localStorage.getItem("cv-maker-language")||"en";
-if(!DEFAULTS[language])language="en";
+let language=localStorage.getItem("cv-maker-language")||"uz";
+if(!DEFAULTS[language])language="uz";
 let state=clone(DEFAULTS[language]),panel;
+
+// Restore what the visitor already typed (survives login/register redirects)
+const STATE_KEY="cv-builder-state-timeless";
+try{
+const saved=JSON.parse(localStorage.getItem(STATE_KEY));
+if(saved&&saved.state){
+if(saved.state.fields)Object.assign(state.fields,saved.state.fields);
+if(saved.state.collections)Object.keys(state.collections).forEach(k=>{if(Array.isArray(saved.state.collections[k]))state.collections[k]=saved.state.collections[k]});
+}
+}catch(e){}
+
+function persistState(){
+try{localStorage.setItem(STATE_KEY,JSON.stringify({language:language,state:state}))}catch(e){}
+}
 document.addEventListener("DOMContentLoaded",init);
 
 function init(){
@@ -250,6 +265,7 @@ document.querySelector(".contact").innerHTML=`<span>📞 ${esc(state.fields.phon
 document.querySelector(".summary h2").textContent=t("summary");
 document.querySelector(".summary p").textContent=state.fields.summary;
 renderExperience();renderEducation();renderSkills();
+persistState();
 }
 
 function renderExperience(){

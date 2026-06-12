@@ -545,6 +545,11 @@
         margin: 0;
       }
 
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
       html,
       body {
         width: 210mm;
@@ -816,7 +821,7 @@
       }
     };
 
-    let language = localStorage.getItem("cv-maker-language") || "en";
+    let language = localStorage.getItem("cv-maker-language") || "uz";
 
     const state = {
       fields: {
@@ -882,6 +887,28 @@
     };
 
     let panel;
+
+    // Restore what the visitor already typed (survives login/register redirects)
+    const STATE_KEY = "cv-builder-state-artistic";
+    try {
+      const saved = JSON.parse(localStorage.getItem(STATE_KEY));
+      if (saved && saved.state) {
+        if (saved.state.fields) Object.assign(state.fields, saved.state.fields);
+        if (saved.state.collections) {
+          Object.keys(state.collections).forEach((key) => {
+            if (Array.isArray(saved.state.collections[key])) {
+              state.collections[key] = saved.state.collections[key];
+            }
+          });
+        }
+      }
+    } catch (error) {}
+
+    function persistState() {
+      try {
+        localStorage.setItem(STATE_KEY, JSON.stringify({ language: language, state: state }));
+      } catch (error) {}
+    }
 
     document.addEventListener("DOMContentLoaded", init);
 
@@ -1138,6 +1165,7 @@
       renderList(".skills ul", state.collections.skills);
       renderList(".certifications ul", state.collections.certifications, true);
       renderList(".achievements ul", state.collections.achievements);
+      persistState();
     }
 
     function renderExperience() {

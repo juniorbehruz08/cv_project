@@ -528,6 +528,11 @@
                 margin: 0;
             }
 
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             html,
             body {
                 width: 210mm;
@@ -1012,9 +1017,32 @@
             }
         };
 
-        let language = localStorage.getItem("cv-maker-language") || "en";
+        let language = localStorage.getItem("cv-maker-language") || "uz";
+        if (!DEFAULTS[language]) language = "uz";
         let state = deepClone(DEFAULTS[language]);
         let panel;
+
+        // Restore what the visitor already typed (survives login/register redirects)
+        const STATE_KEY = "cv-builder-state-bloom";
+        try {
+            const saved = JSON.parse(localStorage.getItem(STATE_KEY));
+            if (saved && saved.state) {
+                if (saved.state.fields) Object.assign(state.fields, saved.state.fields);
+                if (saved.state.collections) {
+                    Object.keys(state.collections).forEach((key) => {
+                        if (Array.isArray(saved.state.collections[key])) {
+                            state.collections[key] = saved.state.collections[key];
+                        }
+                    });
+                }
+            }
+        } catch (error) {}
+
+        function persistState() {
+            try {
+                localStorage.setItem(STATE_KEY, JSON.stringify({language: language, state: state}));
+            } catch (error) {}
+        }
 
         document.addEventListener("DOMContentLoaded", init);
 
@@ -1319,6 +1347,7 @@
             renderExperience();
             renderEducation();
             renderSimpleList(".certifications ul", state.collections.certifications, true);
+            persistState();
         }
 
         function renderSkills() {

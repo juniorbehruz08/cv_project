@@ -3,7 +3,6 @@ import json
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import redirect_to_login
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -13,12 +12,14 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.http import require_POST
 
 
-from .forms import RegisterForm, UserProfileForm, UserUpdateForm
+from django.utils.http import url_has_allowed_host_and_scheme
+
+from .forms import EmailLoginForm, RegisterForm, UserProfileForm, UserUpdateForm
 from .models import CVDownload, UserProfile
 from .template_choices import RESUME_TEMPLATES
 
 
-GUEST_DEMO_SLUGS = {'artistic', 'bloom', 'timeless'}
+GUEST_DEMO_SLUGS = {'artistic', 'bloom', 'timeless', 'obyektivka'}
 
 
 @ensure_csrf_cookie
@@ -45,34 +46,53 @@ def template_detail(request, slug):
     })
 
 
-def register_view(request):
+def _safe_next_url(request):
+    candidate = request.POST.get('next') or request.GET.get('next')
+
+    if candidate and url_has_allowed_host_and_scheme(candidate, allowed_hosts={request.get_host()}):
+        return candidate
+
+    return ''
+
+
+def auth_view(request, mode='login'):
     if request.user.is_authenticated:
         return redirect('resume:profile')
 
-    form = RegisterForm(request.POST or None)
+    login_form = EmailLoginForm(request)
+    register_form = RegisterForm()
+    active_tab = 'register' if mode == 'register' else 'login'
 
-    if request.method == 'POST' and form.is_valid():
-        user = form.save()
-        UserProfile.objects.get_or_create(user=user)
-        login(request, user)
-        messages.success(request, 'Account created successfully.')
-        return redirect('resume:profile')
+    if request.method == 'POST':
+        if request.POST.get('form_type') == 'register':
+            active_tab = 'register'
+            register_form = RegisterForm(request.POST)
 
-    return render(request, 'register.html', {'form': form})
+            if register_form.is_valid():
+                user = register_form.save()
+                UserProfile.objects.get_or_create(user=user)
+                login(request, user)
+                messages.success(request, 'Account created successfully.')
+                return redirect(_safe_next_url(request) or 'resume:profile')
+        else:
+            active_tab = 'login'
+            login_form = EmailLoginForm(request, data=request.POST)
 
+            if login_form.is_valid():
+                login(request, login_form.get_user())
 
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('resume:profile')
+                if not request.POST.get('remember_me'):
+                    request.session.set_expiry(0)
 
-    form = AuthenticationForm(request, data=request.POST or None)
+                messages.success(request, 'Welcome back.')
+                return redirect(_safe_next_url(request) or 'resume:profile')
 
-    if request.method == 'POST' and form.is_valid():
-        login(request, form.get_user())
-        messages.success(request, 'Welcome back.')
-        return redirect(request.GET.get('next') or 'resume:profile')
-
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'auth.html', {
+        'active_tab': active_tab,
+        'login_form': login_form,
+        'next_url': _safe_next_url(request),
+        'register_form': register_form,
+    })
 
 
 def logout_view(request):

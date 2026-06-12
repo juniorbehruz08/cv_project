@@ -1,0 +1,1086 @@
+{% load static %}
+<!doctype html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login or Register - TarjimaGo</title>
+    <script>document.documentElement.dataset.theme = localStorage.getItem("cv-maker-theme") || "light";</script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root,
+        :root[data-theme="light"] {
+            --bg: #f6f7f4;
+            --card: #ffffff;
+            --text: #1d1f1e;
+            --muted: #6f7572;
+            --border: #e4e7e2;
+            --input: #f7f8f6;
+            --primary: #10a37f;
+            --primary-hover: #0d8f70;
+            --primary-soft: rgba(16, 163, 127, 0.12);
+            --danger: #c2410c;
+            --shadow: 0 24px 70px rgba(18, 38, 32, 0.13);
+            --tabs-bg: #f3f5f2;
+            --social-hover: #f4f6f3;
+            --error-bg: #fff1ed;
+            --error-border: #fed7cc;
+            --success-bg: #ecfdf5;
+            --success-ink: #047857;
+            --success-border: #bbf7d0;
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #080b14;
+            --card: #101726;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.10);
+            --input: #161e30;
+            --primary: #10a37f;
+            --primary-hover: #0d8f70;
+            --primary-soft: rgba(16, 163, 127, 0.20);
+            --danger: #fda4af;
+            --shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+            --tabs-bg: #0c1220;
+            --social-hover: #182137;
+            --error-bg: rgba(194, 65, 12, 0.16);
+            --error-border: rgba(254, 215, 204, 0.25);
+            --success-bg: rgba(4, 120, 87, 0.18);
+            --success-ink: #6ee7b7;
+            --success-border: rgba(187, 247, 208, 0.25);
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: radial-gradient(circle at top left, rgba(16, 163, 127, 0.16), transparent 34%),
+            radial-gradient(circle at bottom right, rgba(20, 70, 55, 0.10), transparent 32%),
+            var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 16px;
+        }
+
+        /* floating page controls (theme + language) */
+        .page-controls {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--card);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .page-controls .lang-btn {
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--card);
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+        .page-controls .lang-btn.is-active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .auth-shell {
+            width: min(940px, 100%);
+            height: min(690px, calc(100vh - 32px));
+            display: grid;
+            grid-template-columns: minmax(320px, 1fr) 410px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+
+        /* ============ HERO ============ */
+
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 32px;
+            background: linear-gradient(150deg, #11ab85 0%, #0e8a6c 42%, #134a3a 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .hero::before {
+            width: 240px;
+            height: 240px;
+            top: -90px;
+            right: -80px;
+        }
+
+        .hero::after {
+            width: 160px;
+            height: 160px;
+            bottom: 90px;
+            left: -60px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: #fff;
+            font-weight: 750;
+            font-size: 17px;
+            letter-spacing: -0.3px;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+            font-weight: 800;
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ============ WATCHERS ============ */
+
+        .watchers {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: end;
+            gap: 18px;
+            margin: 20px 0 10px;
+            min-height: 140px;
+        }
+
+        .person {
+            position: relative;
+            display: grid;
+            justify-items: center;
+            transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.5, 1);
+            transform: translateY(var(--ty, 0)) rotate(var(--rot, 0deg));
+        }
+
+        .person-one {
+            --ty: 12px;
+            --rot: -3deg;
+        }
+
+        .person-two {
+            --ty: -5px;
+            --rot: 0deg;
+        }
+
+        .person-three {
+            --ty: 16px;
+            --rot: 4deg;
+        }
+
+        .head {
+            position: relative;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18),
+            inset 0 -6px 12px rgba(16, 163, 127, 0.10);
+        }
+
+        .person-two .head {
+            width: 72px;
+            height: 72px;
+        }
+
+        .person-three .head {
+            width: 58px;
+            height: 58px;
+        }
+
+        .eye {
+            position: absolute;
+            top: 27px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #1d1f1e;
+            transition: transform 0.28s cubic-bezier(0.3, 1.3, 0.5, 1);
+            animation: blink 4.6s infinite;
+        }
+
+        .person-one .eye {
+            animation-delay: 0.6s;
+        }
+
+        .person-three .eye {
+            animation-delay: 1.7s;
+        }
+
+        @keyframes blink {
+            0%, 93%, 100% {
+                height: 9px;
+            }
+            96% {
+                height: 1.5px;
+            }
+        }
+
+        .person-two .eye {
+            top: 31px;
+        }
+
+        .person-three .eye {
+            top: 25px;
+        }
+
+        .eye.left {
+            left: 19px;
+        }
+
+        .eye.right {
+            right: 19px;
+        }
+
+        .person-two .eye.left {
+            left: 22px;
+        }
+
+        .person-two .eye.right {
+            right: 22px;
+        }
+
+        .person-three .eye.left {
+            left: 18px;
+        }
+
+        .person-three .eye.right {
+            right: 18px;
+        }
+
+        .mouth {
+            position: absolute;
+            left: 50%;
+            bottom: 13px;
+            width: 12px;
+            height: 6px;
+            transform: translateX(-50%);
+            border: 2px solid #1d1f1e;
+            border-top: 0;
+            border-radius: 0 0 12px 12px;
+            transition: 0.3s ease;
+        }
+
+        .person-three .mouth {
+            bottom: 11px;
+        }
+
+        .body {
+            width: 78px;
+            height: 54px;
+            margin-top: -4px;
+            border-radius: 28px 28px 14px 14px;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(10px);
+        }
+
+        .person-two .body {
+            width: 88px;
+            height: 60px;
+        }
+
+        .person-three .body {
+            width: 72px;
+            height: 50px;
+        }
+
+        /* All of them turn away together when a password is visible */
+        body.people-looking-away .person-one {
+            --rot: -16deg;
+        }
+
+        body.people-looking-away .person-two {
+            --rot: -12deg;
+        }
+
+        body.people-looking-away .person-three {
+            --rot: -10deg;
+        }
+
+        body.people-looking-away .eye {
+            transform: translate(-8px, -2px) !important;
+        }
+
+        body.people-looking-away .mouth {
+            width: 7px;
+            height: 7px;
+            border: 2px solid #1d1f1e;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 390px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(34px, 4vw, 48px);
+            line-height: 0.96;
+            letter-spacing: -1.8px;
+            margin-bottom: 14px;
+        }
+
+        .hero-content p {
+            max-width: 360px;
+            color: rgba(255, 255, 255, 0.84);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .hero-pills {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .hero-pills span {
+            padding: 8px 11px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(10px);
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        /* ============ AUTH PANEL ============ */
+
+        .auth-panel {
+            min-height: 0;
+            padding: 26px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden auto;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            padding: 5px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--tabs-bg);
+            margin-bottom: 18px;
+            flex: 0 0 auto;
+        }
+
+        .tab {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px;
+            background: transparent;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.18s ease;
+        }
+
+        .tab.active {
+            background: var(--card);
+            color: var(--text);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .tab:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 12px;
+            padding: 9px 11px;
+            border-radius: 11px;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background: var(--error-bg);
+            color: var(--danger);
+            border: 1px solid var(--error-border);
+        }
+
+        .message.success {
+            background: var(--success-bg);
+            color: var(--success-ink);
+            border: 1px solid var(--success-border);
+        }
+
+        .form {
+            display: none;
+            animation: show 0.22s ease;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        @keyframes show {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-header {
+            margin-bottom: 16px;
+        }
+
+        .form-header h2 {
+            font-size: 27px;
+            letter-spacing: -0.9px;
+            margin-bottom: 5px;
+        }
+
+        .form-header p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .field {
+            display: grid;
+            gap: 5px;
+            margin-bottom: 11px;
+        }
+
+        .field label {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            height: 42px;
+            padding: 0 42px 0 13px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            background: var(--input);
+            color: var(--text);
+            font-size: 13px;
+            transition: 0.16s ease;
+        }
+
+        .input-wrap input::placeholder {
+            color: #a8aeaa;
+        }
+
+        .input-wrap input:focus {
+            border-color: rgba(16, 163, 127, 0.7);
+            background: var(--card);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 14px;
+            user-select: none;
+        }
+
+        .password-toggle {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.15s ease;
+        }
+
+        .password-toggle:hover {
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        .password-toggle:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 4px 0 14px;
+            font-size: 12px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .checkbox input {
+            accent-color: var(--primary);
+        }
+
+        .link {
+            border: 0;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 750;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .submit {
+            width: 100%;
+            height: 43px;
+            border: 0;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 12px 26px rgba(16, 163, 127, 0.24);
+            transition: 0.16s ease;
+        }
+
+        .submit:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(16, 163, 127, 0.3);
+        }
+
+        .submit:active {
+            transform: translateY(0);
+        }
+
+        .switch-text {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .person,
+            .eye,
+            .mouth {
+                transition: none;
+                animation: none;
+            }
+        }
+
+        @media (max-height: 670px) and (min-width: 861px) {
+            body {
+                overflow: auto;
+                padding: 12px;
+            }
+
+            .auth-shell {
+                height: auto;
+                min-height: 640px;
+            }
+
+            .auth-panel {
+                padding: 20px 30px;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            .form-header {
+                margin-bottom: 12px;
+            }
+
+            .field {
+                margin-bottom: 9px;
+            }
+
+            .input-wrap input {
+                height: 40px;
+            }
+
+            .submit {
+                height: 39px;
+            }
+
+            .switch-text {
+                margin-top: 11px;
+            }
+        }
+
+        @media (max-width: 860px) {
+            body {
+                overflow: auto;
+            }
+
+            .auth-shell {
+                height: auto;
+                min-height: auto;
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 240px;
+                padding: 26px;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .auth-panel {
+                min-height: auto;
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 0;
+                background: var(--card);
+            }
+
+            .auth-shell {
+                min-height: 100vh;
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .hero {
+                display: none;
+            }
+
+            .auth-panel {
+                justify-content: flex-start;
+                padding: 22px 18px;
+            }
+
+            .form-header h2 {
+                font-size: 26px;
+            }
+
+            .page-controls {
+                position: absolute;
+            }
+        }
+    </style>
+</head>
+
+<body data-page-title-key="auth_page_title">
+<div class="page-controls">
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">🌙</button>
+    <button class="lang-btn is-active" type="button" data-lang="uz">UZ</button>
+    <button class="lang-btn" type="button" data-lang="en">EN</button>
+    <button class="lang-btn" type="button" data-lang="ru">RU</button>
+</div>
+
+<main class="auth-shell">
+    <section class="hero">
+        <a class="brand" href="{% url 'resume:demo' %}">
+            <div class="brand-mark"><img src="{% static 'images/logo.jpg' %}" alt=""></div>
+            <span data-i18n="brand">TarjimaGo</span>
+        </a>
+
+        <div class="watchers" id="watchers">
+            <div class="person person-one">
+                <div class="head">
+                    <span class="eye left"></span>
+                    <span class="eye right"></span>
+                    <span class="mouth"></span>
+                </div>
+                <div class="body"></div>
+            </div>
+
+            <div class="person person-two">
+                <div class="head">
+                    <span class="eye left"></span>
+                    <span class="eye right"></span>
+                    <span class="mouth"></span>
+                </div>
+                <div class="body"></div>
+            </div>
+
+            <div class="person person-three">
+                <div class="head">
+                    <span class="eye left"></span>
+                    <span class="eye right"></span>
+                    <span class="mouth"></span>
+                </div>
+                <div class="body"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1 data-i18n="auth_hero_title">Sizning CV ish maydoningiz.</h1>
+            <p data-i18n="auth_hero_text">
+                Rezyume va obyektivka hujjatlarini yaratish, PDF yuklab olish va tarixni saqlash uchun tizimga kiring.
+            </p>
+        </div>
+
+        <div class="hero-pills">
+            <span data-i18n="auth_pill_1">Jonli shablonlar</span>
+            <span data-i18n="auth_pill_2">3 ta til</span>
+            <span data-i18n="auth_pill_3">PDF yuklab olish</span>
+        </div>
+    </section>
+
+    <section class="auth-panel">
+        <div class="tabs">
+            <button class="tab{% if active_tab == 'login' %} active{% endif %}" type="button" data-tab="login"
+                    data-i18n="login">Kirish</button>
+            <button class="tab{% if active_tab == 'register' %} active{% endif %}" type="button" data-tab="register"
+                    data-i18n="register">Ro'yxatdan o'tish</button>
+        </div>
+
+        {% if messages or login_form.errors or register_form.errors %}
+            <div class="message show {% if login_form.errors or register_form.errors %}error{% else %}success{% endif %}"
+                 id="message">
+                {% for message in messages %}{{ message }}<br>{% endfor %}
+                {% for errors in login_form.errors.values %}{% for error in errors %}{{ error }}<br>{% endfor %}{% endfor %}
+                {% for errors in register_form.errors.values %}{% for error in errors %}{{ error }}<br>{% endfor %}{% endfor %}
+            </div>
+        {% else %}
+            <div class="message" id="message"></div>
+        {% endif %}
+
+        <form class="form{% if active_tab == 'login' %} active{% endif %}" id="login-form" method="post"
+              action="{% url 'resume:login' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="login">
+            <input type="hidden" name="next" value="{{ next_url }}">
+
+            <div class="form-header">
+                <h2 data-i18n="login_title">Xush kelibsiz</h2>
+                <p data-i18n="login_sub">Hujjatlaringizni yaratishni davom ettirish uchun kiring.</p>
+            </div>
+
+            <div class="field">
+                <label for="login-email" data-i18n="email">Email</label>
+                <div class="input-wrap">
+                    <input id="login-email" name="email" type="email" placeholder="you@example.com"
+                           autocomplete="email" value="{{ login_form.email.value|default:'' }}" required>
+                    <span class="input-icon">✉</span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="login-password" data-i18n="password">Parol</label>
+                <div class="input-wrap">
+                    <input id="login-password" name="password" type="password" placeholder="••••••••"
+                           autocomplete="current-password" required>
+                    <button class="input-icon password-toggle" type="button" data-toggle="login-password"
+                            aria-label="Show password">👁</button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember_me" checked>
+                    <span data-i18n="remember_me">Meni eslab qol</span>
+                </label>
+            </div>
+
+            <button class="submit" type="submit" data-i18n="login">Kirish</button>
+
+            <p class="switch-text">
+                <span data-i18n="no_account">Hali hisobingiz yo'qmi?</span>
+                <button class="link" type="button" data-switch="register" data-i18n="create_one">Yaratish</button>
+            </p>
+        </form>
+
+        <form class="form{% if active_tab == 'register' %} active{% endif %}" id="register-form" method="post"
+              action="{% url 'resume:register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="register">
+            <input type="hidden" name="next" value="{{ next_url }}">
+
+            <div class="form-header">
+                <h2 data-i18n="register_title">Hisob yaratish</h2>
+                <p data-i18n="register_sub">TarjimaGo profilingizni bir necha soniyada yarating.</p>
+            </div>
+
+            <div class="field">
+                <label for="register-name" data-i18n="full_name">To'liq ism</label>
+                <div class="input-wrap">
+                    <input id="register-name" name="full_name" type="text" placeholder="Behruz Farxodov"
+                           autocomplete="name" value="{{ register_form.full_name.value|default:'' }}" required>
+                    <span class="input-icon">●</span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="register-email" data-i18n="email">Email</label>
+                <div class="input-wrap">
+                    <input id="register-email" name="email" type="email" placeholder="you@example.com"
+                           autocomplete="email" value="{{ register_form.email.value|default:'' }}" required>
+                    <span class="input-icon">✉</span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="register-password" data-i18n="password">Parol</label>
+                <div class="input-wrap">
+                    <input id="register-password" name="password1" type="password" placeholder="••••••••"
+                           autocomplete="new-password" required>
+                    <button class="input-icon password-toggle" type="button" data-toggle="register-password"
+                            aria-label="Show password">👁</button>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="register-confirm" data-i18n="confirm_password">Parolni tasdiqlang</label>
+                <div class="input-wrap">
+                    <input id="register-confirm" name="password2" type="password" placeholder="••••••••"
+                           autocomplete="new-password" required>
+                    <button class="input-icon password-toggle" type="button" data-toggle="register-confirm"
+                            aria-label="Show password">👁</button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="checkbox">
+                    <input id="terms" type="checkbox" required>
+                    <span data-i18n="agree_terms">Shartlarga roziman</span>
+                </label>
+            </div>
+
+            <button class="submit" type="submit" data-i18n="create_account">Hisob yaratish</button>
+
+            <p class="switch-text">
+                <span data-i18n="already_registered">Allaqachon ro'yxatdan o'tganmisiz?</span>
+                <button class="link" type="button" data-switch="login" data-i18n="login">Kirish</button>
+            </p>
+        </form>
+    </section>
+</main>
+
+<script src="{% static 'js/main.js' %}?v=20260611-auth"></script>
+<script>
+// ===================== WATCHERS: real gaze tracking =====================
+const passwordInputIds = ["login-password", "register-password", "register-confirm"];
+const people = Array.from(document.querySelectorAll(".person"));
+let gazeTarget = null; // the input element currently being looked at
+
+function isPasswordVisible() {
+    return passwordInputIds.some((id) => {
+        const el = document.getElementById(id);
+        return el && el.type === "text";
+    });
+}
+
+function clearEyes() {
+    people.forEach((p) => {
+        p.querySelectorAll(".eye").forEach((eye) => {
+            eye.style.transform = "";
+        });
+    });
+}
+
+// Each person's eyes aim at the actual position of the focused input,
+// so heads at different spots look in slightly different directions.
+function aimEyesAt(input) {
+    const rect = input.getBoundingClientRect();
+
+    // Look roughly at the caret: start of input + typed text width (capped)
+    const textOffset = Math.min((input.value || "").length * 7, rect.width - 36);
+    const targetX = rect.left + 16 + Math.max(textOffset, 0);
+    const targetY = rect.top + rect.height / 2;
+
+    people.forEach((p) => {
+        const head = p.querySelector(".head");
+        const h = head.getBoundingClientRect();
+        const cx = h.left + h.width / 2;
+        const cy = h.top + h.height / 2;
+
+        const angle = Math.atan2(targetY - cy, targetX - cx);
+        const reach = 7.5; // how far pupils travel inside the eye
+        const dx = Math.cos(angle) * reach;
+        const dy = Math.sin(angle) * reach;
+
+        p.querySelectorAll(".eye").forEach((eye) => {
+            eye.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+        });
+    });
+}
+
+function setPeopleState() {
+    if (isPasswordVisible()) {
+        // Everyone politely turns away to the other side
+        document.body.classList.add("people-looking-away");
+        clearEyes(); // let the CSS look-away transform take over
+        return;
+    }
+
+    document.body.classList.remove("people-looking-away");
+
+    const active = document.activeElement;
+    if (active && active.matches(".auth-panel input")) {
+        gazeTarget = active;
+        aimEyesAt(active);
+    } else {
+        gazeTarget = null;
+        clearEyes();
+    }
+}
+
+document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("focus", setPeopleState);
+    input.addEventListener("input", setPeopleState);
+    input.addEventListener("click", setPeopleState);
+    input.addEventListener("keyup", setPeopleState);
+    input.addEventListener("blur", () => {
+        window.setTimeout(setPeopleState, 80);
+    });
+});
+
+window.addEventListener("resize", () => {
+    if (gazeTarget && !isPasswordVisible()) aimEyesAt(gazeTarget);
+});
+
+document.querySelectorAll("[data-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.toggle);
+        const hidden = input.type === "password";
+        input.type = hidden ? "text" : "password";
+        button.textContent = hidden ? "🙈" : "👁";
+        button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+        input.focus();
+        window.setTimeout(setPeopleState, 0);
+    });
+});
+
+setPeopleState();
+
+// ===================== tabs =====================
+const tabs = document.querySelectorAll("[data-tab]");
+const forms = {
+    login: document.getElementById("login-form"),
+    register: document.getElementById("register-form"),
+};
+
+function switchTab(tabName) {
+    tabs.forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.tab === tabName);
+    });
+    Object.entries(forms).forEach(([name, form]) => {
+        form.classList.toggle("active", name === tabName);
+    });
+    window.setTimeout(setPeopleState, 50);
+}
+
+tabs.forEach((tab) => {
+    tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+});
+
+document.querySelectorAll("[data-switch]").forEach((button) => {
+    button.addEventListener("click", () => switchTab(button.dataset.switch));
+});
+
+// Client-side password match check before the register form submits.
+forms.register.addEventListener("submit", (event) => {
+    const password = document.getElementById("register-password").value;
+    const confirm = document.getElementById("register-confirm").value;
+    const message = document.getElementById("message");
+
+    if (password !== confirm) {
+        event.preventDefault();
+        message.textContent = document.documentElement.lang === "ru"
+            ? "Пароли не совпадают."
+            : document.documentElement.lang === "en"
+                ? "Passwords do not match."
+                : "Parollar mos kelmadi.";
+        message.className = "message show error";
+    }
+});
+</script>
+
+</body>
+</html>
