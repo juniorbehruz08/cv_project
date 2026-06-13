@@ -27,3 +27,19 @@ class CVDownload(models.Model):
 
     def __str__(self):
         return f'{self.title} - {self.user.username}'
+
+
+class DonationCard(models.Model):
+    cardholder_name = models.CharField(max_length=120)
+    card_number = models.CharField(max_length=40)
+    bank_name = models.CharField(max_length=120, blank=True)
+    note = models.CharField(max_length=200, blank=True)
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', 'id']
+
+    def __str__(self):
+        return f'{self.cardholder_name} - {self.card_number}'

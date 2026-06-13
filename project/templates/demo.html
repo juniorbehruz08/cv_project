@@ -117,7 +117,6 @@
 
         .hero-split {
             width: min(1240px, calc(100% - 40px));
-            min-height: 640px;
             margin: 44px auto 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -129,13 +128,13 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 14px;
             overflow: hidden;
             border: 1px solid var(--card-line);
             border-radius: 32px;
             background: var(--card-bg);
             box-shadow: var(--card-shadow);
-            padding: 44px;
+            padding: 30px;
         }
 
         .hero-card.obyektivka-card {
@@ -167,17 +166,39 @@
         .hero-card h1 {
             margin: 0;
             color: var(--page-ink);
-            font-size: clamp(2.1rem, 3.6vw, 3.4rem);
-            line-height: .98;
+            font-size: clamp(1.8rem, 3vw, 2.7rem);
+            line-height: 1;
             letter-spacing: -.05em;
         }
 
         .hero-card .hero-text {
             margin: 0;
             color: var(--page-muted);
-            font-size: 1.05rem;
-            line-height: 1.65;
+            font-size: 1rem;
+            line-height: 1.55;
             max-width: 480px;
+        }
+
+        /* embedded intro videos inside the hero cards */
+        .hero-video {
+            margin-top: auto;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border: 1px solid var(--preview-line);
+            border-radius: 16px;
+            background: #000;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .14);
+        }
+
+        .hero-video iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
 
         .hero-actions {
@@ -494,18 +515,10 @@
                 <a class="primary-btn link-btn" href="{% url 'resume:template_detail' 'obyektivka' %}"
                    data-i18n="obyektivka_card_btn">Obyektivka yaratish</a>
             </div>
-            <div class="doc-mock" aria-hidden="true">
-                <span class="m-photo"></span>
-                <span class="m-title"></span>
-                <span class="m-line short"></span>
-                <span class="m-line"></span>
-                <span class="m-line"></span>
-                <span class="m-line short"></span>
-                <span class="m-table">
-                    <i></i><i></i><i></i><i></i>
-                    <i></i><i></i><i></i><i></i>
-                    <i></i><i></i><i></i><i></i>
-                </span>
+            <div class="hero-video">
+                <iframe src="https://www.youtube.com/embed/S8hrUmusF-g" title="Obyektivka video"
+                        loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </article>
 
@@ -519,9 +532,10 @@
                     boshlash
                 </button>
             </div>
-            <div class="cv-mock" aria-hidden="true">
-                <div class="cm-side"><span></span><i></i><i></i><i></i></div>
-                <div class="cm-body"><b></b><i></i><i></i><i class="short"></i><i></i><i class="short"></i></div>
+            <div class="hero-video">
+                <iframe src="https://www.youtube.com/embed/CJ3guVJSNMI" title="CV Builder video"
+                        loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </article>
     </section>

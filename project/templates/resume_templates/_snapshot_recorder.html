@@ -112,6 +112,9 @@
         }
         savingSnapshot = false;
         nativePrint();
+        setTimeout(function () {
+          window.location.href = "{% url 'resume:download_support' %}";
+        }, 800);
       }
     };
   })();

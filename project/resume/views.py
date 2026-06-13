@@ -15,7 +15,7 @@ from django.views.decorators.http import require_POST
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from .forms import EmailLoginForm, RegisterForm, UserProfileForm, UserUpdateForm
-from .models import CVDownload, UserProfile
+from .models import CVDownload, DonationCard, UserProfile
 from .template_choices import RESUME_TEMPLATES
 
 
@@ -162,6 +162,11 @@ def record_download(request):
         'detail_url': reverse('resume:download_detail', args=[download.pk]),
         'downloaded_at': download.downloaded_at.isoformat(),
     })
+
+
+def download_support(request):
+    cards = DonationCard.objects.filter(is_active=True)
+    return render(request, 'download_support.html', {'cards': cards})
 
 
 @login_required

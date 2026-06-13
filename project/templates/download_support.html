@@ -1,0 +1,434 @@
+{% load static %}
+<!doctype html>
+<html lang="uz">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="page_title">Support · TarjimaGo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260611-theme">
+    <script>document.documentElement.dataset.theme = localStorage.getItem("cv-maker-theme") || "light";</script>
+    <style>
+        :root,
+        :root[data-theme="light"] {
+            --page-bg: #eef2f6;
+            --page-ink: #18212f;
+            --page-muted: #687386;
+            --topbar-bg: rgba(255, 255, 255, .86);
+            --topbar-line: #d9e0e9;
+            --card-line: #d9e0e9;
+            --card-bg: #ffffff;
+            --card-bg-soft: #f7f9fb;
+            --card-shadow: 0 24px 70px rgba(20, 31, 45, .12);
+            --eyebrow-ink: #176c72;
+            --chip-bg: rgba(23, 108, 114, .10);
+            --chip-ink: #176c72;
+            --action-line: #c8d2dd;
+        }
+
+        :root[data-theme="dark"] {
+            --page-bg: #080b14;
+            --page-ink: #f8fafc;
+            --page-muted: #cbd5e1;
+            --topbar-bg: rgba(8, 11, 20, .82);
+            --topbar-line: rgba(255, 255, 255, .08);
+            --card-line: rgba(255, 255, 255, .10);
+            --card-bg: rgba(255, 255, 255, .07);
+            --card-bg-soft: rgba(255, 255, 255, .05);
+            --card-shadow: 0 30px 90px rgba(0, 0, 0, .34);
+            --eyebrow-ink: #7dd3fc;
+            --chip-bg: rgba(125, 211, 252, .14);
+            --chip-ink: #7dd3fc;
+            --action-line: rgba(255, 255, 255, .14);
+        }
+
+        * { box-sizing: border-box }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: var(--page-bg);
+            color: var(--page-ink);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+            transition: background .25s ease, color .25s ease;
+        }
+
+        :root[data-theme="dark"] body {
+            background: radial-gradient(circle at top left, rgba(124, 58, 237, .30), transparent 34%),
+                        radial-gradient(circle at bottom right, rgba(6, 182, 212, .22), transparent 38%),
+                        #080b14;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            height: auto;
+            min-height: 72px;
+            padding: 12px 0;
+            background: var(--topbar-bg);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--topbar-line);
+        }
+
+        .brand, .account-nav a { color: var(--page-ink); }
+        .account-nav a { color: var(--page-muted); }
+        .account-nav a:hover { color: var(--eyebrow-ink); }
+
+        .brand-mark {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(6, 182, 212, .16);
+        }
+
+        .language-switcher {
+            background: var(--card-bg-soft);
+            border-color: var(--card-line);
+            box-shadow: none;
+            backdrop-filter: blur(14px);
+        }
+
+        .lang-btn { color: var(--page-muted); }
+        .lang-btn.is-active { background: var(--page-ink); color: var(--page-bg); }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            display: inline-grid;
+            place-items: center;
+            border: 1px solid var(--card-line);
+            border-radius: 999px;
+            background: var(--card-bg-soft);
+            font-size: 17px;
+            cursor: pointer;
+            transition: transform .15s ease;
+        }
+        .theme-toggle:hover { transform: translateY(-1px); }
+
+        .support-shell {
+            width: min(620px, calc(100% - 36px));
+            margin: 54px auto 70px;
+        }
+
+        .support-card {
+            border: 1px solid var(--card-line);
+            border-radius: 26px;
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+            padding: 40px 36px;
+        }
+
+        .support-icon {
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            box-shadow: 0 18px 40px rgba(124, 58, 237, .28);
+        }
+
+        .eyebrow {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--eyebrow-ink);
+        }
+
+        .support-msg {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 460px;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .support-sub {
+            text-align: center;
+            margin: 14px auto 28px;
+            max-width: 470px;
+            color: var(--page-muted);
+            font-size: 14.5px;
+            line-height: 1.65;
+        }
+
+        .cards-title {
+            margin: 0 0 14px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--page-muted);
+        }
+
+        .cards { display: grid; gap: 14px; }
+
+        .card {
+            border: 1px solid var(--card-line);
+            border-radius: 18px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, .12), rgba(6, 182, 212, .08));
+        }
+
+        .card .bank {
+            margin: 0 0 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--eyebrow-ink);
+        }
+
+        .card .number {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: .07em;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .card .holder-label {
+            margin: 12px 0 2px;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--page-muted);
+        }
+
+        .card .holder {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .card .note { margin: 8px 0 0; font-size: 12.5px; color: var(--page-muted); }
+
+        .copy-btn {
+            flex: none;
+            min-height: 36px;
+            padding: 0 14px;
+            border: 1px solid var(--action-line);
+            border-radius: 999px;
+            background: var(--card-bg-soft);
+            color: var(--page-ink);
+            font: inherit;
+            font-size: 12.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .15s ease;
+        }
+        .copy-btn:hover { transform: translateY(-1px); }
+
+        .empty {
+            text-align: center;
+            color: var(--page-muted);
+            font-size: 14px;
+            padding: 22px 0;
+            border: 1px dashed var(--card-line);
+            border-radius: 16px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .actions a {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .actions .primary {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(6, 182, 212, .2);
+        }
+
+        .actions .ghost { border: 1px solid var(--action-line); color: var(--page-ink); }
+
+        @media (max-width: 560px) {
+            .support-card { padding: 30px 22px; }
+            .support-msg { font-size: 19px; }
+        }
+    </style>
+</head>
+<body data-page-title-key="page_title">
+<header class="topbar">
+    <a class="brand" href="{% url 'resume:demo' %}">
+        <span class="brand-mark"><img src="{% static 'images/logo.jpg' %}" width="44" style="border-radius:10px" alt=""></span>
+        <span style="margin-left:10px">TarjimaGo</span>
+    </a>
+    <div class="topbar-actions">
+        <nav class="account-nav" aria-label="Account navigation">
+            <a href="{% url 'resume:demo' %}" data-i18n="home">Home</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme">🌙</button>
+        <div class="language-switcher" aria-label="Language selector">
+            <button class="lang-btn is-active" type="button" data-lang="uz">UZ</button>
+            <button class="lang-btn" type="button" data-lang="en">EN</button>
+            <button class="lang-btn" type="button" data-lang="ru">RU</button>
+        </div>
+    </div>
+</header>
+
+<main class="support-shell">
+    <section class="support-card">
+        <div class="support-icon">💜</div>
+        <span class="eyebrow" data-i18n="eyebrow">Thank you</span>
+        <h1 class="support-msg" data-i18n="message">Free to download doesn't mean free to make.</h1>
+        <p class="support-sub" data-i18n="sub">
+            Your CV is downloading. If TarjimaGo saved you time, a small donation keeps it free for everyone.
+        </p>
+
+        <p class="cards-title" data-i18n="cards_title">Support the project</p>
+        <div class="cards">
+            {% for card in cards %}
+            <div class="card">
+                {% if card.bank_name %}<p class="bank">{{ card.bank_name }}</p>{% endif %}
+                <div class="number">
+                    <span data-number>{{ card.card_number }}</span>
+                    <button type="button" class="copy-btn" data-copy="{{ card.card_number }}" data-i18n="copy">Copy</button>
+                </div>
+                <p class="holder-label" data-i18n="holder_label">Cardholder</p>
+                <p class="holder">{{ card.cardholder_name }}</p>
+                {% if card.note %}<p class="note">{{ card.note }}</p>{% endif %}
+            </div>
+            {% empty %}
+            <p class="empty" data-i18n="empty">Donation details will appear here soon. Thank you for your support!</p>
+            {% endfor %}
+        </div>
+
+        <div class="actions">
+            <a class="primary" href="{% url 'resume:profile' %}" data-i18n="my_downloads">My downloads</a>
+            <a class="ghost" href="{% url 'resume:demo' %}" data-i18n="make_another">Make another CV</a>
+        </div>
+    </section>
+</main>
+
+<script>
+    (function () {
+        const THEME_KEY = "cv-maker-theme";
+        const LANG_KEY = "cv-maker-language";
+
+        const TEXT = {
+            uz: {
+                page_title: "Qo‘llab-quvvatlash · TarjimaGo",
+                home: "Bosh sahifa",
+                eyebrow: "Rahmat",
+                message: "Bepul yuklab olish — uni yaratish bepul degani emas.",
+                sub: "CV yuklanmoqda. Agar TarjimaGo sizga yordam bergan bo‘lsa, kichik xayriya loyihani hamma uchun bepul saqlashga yordam beradi.",
+                cards_title: "Loyihani qo‘llab-quvvatlang",
+                copy: "Nusxa olish",
+                copied: "Nusxa olindi!",
+                holder_label: "Karta egasi",
+                empty: "Xayriya ma'lumotlari tez orada paydo bo‘ladi. Qo‘llab-quvvatlaganingiz uchun rahmat!",
+                my_downloads: "Yuklamalarim",
+                make_another: "Yangi CV yaratish",
+            },
+            en: {
+                page_title: "Support · TarjimaGo",
+                home: "Home",
+                eyebrow: "Thank you",
+                message: "Free to download doesn't mean free to make.",
+                sub: "Your CV is downloading. If TarjimaGo saved you time, a small donation keeps it free for everyone.",
+                cards_title: "Support the project",
+                copy: "Copy",
+                copied: "Copied!",
+                holder_label: "Cardholder",
+                empty: "Donation details will appear here soon. Thank you for your support!",
+                my_downloads: "My downloads",
+                make_another: "Make another CV",
+            },
+            ru: {
+                page_title: "Поддержка · TarjimaGo",
+                home: "Главная",
+                eyebrow: "Спасибо",
+                message: "Бесплатно скачать — не значит бесплатно создать.",
+                sub: "Ваше резюме скачивается. Если TarjimaGo вам помог, небольшое пожертвование поможет сохранить сервис бесплатным для всех.",
+                cards_title: "Поддержать проект",
+                copy: "Копировать",
+                copied: "Скопировано!",
+                holder_label: "Владелец карты",
+                empty: "Реквизиты для пожертвований появятся здесь скоро. Спасибо за вашу поддержку!",
+                my_downloads: "Мои загрузки",
+                make_another: "Создать новое CV",
+            },
+        };
+
+        let currentLang = localStorage.getItem(LANG_KEY) || "uz";
+
+        function applyTheme(theme) {
+            const normalized = theme === "dark" ? "dark" : "light";
+            document.documentElement.dataset.theme = normalized;
+            localStorage.setItem(THEME_KEY, normalized);
+            document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+                btn.textContent = normalized === "dark" ? "☀️" : "🌙";
+            });
+        }
+
+        function setLanguage(lang) {
+            const dict = TEXT[lang] || TEXT.en;
+            currentLang = lang;
+            localStorage.setItem(LANG_KEY, lang);
+            document.documentElement.lang = lang;
+            document.title = dict.page_title;
+
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.dataset.i18n;
+                if (dict[key]) el.textContent = dict[key];
+            });
+
+            document.querySelectorAll(".lang-btn").forEach((btn) => {
+                btn.classList.toggle("is-active", btn.dataset.lang === lang);
+            });
+        }
+
+        document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+            });
+        });
+
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+            btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+        });
+
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                const value = (btn.dataset.copy || "").replace(/\s+/g, "");
+                try {
+                    await navigator.clipboard.writeText(value);
+                    btn.textContent = (TEXT[currentLang] || TEXT.en).copied;
+                    setTimeout(() => { btn.textContent = (TEXT[currentLang] || TEXT.en).copy; }, 1500);
+                } catch (e) { console.error(e); }
+            });
+        });
+
+        applyTheme(localStorage.getItem(THEME_KEY) || "light");
+        setLanguage(currentLang);
+    })();
+</script>
+</body>
+</html>
